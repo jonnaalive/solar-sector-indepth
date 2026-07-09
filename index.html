@@ -1,0 +1,1396 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>글로벌 태양광 섹터 인뎁스 리포트 · 2026.07</title>
+<style>
+  :root{
+    --bg:#FCFCFA; --panel:#FFFFFF; --ink:#141821; --body:#2E333C; --muted:#5B626E; --faint:#8A909C;
+    --line:#EAECEF; --line-strong:#D8DBE0;
+    --accent:#1F6FEB; --accent-soft:#E5EFFE; --accent-ink:#1656C4;
+    --pos:#1B8A5A; --pos-soft:#DDF1E6; --neg:#C43D2F; --neg-soft:#FBE3DE;
+    --hold:#B7791F; --hold-soft:#FBEFD6; --neutral:#6B7280; --neutral-soft:#EEF0F3;
+    --shadow:0 1px 2px rgba(20,24,33,.04),0 12px 30px -16px rgba(20,24,33,.14);
+    --shadow-lift:0 2px 6px rgba(20,24,33,.06),0 24px 50px -20px rgba(20,24,33,.22);
+    --glow:radial-gradient(60% 55% at 18% -12%,color-mix(in srgb,var(--accent-soft) 88%,transparent),transparent 70%);
+    --maxw:860px; --radius:14px; --radius-lg:20px; --dur:.2s; --ease:cubic-bezier(.22,.61,.36,1);
+    --f-body:system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --f-mono:ui-monospace,"SF Mono","Cascadia Code","Roboto Mono",Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0E1116; --panel:#161A21; --ink:#EDF0F5; --body:#C4CAD4; --muted:#8B93A1; --faint:#616A78;
+      --line:#232833; --line-strong:#333A47;
+      --accent:#5B9CFF; --accent-soft:#132538; --accent-ink:#8FBBFF;
+      --pos:#4FC58A; --pos-soft:#0F2A1E; --neg:#F0765F; --neg-soft:#2E1713;
+      --hold:#E0B15A; --hold-soft:#2A2210; --neutral:#8B93A1; --neutral-soft:#1B1F27;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 34px -18px rgba(0,0,0,.7);
+      --shadow-lift:0 2px 6px rgba(0,0,0,.5),0 26px 56px -20px rgba(0,0,0,.82);
+    }
+  }
+  :root[data-theme="dark"]{
+      --bg:#0E1116; --panel:#161A21; --ink:#EDF0F5; --body:#C4CAD4; --muted:#8B93A1; --faint:#616A78;
+      --line:#232833; --line-strong:#333A47;
+      --accent:#5B9CFF; --accent-soft:#132538; --accent-ink:#8FBBFF;
+      --pos:#4FC58A; --pos-soft:#0F2A1E; --neg:#F0765F; --neg-soft:#2E1713;
+      --hold:#E0B15A; --hold-soft:#2A2210; --neutral:#8B93A1; --neutral-soft:#1B1F27;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 14px 34px -18px rgba(0,0,0,.7);
+      --shadow-lift:0 2px 6px rgba(0,0,0,.5),0 26px 56px -20px rgba(0,0,0,.82);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:66px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{background:var(--bg);color:var(--body);font-family:var(--f-body);line-height:1.75;
+    -webkit-font-smoothing:antialiased;margin:0;font-size:17px;letter-spacing:-.003em}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+  p{margin:0 0 1.15em;word-break:keep-all;overflow-wrap:break-word}
+  strong{color:var(--ink);font-weight:680}
+  a{color:var(--accent-ink);text-underline-offset:2px}
+  h1,h2,h3,h4{color:var(--ink);text-wrap:balance;letter-spacing:-.02em;line-height:1.2;margin:0}
+  .mono{font-family:var(--f-mono)}
+  section[id],header.hero,footer{scroll-margin-top:66px}
+
+  sup.fn{font-size:.66em;line-height:0;vertical-align:super;font-weight:600;white-space:nowrap}
+  sup.fn a{font-family:var(--f-mono);color:var(--accent-ink);text-decoration:none;padding:0 2px;border-radius:4px}
+  sup.fn a::before{content:"["} sup.fn a::after{content:"]"}
+  sup.fn a:hover{text-decoration:underline}
+
+  /* glossary term */
+  .term{border-bottom:1.5px dashed color-mix(in srgb,var(--accent) 60%,transparent);cursor:help;
+    text-underline-offset:2px;color:inherit;font-weight:inherit}
+  .term:hover,.term:focus-visible{color:var(--accent-ink);border-bottom-color:var(--accent)}
+
+  /* topbar */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:40;
+    background:linear-gradient(90deg,var(--accent),var(--accent-ink));
+    box-shadow:0 0 10px -1px color-mix(in srgb,var(--accent) 55%,transparent);transition:width .08s linear;will-change:width}
+  @media (prefers-reduced-motion:reduce){.progress{transition:none}}
+  .skip{position:absolute;left:-9999px;top:8px;z-index:60;background:var(--accent);color:#fff;
+    font-family:var(--f-mono);font-size:12px;padding:8px 14px;border-radius:8px;text-decoration:none}
+  .skip:focus{left:12px}
+  .topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;align-items:center;gap:14px;height:52px}
+  .brand{font-family:var(--f-mono);font-size:12px;font-weight:700;letter-spacing:.02em;
+    color:var(--ink);display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .brand .dot{width:9px;height:9px;border-radius:3px;background:var(--accent)}
+  .navlinks{display:flex;align-items:center;gap:2px;overflow-x:auto;margin-left:auto;scrollbar-width:none}
+  .navlinks::-webkit-scrollbar{display:none}
+  .navlinks a{font-family:var(--f-mono);font-size:11px;color:var(--muted);text-decoration:none;
+    padding:6px 6px;border-radius:6px;white-space:nowrap;transition:color var(--dur),background var(--dur)}
+  .navlinks a:hover,.navlinks a.active{color:var(--accent-ink);background:var(--accent-soft)}
+  .navlinks .ng{font-family:var(--f-mono);font-size:9.5px;font-weight:700;color:var(--faint);
+    padding:0 5px 0 8px;letter-spacing:.05em;border-left:1px solid var(--line);margin-left:3px}
+  .navlinks .ng:first-child{border-left:none;margin-left:0}
+  .theme-btn{margin-left:8px;flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;
+    font-family:var(--f-mono);font-size:11px;font-weight:600;color:var(--muted);
+    background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer;
+    transition:color var(--dur),border-color var(--dur)}
+  .theme-btn:hover{color:var(--accent-ink);border-color:var(--line-strong)}
+  @media(max-width:640px){.theme-btn .lbl{display:none}}
+
+  /* hero */
+  header.hero{position:relative;isolation:isolate;padding:74px 0 44px;border-bottom:1px solid var(--line-strong)}
+  header.hero::before{content:"";position:absolute;inset:-40px -60px 0;z-index:-1;background:var(--glow);pointer-events:none}
+  .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);
+    margin-bottom:22px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .eyebrow .sep{color:var(--line-strong)}
+  h1.title{font-size:clamp(2.1rem,5.4vw,3.4rem);font-weight:820;letter-spacing:-.032em;line-height:1.1}
+  .standfirst{font-size:clamp(1.08rem,2.2vw,1.32rem);color:var(--muted);margin-top:22px;max-width:46ch;line-height:1.5;font-weight:450}
+  .standfirst b{color:var(--ink);font-weight:660}
+  .meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .meta .m{font-family:var(--f-mono);font-size:12px;color:var(--muted);background:var(--panel);
+    border:1px solid var(--line-strong);border-radius:999px;padding:6px 13px}
+  .meta .m b{color:var(--accent-ink);font-weight:700}
+
+  /* section */
+  section{padding:60px 0;border-bottom:1px solid var(--line)}
+  .partband{padding:40px 0 0;border:none}
+  .partband .pl{font-family:var(--f-mono);font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--accent);text-transform:uppercase}
+  .partband .pt{font-size:1.15rem;font-weight:750;margin-top:6px;color:var(--ink)}
+  .partband .pd{color:var(--muted);margin-top:4px;font-size:1rem}
+  .kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+  h2.sec-title{font-size:clamp(1.5rem,3.2vw,2.05rem);font-weight:780;margin-bottom:8px}
+  .dek{font-size:1.12rem;color:var(--muted);margin-bottom:26px;font-weight:450;line-height:1.55}
+  h3.sub{font-size:1.16rem;font-weight:720;margin:38px 0 10px}
+  h3.sub .tk{font-family:var(--f-mono);color:var(--accent-ink)}
+
+  /* tiles */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:13px;margin:26px 0}
+  .tile{background:var(--panel);border:1px solid var(--line-strong);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+  .tile .k{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+  .tile .v{font-size:1.55rem;font-weight:780;margin-top:8px;letter-spacing:-.02em;color:var(--ink)}
+  .tile .d{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+  .tile.accent{border-color:var(--accent);background:linear-gradient(180deg,var(--accent-soft),var(--panel) 70%)}
+
+  /* callouts */
+  .call{background:var(--panel);border:1px solid var(--line-strong);border-left:4px solid var(--accent);
+    border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:26px 0;box-shadow:var(--shadow)}
+  .call.pos{border-left-color:var(--pos)} .call.neg{border-left-color:var(--neg)}
+  .call.plain{border-left-color:var(--accent);background:linear-gradient(180deg,var(--accent-soft),var(--panel) 88%)}
+  .call .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:9px;font-weight:700}
+  .call.pos .lbl{color:var(--pos)} .call.neg .lbl{color:var(--neg)}
+  .call.plain .lbl::before{content:"\25C7  "}
+  .call p{margin:0;font-size:1.02rem}
+  .call p+p{margin-top:.7em}
+
+  /* pill */
+  .pill{display:inline-flex;align-items:center;gap:5px;font-family:var(--f-mono);font-size:11px;font-weight:600;
+    letter-spacing:.02em;padding:3px 10px;border-radius:999px;white-space:nowrap;border:1px solid transparent}
+  .pill.buy{color:var(--pos);background:var(--pos-soft);border-color:color-mix(in srgb,var(--pos) 30%,transparent)}
+  .pill.avoid{color:var(--neg);background:var(--neg-soft);border-color:color-mix(in srgb,var(--neg) 30%,transparent)}
+  .pill.hold{color:var(--hold);background:var(--hold-soft);border-color:color-mix(in srgb,var(--hold) 30%,transparent)}
+  .pill.top{color:var(--accent-ink);background:var(--accent-soft);border-color:var(--accent)}
+
+  /* tables */
+  .twrap{overflow-x:auto;border:1px solid var(--line-strong);border-radius:var(--radius);box-shadow:var(--shadow);margin:24px 0}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px;background:var(--panel)}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.5}
+  thead th{font-family:var(--f-mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent-ink);
+    font-weight:700;background:color-mix(in srgb,var(--accent-soft) 55%,var(--panel))}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(2n){background:color-mix(in srgb,var(--muted) 5%,transparent)}
+  td.c,th.c{text-align:center;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+  td.r,th.r{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+  .tk{font-family:var(--f-mono);font-weight:700}
+  .src{font-family:var(--f-mono);font-size:11.5px;color:var(--faint);margin:-12px 0 22px}
+
+  /* chain */
+  .chain{display:flex;flex-wrap:wrap;gap:7px;margin:24px 0 8px}
+  .chain .node{flex:1 1 100px;border-radius:11px;padding:13px 9px;text-align:center;border:1px solid var(--line-strong);background:var(--panel)}
+  .chain .node .n{font-size:12.5px;font-weight:700;color:var(--ink)}
+  .chain .node .m{font-family:var(--f-mono);font-size:10px;margin-top:4px}
+  .chain .loss{background:var(--neg-soft);border-color:color-mix(in srgb,var(--neg) 30%,transparent)}
+  .chain .loss .m{color:var(--neg)}
+  .chain .mid{background:var(--hold-soft);border-color:color-mix(in srgb,var(--hold) 28%,transparent)}
+  .chain .mid .m{color:var(--hold)}
+  .chain .win{background:var(--pos-soft);border-color:color-mix(in srgb,var(--pos) 28%,transparent)}
+  .chain .win .m{color:var(--pos)}
+
+  /* flow */
+  .flow{display:flex;flex-wrap:wrap;gap:0;margin:24px 0;align-items:stretch}
+  .flow .step{flex:1 1 120px;background:var(--panel);border:1px solid var(--line-strong);border-radius:12px;padding:13px 11px;text-align:center}
+  .flow .step .sn{font-size:12.5px;font-weight:700;color:var(--ink)}
+  .flow .step .sd{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
+  .flow .arw{display:flex;align-items:center;color:var(--accent);font-weight:700;padding:0 7px}
+  @media(max-width:560px){.flow .arw{transform:rotate(90deg);padding:5px 0;width:100%;justify-content:center}}
+
+  /* rank */
+  .rank{display:flex;flex-direction:column;gap:11px;margin:24px 0}
+  .rankitem{display:grid;grid-template-columns:38px 1fr;gap:15px;align-items:center;background:var(--panel);
+    border:1px solid var(--line-strong);border-radius:var(--radius);padding:15px 18px;box-shadow:var(--shadow)}
+  .rankitem .no{font-family:var(--f-mono);font-size:1.4rem;font-weight:780;color:var(--accent);text-align:center}
+  .rankitem.avoid{border-color:color-mix(in srgb,var(--neg) 35%,var(--line-strong))}
+  .rankitem.avoid .no{color:var(--neg);font-size:1rem}
+  .rankitem .nm{font-weight:720;color:var(--ink)}
+  .rankitem .nm .pill{margin-left:8px}
+  .rankitem .rz{font-size:13px;color:var(--muted);margin-top:3px}
+
+  /* timeline */
+  .timeline{margin:24px 0}
+  .tevent{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .tevent:last-child{border-bottom:none}
+  .tevent .when{font-family:var(--f-mono);font-size:12px;color:var(--accent-ink);font-weight:600}
+  .tevent .h{font-weight:680;color:var(--ink)} .tevent .s{color:var(--muted);font-size:13.5px}
+  @media(max-width:640px){.tevent{grid-template-columns:1fr;gap:3px}}
+
+  /* lists */
+  ul.clean{margin:.5em 0 1.15em;padding-left:1.2em}
+  ul.clean li{margin:.5em 0} ul.clean li::marker{color:var(--accent)}
+  ol.arrowlist{margin:.5em 0 1.15em;padding-left:1.4em}
+  ol.arrowlist li{margin:.6em 0;padding-left:.2em} ol.arrowlist li::marker{font-family:var(--f-mono);color:var(--accent);font-weight:700}
+
+  /* checklist */
+  .checklist{list-style:none;margin:24px 0;padding:0;display:flex;flex-direction:column;gap:9px}
+  .checklist li{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;background:var(--panel);
+    border:1px solid var(--line-strong);border-radius:12px;padding:13px 16px;box-shadow:var(--shadow);font-size:14px}
+  .checklist li::before{content:"\2713";font-family:var(--f-mono);color:var(--accent);font-weight:700;line-height:1.5}
+  .checklist .ci{color:var(--ink);font-weight:680} .checklist .cd{color:var(--muted);font-size:13px;margin-top:2px}
+
+  /* viz + bar chart */
+  .viz{background:var(--panel);border:1px solid var(--line-strong);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow);margin:24px 0}
+  .viz h4{font-size:14.5px;font-weight:720;margin:0 0 3px;color:var(--ink)}
+  .viz .cap{font-size:12px;color:var(--faint);margin:0 0 18px;font-family:var(--f-mono);line-height:1.5}
+  .barrow{display:grid;grid-template-columns:150px 1fr auto;align-items:center;gap:12px;margin:9px 0;font-size:13px}
+  .barrow .bl{font-family:var(--f-mono);color:var(--muted);font-size:11.5px}
+  .barrow .bt{height:16px;border-radius:5px;min-width:3px}
+  .barrow .bv{font-family:var(--f-mono);font-variant-numeric:tabular-nums;color:var(--ink);font-size:12px;font-weight:600}
+  @media(max-width:560px){.barrow{grid-template-columns:110px 1fr auto}}
+
+  /* footnotes */
+  footer{padding:48px 0 90px}
+  ol.notes{margin:20px 0;padding-left:0;list-style:none;counter-reset:fn;columns:2;column-gap:36px;font-size:12px;line-height:1.6}
+  ol.notes li{counter-increment:fn;position:relative;padding-left:30px;margin-bottom:12px;break-inside:avoid;color:var(--muted)}
+  ol.notes li::before{content:"["counter(fn)"]";position:absolute;left:0;top:0;font-family:var(--f-mono);font-size:11px;font-weight:700;color:var(--accent-ink)}
+  ol.notes li:target{background:color-mix(in srgb,var(--accent-soft) 70%,transparent);border-radius:6px;box-shadow:0 0 0 6px color-mix(in srgb,var(--accent-soft) 70%,transparent)}
+  ol.notes .st{color:var(--ink);font-weight:600}
+  .tag-q{font-family:var(--f-mono);font-size:9.5px;color:var(--faint);border:1px solid var(--line-strong);padding:0 4px;border-radius:3px;margin-left:4px}
+  a.fn-back{font-family:var(--f-mono);font-size:11px;color:var(--accent-ink);text-decoration:none;margin-left:6px;
+    padding:0 5px;border:1px solid var(--line-strong);border-radius:5px;white-space:nowrap;opacity:.6;transition:opacity var(--dur)}
+  a.fn-back:hover{opacity:1;background:var(--accent-soft)}
+  .disc{font-size:11.5px;color:var(--faint);font-family:var(--f-mono);line-height:1.7;border-top:1px solid var(--line);margin-top:30px;padding-top:22px}
+  @media(max-width:640px){ol.notes{columns:1}}
+
+  /* popover (footnote + glossary) */
+  .fn-pop{position:fixed;z-index:55;max-width:340px;background:var(--panel);color:var(--body);
+    border:1px solid var(--accent);border-radius:12px;box-shadow:0 0 0 1px var(--accent-soft),var(--shadow-lift);
+    padding:14px 16px;font-size:12.5px;line-height:1.6;opacity:0;transform:translateY(4px) scale(.98);
+    pointer-events:none;transition:opacity .14s var(--ease),transform .14s var(--ease)}
+  .fn-pop.show{opacity:1;transform:none}
+  .fn-pop .pn{font-family:var(--f-mono);font-size:10.5px;font-weight:700;color:var(--accent-ink);letter-spacing:.04em;display:block;margin-bottom:5px}
+  .fn-pop .st{color:var(--ink);font-weight:600}
+  .fn-pop .tag-q{display:none}
+  @media (prefers-reduced-motion:reduce){.fn-pop{transition:opacity .14s}}
+
+  /* SVG infographic helpers (theme-aware) */
+  .fig{width:100%;height:auto;display:block;font-family:var(--f-mono);margin-top:4px}
+  .fig text{fill:var(--body);font-size:12px}
+  .fig .t-ink{fill:var(--ink)} .fig .t-mut{fill:var(--muted)} .fig .t-faint{fill:var(--faint)}
+  .fig .t-acc{fill:var(--accent-ink)} .fig .t-pos{fill:var(--pos)} .fig .t-neg{fill:var(--neg)} .fig .t-hold{fill:var(--hold)}
+  .fig .lbl{font-size:10.5px;letter-spacing:.03em} .fig .sm{font-size:9.5px}
+  .fig .big{font-size:16px;font-weight:700} .fig .mid{font-size:12.5px;font-weight:700} .fig .b{font-weight:700}
+  .fig .s-line{stroke:var(--line-strong)} .fig .s-grid{stroke:var(--line)}
+  .fig .f-panel{fill:var(--panel)} .fig .f-soft{fill:var(--accent-soft)}
+  .fig .f-acc{fill:var(--accent)} .fig .st-acc{stroke:var(--accent)}
+  .fig .f-pos{fill:var(--pos)} .fig .f-posS{fill:var(--pos-soft)} .fig .st-pos{stroke:var(--pos)}
+  .fig .f-neg{fill:var(--neg)} .fig .f-negS{fill:var(--neg-soft)} .fig .st-neg{stroke:var(--neg)}
+  .fig .f-hold{fill:var(--hold)} .fig .f-holdS{fill:var(--hold-soft)} .fig .st-hold{stroke:var(--hold)}
+  .fig .f-cell{fill:#2f52b3} .fig .st-cell{stroke:#8aa2e6} .fig .f-busbar{fill:#cdd8f0}
+  .fig .dash{stroke-dasharray:5 4} .fig .thin{stroke-width:1} .fig .med{stroke-width:1.6}
+  .fig line,.fig polyline,.fig path.ln{fill:none}
+
+  /* reveal */
+  .js .reveal{opacity:0;transform:translateY(10px)}
+  .js .reveal.in{opacity:1;transform:none;transition:opacity .5s var(--ease),transform .5s var(--ease)}
+  @media (prefers-reduced-motion:reduce){.js .reveal,.js .reveal.in{opacity:1;transform:none;transition:none}}
+
+  /* hover lift */
+  @media (hover:hover) and (prefers-reduced-motion:no-preference){
+    .tile,.rankitem,.viz,.checklist li{transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur)}
+    .tile:hover,.rankitem:hover,.viz:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);border-color:var(--line-strong)}
+  }
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+  /* print */
+  @media print{
+    .topbar,.progress,.theme-btn,.skip,.fn-pop{display:none!important}
+    :root{--bg:#fff;--panel:#fff;--shadow:none;--shadow-lift:none}
+    body{font-size:11pt}
+    header.hero::before{display:none}
+    section{break-inside:auto;padding:20px 0}
+    .tile,.viz,.call,.twrap,.rankitem,.chain,.flow,.checklist li{break-inside:avoid;box-shadow:none}
+    a{color:inherit} .term{border-bottom:none}
+  }
+
+  /* ===== review pass: 평탄화 · calm editorial (2026) ===== */
+  /* flatten cards — hairline borders carry structure, drop the SaaS shadows */
+  .tile,.call,.viz,.twrap,.rankitem,.checklist li{box-shadow:none}
+  @media (hover:hover) and (prefers-reduced-motion:no-preference){
+    .tile,.rankitem,.viz{transition:border-color var(--dur) var(--ease),background var(--dur)}
+    .tile:hover,.rankitem:hover,.viz:hover{transform:none;box-shadow:none;border-color:var(--accent)}
+  }
+  /* lighter hero display weight */
+  h1.title{font-weight:720;letter-spacing:-.028em}
+  /* nav: fit all links in the content-width bar, calmer density */
+  .navlinks a{font-size:9.5px;padding:6px 4.5px}
+  .theme-btn{margin-left:6px}
+  /* slightly stronger separation between part bands */
+  .partband{padding-top:34px}
+
+  /* "초보가 놓치는 것" 오해 그리드 */
+  .traps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:26px 0}
+  .trap{background:var(--panel);border:1px solid var(--line-strong);border-radius:var(--radius);padding:16px 17px;position:relative}
+  .trap .tn{font-family:var(--f-mono);font-size:11px;font-weight:700;color:var(--accent-ink)}
+  .trap .th{font-weight:720;color:var(--ink);margin:5px 0 5px;font-size:14.5px;line-height:1.4}
+  .trap .td{font-size:13px;color:var(--muted);line-height:1.55}
+  .trap .td b{color:var(--body)}
+  /* company tooltip (reuses popover engine) */
+  .co{border-bottom:1px dotted var(--muted);cursor:help}
+  .co:hover,.co:focus-visible{color:var(--accent-ink);border-bottom-color:var(--accent)}
+  /* section TL;DR badge */
+  .tldr{display:flex;gap:10px;align-items:baseline;background:var(--accent-soft);border-radius:10px;padding:11px 15px;margin:0 0 22px;font-size:14px;line-height:1.55}
+  .tldr b{font-family:var(--f-mono);font-size:10px;letter-spacing:.06em;color:var(--accent-ink);text-transform:uppercase;flex:0 0 auto;padding-top:3px}
+  .tldr span{color:var(--ink);font-weight:600}
+  /* color legend */
+  .legend{display:flex;flex-wrap:wrap;gap:18px;margin:18px 0;font-size:12.5px;color:var(--muted);font-family:var(--f-mono)}
+  .legend i{font-style:normal;display:inline-flex;align-items:center;gap:6px}
+  .legend .sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+  /* inline number anchor */
+  .anc{color:var(--faint);font-size:.85em;font-family:var(--f-mono)}
+  /* FAQ */
+  .faq{margin:24px 0;display:flex;flex-direction:column;gap:12px}
+  .faq .qa{border:1px solid var(--line-strong);border-radius:var(--radius);padding:15px 18px;background:var(--panel)}
+  .faq .q{font-weight:720;color:var(--ink);margin-bottom:6px}
+  .faq .q::before{content:"Q. ";font-family:var(--f-mono);color:var(--accent-ink)}
+  .faq .a{font-size:13.5px;color:var(--muted);line-height:1.6}
+  .faq .a::before{content:"A. ";font-family:var(--f-mono);color:var(--muted)}
+  /* representative-company chips */
+  .rep{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+  .rep .rc{font-family:var(--f-mono);font-size:11px;color:var(--muted);background:var(--neutral-soft);border:1px solid var(--line);border-radius:6px;padding:2px 8px}
+  .rep .rc.kr{color:var(--accent-ink);background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 25%,transparent)}
+</style>
+<script>
+  (function(){try{var t=localStorage.getItem('solar-indepth-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}document.documentElement.classList.add('js');})();
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">본문 바로가기</a>
+<div class="progress" id="progress" role="progressbar" aria-label="읽기 진행률"></div>
+
+<div class="topbar"><div class="wrap">
+  <span class="brand"><span class="dot"></span>SOLAR</span>
+  <nav class="navlinks">
+    <a href="#s-5min">5분</a><a href="#s1">요약</a><a href="#s-traps">오해</a><a href="#s2">본질</a><a href="#s3">수요</a><a href="#s4">경제성</a><a href="#s5">밸류체인</a><a href="#s6">공급</a><a href="#s7">가격</a><a href="#s8">기술</a><a href="#s9">계통</a><a href="#s10">정책</a><a href="#s11">경쟁</a><a href="#s12">사이클</a><a href="#s13">기업맵</a><a href="#s14">시사점</a><a href="#s15">리스크</a><a href="#s-faq">FAQ</a><a href="#s16">부록</a>
+  </nav>
+  <button class="theme-btn" id="themeBtn" type="button" aria-label="테마 전환"><span class="ico" aria-hidden="true">◑</span><span class="lbl">Auto</span></button>
+</div></div>
+
+<div class="wrap" id="main">
+
+<header class="hero">
+  <div class="eyebrow"><span>글로벌 태양광 · 인뎁스</span><span class="sep">/</span><span>전력 인프라 · 계통 · 정책 · 밸류체인</span><span class="sep">/</span><span>2026.07.07</span></div>
+  <h1 class="title">GW는 늘어난다.<br>문제는 그 GW에서<br>누가 돈을 버느냐다.</h1>
+  <p class="standfirst">태양광은 패널 제조업이 아니라 <b>전력 인프라 산업</b>이다. 이익은 설치량과 같은 방향으로 움직이지 않는다. 태양광이 무엇이고, 돈이 밸류체인 어디에 쌓이며, <b>지금 무엇을 사고 무엇을 피해야 하는가</b>를 처음부터 짚는다.</p>
+  <div class="meta">
+    <span class="m"><b>스탠스</b> 바벨 · 중간 회피 / 양끝 선호</span>
+    <span class="m"><b>최선호 구간</b> 곡괭이·다운스트림</span>
+    <span class="m"><b>스윙</b> §232</span>
+    <span class="m"><b>독자</b> 태양광 입문 투자자</span>
+  </div>
+</header>
+
+<section id="s-5min">
+  <div class="kicker">이 리포트, 5분 요약</div>
+  <h2 class="sec-title">바쁘면 이것만</h2>
+  <ol class="arrowlist">
+    <li>태양광은 <b>패널 제조업이 아니라 전력 인프라 산업</b>이다 — 설치량(GW)은 폭증하지만 이익은 그와 다른 곳에 쌓인다.</li>
+    <li>밸류체인 <b>가운데(중국 폴리·웨이퍼·셀·모듈)는 과잉공급으로 마진이 지워졌다</b> → 회피.</li>
+    <li>돈은 <b>양 끝</b>에 있다 — 중국이 못 만드는 <b>비중국·정책 적격 제조</b>(First Solar·한화·OCI)와, 패널 이후의 <b>곡괭이·설치·계통</b>(트래커·eBOS·ESS·EPC).</li>
+    <li>다음 병목은 패널이 아니라 <b>계통(인터커넥션·변압기)</b>이고, <b>ESS가 태양광 침투를 늘리는 두 번째 엔진</b>이다.</li>
+    <li>최대 스윙은 미국 <b>§232 관세(2026 미결정)</b>, 이 구조가 깨지는 조건은 <b>'다운스트림 착공이 꺾이는 것'</b>이다.</li>
+  </ol>
+  <div class="legend">
+    <i><span class="sw" style="background:var(--pos)"></span> 초록 = 선호 (돈 버는 구간)</i>
+    <i><span class="sw" style="background:var(--neg)"></span> 빨강 = 회피 (마진 지옥)</i>
+    <i><span class="sw" style="background:var(--hold)"></span> 앰버 = 중립·주의</i>
+  </div>
+  <div class="viz">
+    <h4>산업 한눈에 — 어디는 지옥이고 어디는 프리미엄인가</h4>
+    <p class="cap">설치량은 왼쪽에서 오른쪽으로 흐르지만, 이익은 양 끝에 쌓인다 · 정책이 비중국 제조에 프리미엄을 만든다</p>
+    <svg class="fig" viewBox="0 0 680 250" role="img" aria-label="태양광 산업 지도: 폴리·웨이퍼·셀은 회피, 모듈은 중립, 곡괭이·EPC·계통·IPP는 선호. 정책이 비중국 제조에 프리미엄을 준다">
+      <text class="lbl t-neg" x="150" y="34" text-anchor="middle">회피 · 마진 지옥</text>
+      <text class="lbl t-pos" x="512" y="34" text-anchor="middle">선호 · 병목 렌트</text>
+      <g class="mid t-ink" text-anchor="middle">
+        <rect class="f-negS st-neg med" x="8" y="46" width="84" height="46" rx="6"/><text x="50" y="74">폴리</text>
+        <rect class="f-negS st-neg med" x="98" y="46" width="84" height="46" rx="6"/><text x="140" y="74">웨이퍼</text>
+        <rect class="f-negS st-neg med" x="188" y="46" width="84" height="46" rx="6"/><text x="230" y="74">셀</text>
+        <rect class="f-holdS st-hold med" x="278" y="46" width="84" height="46" rx="6"/><text x="320" y="74">모듈</text>
+        <rect class="f-posS st-pos med" x="368" y="46" width="94" height="46" rx="6"/><text class="sm" x="415" y="70">곡괭이</text><text class="sm" x="415" y="84">트래커·eBOS·ESS</text>
+        <rect class="f-posS st-pos med" x="468" y="46" width="94" height="46" rx="6"/><text x="515" y="74">EPC·계통</text>
+        <rect class="f-posS st-pos med" x="568" y="46" width="104" height="46" rx="6"/><text x="620" y="74">IPP·O&amp;M</text>
+      </g>
+      <g class="sm t-mut" text-anchor="middle">
+        <text x="50" y="108">Tongwei·OCI</text><text x="140" y="108">LONGi</text><text x="230" y="108">Jinko</text><text x="320" y="108">FSLR·한화</text><text x="415" y="108">NXT·SHLS</text><text x="515" y="108">SOLV</text><text x="620" y="108">NextEra</text>
+      </g>
+      <text class="lbl t-faint" x="12" y="150">이익 두께 →</text>
+      <g><rect class="f-neg" x="8" y="132" width="84" height="5" rx="2"/><rect class="f-neg" x="98" y="132" width="84" height="5" rx="2"/><rect class="f-neg" x="188" y="132" width="84" height="6" rx="2"/><rect class="f-hold" x="278" y="130" width="84" height="9" rx="2"/><rect class="f-pos" x="368" y="124" width="94" height="16" rx="2"/><rect class="f-pos" x="468" y="126" width="94" height="14" rx="2"/><rect class="f-pos" x="568" y="127" width="104" height="13" rx="2"/></g>
+      <rect class="f-soft" x="8" y="176" width="664" height="40" rx="8"/>
+      <text class="lbl t-acc" x="340" y="201" text-anchor="middle">정책 층: §232 · 45X · FEOC · 동남아 AD/CVD → '중국이 못 만드는 것'에 프리미엄</text>
+      <text class="sm t-faint" x="340" y="238" text-anchor="middle">설치량(GW)은 →로 흐르지만 이익은 양 끝 · 모듈은 비중국이면 선호로 이동</text>
+    </svg>
+  </div>
+</section>
+
+<div class="partband"><div class="pl">Part A · 프레임</div><div class="pt">왜 제조업이 아니라 전력 인프라인가</div><div class="pd">태양광을 '패널 만드는 회사'로 보면 왜 틀리는지부터.</div></div>
+
+<section id="s1">
+  <div class="kicker">01 · Executive Summary</div>
+  <h2 class="sec-title">한눈에 보는 투자 논리</h2>
+  <p class="dek">태양광 투자의 핵심 질문은 'GW가 얼마나 늘어나는가'가 아니라 '그 GW에서 누가 가격결정력을 갖는가'다.</p>
+  <p>태양광은 더 이상 '패널 제조업'으로 보면 틀린다. 낮은 한계발전비, 짧은 건설기간, 모듈 가격 하락을 무기로 전력망에 침투하는 <b>전력 인프라 산업</b>이다. 그러나 산업 이익은 설치량 증가와 같은 방향으로 움직이지 않는다. 모듈 가격이 빠르게 하락하면 발전사업자와 설치 병목을 가진 기업은 유리해지고, 중국 <span class="term" data-gl="gl-csi" tabindex="0">c-Si</span> 제조사는 매출과 마진이 동시에 압박받는다.</p>
+  <p>본 리포트의 결론은 셋이다. <b>첫째, 중국 c-Si 제조는 회피한다</b> — 폴리실리콘·웨이퍼·셀·범용 모듈은 중국 공급과잉과 기술 확산이 이익을 지운다. <b>둘째, 비중국 정책 프리미엄은 선별한다</b> — First Solar, Hanwha Qcells, OCI 계열처럼 공급망·정책 적격성이 분명한 구간만 예외다. <b>셋째, 모듈 이후의 계통·설치·운영 병목을 선호한다</b> — 트래커, <span class="term" data-gl="gl-ebos" tabindex="0">eBOS</span>, 전력변환, <span class="term" data-gl="gl-ess" tabindex="0">ESS</span>, <span class="term" data-gl="gl-epc" tabindex="0">EPC</span>, O&amp;M은 모듈 가격 하락을 원가 절감으로 흡수하면서 프로젝트 병목에서 마진을 만든다.</p>
+  <div class="tiles">
+    <div class="tile accent"><div class="k">Sector Stance</div><div class="v">Barbell</div><div class="d">중국 c-Si 제조 회피 · 비중국 제조 + 곡괭이 선호</div></div>
+    <div class="tile"><div class="k">대표 곡괭이</div><div class="v">NXT</div><div class="d">정책 민감도 낮은 유틸 곡괭이 · 설치붐 수혜</div></div>
+    <div class="tile"><div class="k">Swing Factor</div><div class="v">§232</div><div class="d">폴리 관세 발효 시 비중국 제조 리레이팅</div></div>
+    <div class="tile"><div class="k">Avoid</div><div class="v">中 c-Si</div><div class="d">과잉공급 마진 지옥 + 미국 주거 절벽 인버터</div></div>
+  </div>
+  <div class="viz">
+    <h4>바벨 이익 풀 (Profit Pool)</h4>
+    <p class="cap">막대 높이 = 수익성 · 양 끝은 두껍고(선호), 중국 커모디티 중간은 얇다(회피)</p>
+    <svg class="fig" viewBox="0 0 680 250" role="img" aria-label="밸류체인 이익 풀 바벨: 양 끝(비중국 제조·곡괭이/다운스트림)은 두껍고 중간(중국 c-Si)은 얇다">
+      <rect class="f-posS st-pos med" x="54" y="46" width="152" height="152" rx="12"/>
+      <text class="mid t-ink" x="130" y="98" text-anchor="middle">Non-China 제조</text>
+      <text class="big t-pos" x="130" y="128" text-anchor="middle">선호</text>
+      <text class="sm t-mut" x="130" y="154" text-anchor="middle">First Solar · 폴리(§232)</text>
+      <text class="sm t-mut" x="130" y="170" text-anchor="middle">중국이 못 만드는 것</text>
+      <text class="lbl t-mut" x="340" y="96" text-anchor="middle">중국 c-Si 커모디티</text>
+      <rect class="f-negS st-neg med" x="206" y="110" width="268" height="30" rx="4"/>
+      <text class="sm t-neg" x="340" y="129" text-anchor="middle">폴리·웨이퍼·셀·모듈 — 마진 지옥 · 회피</text>
+      <rect class="f-posS st-pos med" x="474" y="46" width="152" height="152" rx="12"/>
+      <text class="mid t-ink" x="550" y="92" text-anchor="middle">곡괭이 +</text>
+      <text class="mid t-ink" x="550" y="110" text-anchor="middle">다운스트림</text>
+      <text class="big t-pos" x="550" y="140" text-anchor="middle">선호</text>
+      <text class="sm t-mut" x="550" y="164" text-anchor="middle">NXT · SHLS · 인버터</text>
+      <text class="sm t-mut" x="550" y="180" text-anchor="middle">EPC · O&amp;M</text>
+      <line class="s-grid thin" x1="54" y1="214" x2="626" y2="214"/>
+      <text class="lbl t-mut" x="340" y="234" text-anchor="middle">이익은 밸류체인 '양 끝'에만 쌓인다 — 중간은 얇다</text>
+    </svg>
+  </div>
+  <div class="call plain"><div class="lbl">'바벨 전략'이란</div><p>양극단에 비중을 싣고 가운데를 비우는 배분 전략. 여기선 밸류체인 <b>양 끝</b>(중국이 못 만드는 비중국 제조 + 곡괭이·다운스트림)을 <span class="term" data-gl="gl-owuw" tabindex="0">선호</span>하고 <b>가운데 중국 c-Si 커모디티</b>를 피한다. '선호/회피'는 개별 종목 매수·매도 의견이 아니라 밸류체인 <b>구간</b>에 대한 판단이다.</p></div>
+  <div class="twrap"><table>
+    <thead><tr><th>핵심 판단</th><th>결론</th></tr></thead>
+    <tbody>
+      <tr><td>산업 성격</td><td>제조업이 아니라 <b>전력 인프라 산업</b></td></tr>
+      <tr><td>수요</td><td>전력수요·데이터센터 <span class="term" data-gl="gl-ppa" tabindex="0">PPA</span>·에너지 안보·정책이 지지, 단 계통이 속도를 제한</td></tr>
+      <tr><td>공급</td><td>중국 c-Si는 구조적 과잉, 비중국 공급망은 정책 프리미엄</td></tr>
+      <tr><td>가격</td><td>폴리·모듈 하락은 제조 마진 악재, 프로젝트 IRR·다운스트림엔 호재</td></tr>
+      <tr><td>최선호 구간</td><td>트래커·eBOS·ESS·계통 장비·O&amp;M·미국 적격 제조</td></tr>
+      <tr><td>회피 구간</td><td>중국 폴리·웨이퍼·셀·범용 모듈, 미국 주거용 절벽 노출 인버터</td></tr>
+      <tr><td>핵심 리스크</td><td>§232 완화, 45X 축소, <span class="term" data-gl="gl-feoc" tabindex="0">FEOC</span> 집행 완화, 데이터센터 수요 둔화, <span class="term" data-gl="gl-interconnection" tabindex="0">interconnection</span> 지연</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call"><div class="lbl">한 줄 결론</div><p>성장하는 산업, 돈 버는 곳은 <strong>양 끝</strong>. NXT(Nextpower)는 특정 세액공제나 소재 관세보다 설치량·지형 대응·전기/디지털 통합 수요에 노출된 <strong>'정책 민감도가 낮은 곡괭이'</strong>다. 이 점이 미드스트림 제조주와의 차이다.<sup class="fn"><a href="#fn15">15</a></sup></p></div>
+</section>
+
+<section id="s-traps">
+  <div class="kicker">이 섹터를 볼 때</div>
+  <h2 class="sec-title">초보가 놓치는 12가지</h2>
+  <p class="dek">태양광을 처음 보는 투자자가 <b>질문조차 하기 어려운</b> 것들. 이 12개를 깔고 읽으면 나머지가 쉬워진다.</p>
+  <div class="traps">
+    <div class="trap"><div class="tn">01</div><div class="th">성장 산업 ≠ 좋은 주식</div><div class="td">주가는 절대 성장이 아니라 <b>'기대 대비 실제'</b>로 움직인다. "태양광 뜨니까 사면 되지"가 첫 번째 함정.</div></div>
+    <div class="trap"><div class="tn">02</div><div class="th">좋은 논지는 이미 가격에</div><div class="td">누구나 아는 스토리(예: 곡괭이)는 <b>이미 반영</b>돼 초과수익이 옅다. '무엇이 프라이스드 인?'을 늘 물어야.</div></div>
+    <div class="trap"><div class="tn">03</div><div class="th">성공할수록 스스로를 갉는다</div><div class="td">태양광이 늘수록 낮 전력가격이 무너진다(<b>덕커브 자기잠식</b>). 성공이 발전 경제성을 깎는 역설.</div></div>
+    <div class="trap"><div class="tn">04</div><div class="th">발전량 ≠ 매출</div><div class="td"><b>curtailment·음(−)의 전력가격</b> 때문에 만든 전기가 0원이거나 마이너스일 수 있다.</div></div>
+    <div class="trap"><div class="tn">05</div><div class="th">병목은 수요가 아니라 물리·규제</div><div class="td">"수요 많으니 더 깔겠지"가 틀린다. <b>계통연계 큐</b>가 실제 착공을 막는다.</div></div>
+    <div class="trap"><div class="tn">06</div><div class="th">패널값은 이제 원가의 일부</div><div class="td">모듈이 프로젝트 원가의 소수라 <b>패널 가격이 IRR을 거의 못 움직인다</b>. 초보는 패널값에 집착한다.</div></div>
+    <div class="trap"><div class="tn">07</div><div class="th">중국 과잉은 시장논리로 안 풀린다</div><div class="td">고용·지방정부 때문에 감산 대신 점유율 방어. <b>통합안도 반독점당국이 막았다</b>. "왜 감산 안 해?"의 답.</div></div>
+    <div class="trap"><div class="tn">08</div><div class="th">정책은 정권에 취약하다</div><div class="td">미국 프리미엄 논지 전체가 <b>정치 지속성</b>에 의존한다. 선거 한 번에 뒤집힐 수 있다.</div></div>
+    <div class="trap"><div class="tn">09</div><div class="th">더 좋은 기술 ≠ 채택</div><div class="td">효율 기록이 곧 설치가 아니다. <b>금융·보험의 bankability 게이트</b>를 통과해야 깔린다(탠덤이 늦는 이유).</div></div>
+    <div class="trap"><div class="tn">10</div><div class="th">세액공제가 '현금'이 되는 배관</div><div class="td"><b>45X·tax equity</b> 구조가 First Solar·한화의 실제 수익성을 좌우한다. 크레딧 ≠ 자동 현금.</div></div>
+    <div class="trap"><div class="tn">11</div><div class="th">변압기·계통 병목은 태양광 전용이 아니다</div><div class="td">AI 데이터센터·전기화와 <b>공유하는 글로벌 병목</b>. 전력장비는 태양광을 넘는 매크로 테마.</div></div>
+    <div class="trap"><div class="tn">12</div><div class="th">해자는 정책으로 만들어질 수 있다</div><div class="td">First Solar의 우위는 '더 좋은 패널'이 아니라 <b>중국 c-Si 체계 밖이라는 공급망 분리</b>다.</div></div>
+  </div>
+</section>
+
+<section id="s2">
+  <div class="kicker">02 · What is Solar, Really</div>
+  <h2 class="sec-title">산업의 본질: 제조업이 아니라 전력 인프라</h2>
+  <p class="dek">투자 관점의 본질은 셀 내부가 아니라 전력 시스템 안에서 결정된다.</p>
+  <div class="call plain"><div class="lbl">쉽게 말하면</div><p>태양광은 '패널을 싸게 만드는 경쟁'에서 이미 승부가 났다 — 그건 중국이 이겼다. 지금 돈이 걸린 진짜 경쟁은 <strong>싼 패널을 전력망에 연결해 현금흐름으로 바꾸는 능력</strong>이다. 그래서 '누가 좋은 패널을 만드나'가 아니라 '누가 그 병목을 쥐고 있나'를 봐야 한다.</p></div>
+  <p>태양광의 물리적 출발점은 광전효과다. 셀의 p-n 접합이 빛을 직류로 바꾸고, 모듈이 셀을 패키징하며, 인버터가 직류를 교류로 바꿔 전력망에 연결한다. 태양광은 연료비가 거의 0이고 건설기간이 짧고 증설 단위가 작다. 이 특성 때문에 전력수요가 빠르게 늘 때 가장 먼저 호출되는 발전원이다.</p>
+  <div class="viz">
+    <h4>광전 효과 — 빛이 전기가 되는 원리</h4>
+    <p class="cap">광자가 p–n 접합의 전자를 튕겨내고, 내부 전기장이 한 방향으로 몰아 직류를 만든다</p>
+    <svg class="fig" viewBox="0 0 680 250" role="img" aria-label="광전 효과: 태양 광자가 셀의 p-n 접합에 도달해 전자를 분리하고 외부 회로로 직류가 흐른다">
+      <circle class="f-acc" cx="64" cy="84" r="22"/>
+      <g class="st-acc med"><line x1="64" y1="52" x2="64" y2="44"/><line x1="64" y1="116" x2="64" y2="124"/><line x1="32" y1="84" x2="24" y2="84"/><line x1="96" y1="84" x2="104" y2="84"/><line x1="41" y1="61" x2="35" y2="55"/><line x1="87" y1="107" x2="93" y2="113"/><line x1="41" y1="107" x2="35" y2="113"/><line x1="87" y1="61" x2="93" y2="55"/></g>
+      <text class="sm t-mut" x="64" y="146" text-anchor="middle">태양</text>
+      <g class="st-acc med"><line x1="92" y1="66" x2="228" y2="60"/><line x1="95" y1="86" x2="228" y2="86"/><line x1="92" y1="106" x2="228" y2="112"/></g>
+      <g class="f-acc"><polygon points="228,56 228,64 235,60"/><polygon points="228,82 228,90 235,86"/><polygon points="228,108 228,116 235,112"/></g>
+      <text class="lbl t-acc" x="150" y="42" text-anchor="middle">광자 (빛)</text>
+      <rect class="f-panel s-line med" x="234" y="50" width="196" height="104"/>
+      <rect class="f-busbar" x="234" y="46" width="196" height="4"/>
+      <g class="st-cell thin"><line x1="266" y1="50" x2="266" y2="64"/><line x1="306" y1="50" x2="306" y2="64"/><line x1="346" y1="50" x2="346" y2="64"/><line x1="386" y1="50" x2="386" y2="64"/><line x1="418" y1="50" x2="418" y2="64"/></g>
+      <text class="sm t-mut" x="248" y="76">n형 (−)</text>
+      <text class="sm t-mut" x="248" y="146">p형 (+)</text>
+      <line class="st-acc dash med" x1="234" y1="102" x2="430" y2="102"/>
+      <circle class="f-pos" cx="340" cy="120" r="9"/>
+      <text class="sm" x="340" y="124" text-anchor="middle" fill="#fff">e⁻</text>
+      <line class="st-pos med" x1="340" y1="111" x2="340" y2="68"/>
+      <polygon class="f-pos" points="336,68 344,68 340,61"/>
+      <text class="lbl t-mut" x="332" y="180" text-anchor="middle">↑ p–n 접합의 내부 전기장이 전자를 분리</text>
+      <polyline class="s-line med" points="236,46 236,26 596,26 596,96"/>
+      <polyline class="s-line med" points="596,150 596,182 236,182 236,154"/>
+      <polygon class="f-acc" points="466,22 466,30 473,26"/>
+      <text class="lbl t-acc" x="416" y="18" text-anchor="middle">DC 전류 →</text>
+      <rect class="f-panel s-line med" x="556" y="96" width="84" height="54"/>
+      <text class="mid t-ink" x="598" y="120" text-anchor="middle">부하</text>
+      <text class="sm t-mut" x="598" y="138" text-anchor="middle">전력망·계통</text>
+    </svg>
+  </div>
+  <div class="viz">
+    <h4>셀 → 모듈 → 어레이 — 무엇이 무엇인가</h4>
+    <p class="cap">'태양광 패널'은 셀 60~72장을 유리·프레임에 담은 모듈을 가리킨다</p>
+    <svg class="fig" viewBox="0 0 680 200" role="img" aria-label="셀에서 모듈, 어레이로 커지는 물리적 계층">
+      <defs><pattern id="cellgrid" width="25" height="20" patternUnits="userSpaceOnUse"><rect width="23" height="18" fill="#2f52b3"/><line x1="8" y1="0" x2="8" y2="18" stroke="#8aa2e6" stroke-width="1"/><line x1="16" y1="0" x2="16" y2="18" stroke="#8aa2e6" stroke-width="1"/></pattern></defs>
+      <rect class="st-cell med" x="34" y="44" width="80" height="80" fill="#2f52b3"/>
+      <g stroke="#8aa2e6" stroke-width="1.4"><line x1="60" y1="44" x2="60" y2="124"/><line x1="88" y1="44" x2="88" y2="124"/></g>
+      <g stroke="#8aa2e6" stroke-width="1"><line x1="34" y1="60" x2="114" y2="60"/><line x1="34" y1="76" x2="114" y2="76"/><line x1="34" y1="92" x2="114" y2="92"/><line x1="34" y1="108" x2="114" y2="108"/></g>
+      <text class="mid t-ink" x="74" y="145" text-anchor="middle">셀 (Cell)</text>
+      <text class="sm t-mut" x="74" y="162" text-anchor="middle">~16cm² · ≈0.6V</text>
+      <text class="sm t-faint" x="74" y="177" text-anchor="middle">최소 단위</text>
+      <line class="s-line med" x1="128" y1="84" x2="205" y2="84"/><polygon class="f-acc" points="205,80 205,88 213,84"/>
+      <text class="sm t-mut" x="168" y="74" text-anchor="middle">60~72장 직렬</text>
+      <rect class="f-panel s-line med" x="214" y="40" width="168" height="92"/>
+      <rect x="222" y="48" width="148" height="78" fill="url(#cellgrid)"/>
+      <rect class="s-line thin" x="222" y="48" width="148" height="78" fill="none"/>
+      <text class="mid t-ink" x="298" y="150" text-anchor="middle">모듈 (패널)</text>
+      <text class="sm t-mut" x="298" y="167" text-anchor="middle">셀 다수 · 유리+프레임</text>
+      <text class="sm t-faint" x="298" y="182" text-anchor="middle">지붕에서 보는 그것</text>
+      <line class="s-line med" x1="388" y1="84" x2="462" y2="84"/><polygon class="f-acc" points="462,80 462,88 470,84"/>
+      <text class="sm t-mut" x="425" y="74" text-anchor="middle">다수 묶음</text>
+      <g class="st-cell thin"><polygon points="486,116 520,116 530,96 496,96" fill="#2f52b3"/><polygon points="524,116 558,116 568,96 534,96" fill="#2f52b3"/><polygon points="562,116 596,116 606,96 572,96" fill="#2f52b3"/><polygon points="498,92 532,92 542,72 508,72" fill="#2f52b3"/><polygon points="536,92 570,92 580,72 546,72" fill="#2f52b3"/><polygon points="574,92 608,92 618,72 584,72" fill="#2f52b3"/></g>
+      <text class="mid t-ink" x="552" y="150" text-anchor="middle">어레이 (Array)</text>
+      <text class="sm t-mut" x="552" y="167" text-anchor="middle">모듈 다수 배열</text>
+      <text class="sm t-faint" x="552" y="182" text-anchor="middle">MW급 발전소</text>
+    </svg>
+  </div>
+  <p>문제는 전력망이 태양광을 무한히 흡수하지 못한다는 점이다. 태양광은 낮에 집중 발전한다. 침투율이 올라가면 낮 전력가격이 낮아지고, 저녁 피크엔 출력이 줄어드는 <span class="term" data-gl="gl-duck" tabindex="0">duck curve</span>가 심해진다. 발전소가 전기를 만들 수 있어도 송전망·변압기·계통연계·주파수 안정·정산 구조가 따라오지 않으면 프로젝트 수익률은 하락한다. 따라서 병목은 '패널을 더 싸게 만드는 능력'에서 '싼 패널을 계통에 연결해 현금흐름으로 바꾸는 능력'으로 이동했다.</p>
+  <p>이를 투자 언어로 바꾸면: 업스트림·미드스트림은 원가곡선과 공급과잉의 문제이고, 다운스트림은 인허가·interconnection·EPC 역량·변압기 조달·O&amp;M·PPA 신용도·<span class="term" data-gl="gl-taxequity" tabindex="0">tax equity</span> 조달의 문제다. 전자는 중국이 가장 강하고, 후자는 현장·정책·금융의 병목을 가진 플레이어가 강하다.</p>
+  <div class="flow">
+    <div class="step"><div class="sn">빛</div><div class="sd">광자 도달</div></div><div class="arw">→</div>
+    <div class="step"><div class="sn">셀·모듈 제조</div><div class="sd">직류 생성</div></div><div class="arw">→</div>
+    <div class="step"><div class="sn">인버터·트래커·eBOS</div><div class="sd">변환·구조·접속</div></div><div class="arw">→</div>
+    <div class="step"><div class="sn">토지·EPC·변압기·계통연계</div><div class="sd">현장·연결</div></div><div class="arw">→</div>
+    <div class="step"><div class="sn">PPA·tax equity·금융</div><div class="sd">현금흐름화</div></div><div class="arw">→</div>
+    <div class="step"><div class="sn">IPP·O&amp;M·전력시장</div><div class="sd">보유·운영·수익</div></div>
+  </div>
+  <h3 class="sub">어쩌다 세계 최저가가 됐나 — 70년 압축</h3>
+  <div class="timeline">
+    <div class="tevent"><span class="when">1954</span><span><span class="h">실리콘 셀 발명(벨연구소)</span><br><span class="s">효율 6%, 너무 비싸 우주용으로만.</span></span></div>
+    <div class="tevent"><span class="when">1970s~2000s</span><span><span class="h">오일쇼크 · 독일 FIT</span><br><span class="s">보조금이 첫 대규모 수요를 만들다. 시장·기술 중심은 유럽.</span></span></div>
+    <div class="tevent"><span class="when">2010s</span><span><span class="h">중국 제조 굴기</span><br><span class="s">보조금·저리대출·규모로 밸류체인 장악, 모듈값 90%+ 하락.</span></span></div>
+    <div class="tevent"><span class="when">2015~</span><span><span class="h">그리드 패리티</span><br><span class="s">보조금 없이 화석연료보다 싸짐. 경쟁이 '태양광 vs 화석'에서 '태양광+저장 vs 기저부하'로.</span></span></div>
+    <div class="tevent"><span class="when">2011~2013</span><span><span class="h">1차 대도산</span><br><span class="s">가격 급락에 줄도산 — 미 Solyndra 파산, 독 Q-Cells 파산(→한화가 인수, 오늘의 한화 Qcells), 중 Suntech 디폴트. '10년 주기 구조조정'의 첫 사례.</span></span></div>
+    <div class="tevent"><span class="when">2023~2026</span><span><span class="h">대공급과잉</span><br><span class="s">과잉투자가 부메랑 → 가격 원가 이하, 제조사 적자. 수요 최대인데 만드는 쪽은 파산 위기.</span></span></div>
+  </div>
+  <h3 class="sub">모듈 가격 50년 — 약 1/1000</h3>
+  <p>가격사는 한 줄이다: <b>누적 생산량이 2배가 될 때마다 모듈값이 ~20% 하락</b>(스완슨 법칙). 그 결과 물가보정 모듈가는 1975년 ~$128/W에서 2024년 ~$0.26/W(중국 현물 ~$0.09/W)로 <b>50년간 약 1/1000</b> 떨어졌다 — 반도체를 빼면 이만큼 싸진 공산품이 드물다.<sup class="fn"><a href="#fn51">51</a></sup></p>
+  <div class="viz">
+    <h4>물가보정 모듈 가격 ($/W)</h4>
+    <p class="cap">누적 하락 ~99.8% · 소비자에겐 천국, 제조사에겐 지옥</p>
+    <div class="barrow"><span class="bl">1975</span><span class="bt" style="width:100%;background:var(--neutral)"></span><span class="bv">~$128</span></div>
+    <div class="barrow"><span class="bl">1990</span><span class="bt" style="width:9.4%;background:var(--hold)"></span><span class="bv">~$12</span></div>
+    <div class="barrow"><span class="bl">2010</span><span class="bt" style="width:1.9%;background:var(--hold)"></span><span class="bv">~$2.4</span></div>
+    <div class="barrow"><span class="bl">2020</span><span class="bt" style="width:0.4%;background:var(--pos)"></span><span class="bv">~$0.36</span></div>
+    <div class="barrow"><span class="bl">2024</span><span class="bt" style="width:0.3%;background:var(--pos)"></span><span class="bv">~$0.26</span></div>
+  </div>
+</section>
+
+<div class="partband"><div class="pl">Part B · 수요와 경제성</div><div class="pt">GW는 어디서 오고, IRR은 무엇이 결정하나</div><div class="pd">수요의 방향과, 프로젝트 수익률을 실제로 움직이는 변수.</div></div>
+
+<section id="s3">
+  <div class="kicker">03 · Global Demand</div>
+  <h2 class="sec-title">글로벌 수요 전망: 지역·세그먼트</h2>
+  <p class="dek">장기 성장과 단기 둔화가 공존한다. 단일 숫자보다 '방향'이 중요하다.</p>
+  <p>IRENA의 2026년 통계는 2025년 재생에너지 신규 설비가 692GW였고 태양광이 그 대부분이라고 집계한다.<sup class="fn"><a href="#fn38">38</a></sup> 원문은 IEA 기반으로 2025년 신규 태양광을 약 605GW<span class="anc"> 〔설비 기준 대형 원전 수백 기분〕</span>, 누적 약 2.8TW로 정리했다.<sup class="fn"><a href="#fn24">24</a></sup> 기관별 차이는 DC/AC 환산·계통연계 기준·분산형 집계 방식에서 온다. 투자 판단에선 '중국 일극 성장 둔화, 미국 정책 데드라인, 인도·중동 성장, 유럽 정체'라는 방향이 더 중요하다.</p>
+  <p>수요 변수는 지역마다 다르다. 중국은 정책·전력시장 개혁·송전망 수용능력, 미국은 OBBBA·FEOC·<span class="term" data-gl="gl-safeharbor" tabindex="0">safe harbor</span>·interconnection·tax equity·데이터센터 PPA, 유럽은 전력가격·그리드 혼잡·인허가·CBAM/NZIA, 인도는 ALMM·PLI, 중동은 낮은 자본비용·대규모 토지·산업전력 수요가 핵심이다.</p>
+  <div class="twrap"><table>
+    <thead><tr><th>지역</th><th>2025~26 수요 판단</th><th>설치 결정 변수</th><th>투자 시사점</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">중국</td><td>절대 규모 최대, 성장률 둔화</td><td>지방 보조·송전망·가격 하락·발전 수익률</td><td>제조 과잉의 원천, 수요만 보고 매수 금지</td></tr>
+      <tr><td class="tk">미국</td><td>유틸 중심, 주거 역풍</td><td>ITC/PTC·FEOC·safe harbor·interconnection·tax equity</td><td>미국 적격 제조 + 유틸 곡괭이 선호</td></tr>
+      <tr><td class="tk">유럽</td><td>설치 유지, 수익률 차별화</td><td>전력가격·curtailment·인허가·NZIA</td><td>인버터·ESS·전력시장 최적화 중요</td></tr>
+      <tr><td class="tk">인도</td><td>고성장</td><td>ALMM·PLI·송전망·DISCOM 신용</td><td>내수 제조·EPC 기회, 가격 민감</td></tr>
+      <tr><td class="tk">중동</td><td>대형 프로젝트 중심</td><td>낮은 WACC·국부펀드·토지·산업전력</td><td>초저가 PPA와 대형 EPC 경쟁</td></tr>
+      <tr><td class="tk">동남아</td><td>제조기지·수요지 혼재</td><td>관세 우회·전력수요·환율</td><td>미국 관세·FEOC에 따라 리스크 재평가</td></tr>
+      <tr><td class="tk">중남미</td><td>전력수요·자원 우수</td><td>환율·PPA 신용·송전망</td><td>개발·IPP 선별, 금융비용 민감</td></tr>
+    </tbody>
+  </table></div>
+  <p>세그먼트별로는 유틸리티급이 산업 방향을 결정한다. 주거용은 금리·보조금에, 상업·산업(C&amp;I)은 전기요금 절감·자가소비에 민감하다. <b>데이터센터 PPA는 새로운 수요축</b>이다 — IEA는 데이터센터 전력이 2024년 ~415TWh에서 2030년 ~945TWh로 2배 이상(연 ~15%) 늘 것으로 본다.<sup class="fn"><a href="#fn47">47</a></sup> 다만 AI 전력수요는 태양광 단독으론 어렵다 — 24시간·빠른 접속·신뢰도 요건 때문에 solar+storage·하이브리드 PPA·가스 백업·원전 계약이 함께 경쟁한다.</p>
+  <div class="tiles">
+    <div class="tile"><div class="k">유틸리티</div><div class="v">방향 결정</div><div class="d">산업 사이클을 좌우하는 대형 설치</div></div>
+    <div class="tile"><div class="k">주거</div><div class="v">역풍</div><div class="d">금리·보조금 민감 · 미국 25D 종료</div></div>
+    <div class="tile"><div class="k">C&amp;I</div><div class="v">자가소비</div><div class="d">전기요금 절감 동기</div></div>
+    <div class="tile accent"><div class="k">데이터센터 PPA</div><div class="v">신규 축</div><div class="d">solar+storage로만 온전히 흡수</div></div>
+  </div>
+</section>
+
+<section id="s4">
+  <div class="kicker">04 · Project Economics</div>
+  <h2 class="sec-title">프로젝트 경제성: IRR을 움직이는 것</h2>
+  <p class="dek">프로젝트 수익률은 모듈 가격 하나로 결정되지 않는다.</p>
+  <div class="call plain"><div class="lbl">쉽게 말하면</div><p>발전소 하나의 수익률(IRR)은 '패널값'이 아니라 <strong>패널값 + 계통연계 비용 + 금리 + 세액공제 + 운영비</strong>의 합으로 정해진다. 그래서 같은 모듈 가격 하락이 <strong>제조사엔 악재, 개발사엔 호재</strong>가 되는 것이다.</p></div>
+  <p>구조는 단순하다. 개발사가 토지·인허가를 확보하고, EPC가 발전소를 짓고, 모듈·인버터·트래커·eBOS·변압기를 조달하고, 계통연계 비용을 부담한 뒤, 장기 PPA나 전력시장 수익으로 부채와 equity를 상환한다. IRR의 핵심 입력값은 CAPEX·발전량·전력판매단가·세액공제·부채비용·O&amp;M이다. 모듈이 떨어져 CAPEX가 낮아져도 계통연계 비용·변압기 납기가 늘면 상쇄되고, 금리가 오르면 같은 PPA에서도 equity IRR이 낮아진다.</p>
+  <div class="twrap"><table>
+    <thead><tr><th>항목</th><th>프로젝트 IRR 영향</th><th>체크포인트</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">모듈</td><td>CAPEX 하락 요인</td><td>ASP·효율·<span class="term" data-gl="gl-degradation" tabindex="0">degradation</span>·관세</td></tr>
+      <tr><td class="tk">인버터·트래커·eBOS</td><td>발전량·공사비·신뢰도</td><td>고장률·조달 리드타임·현장 난이도</td></tr>
+      <tr><td class="tk">EPC</td><td>일정·원가 초과의 핵심</td><td>노동비·토목·하도급·weather delay</td></tr>
+      <tr><td class="tk">계통연계</td><td>가장 큰 불확실성</td><td>interconnection study·변압기·송전망 보강</td></tr>
+      <tr><td class="tk">O&amp;M</td><td>장기 현금흐름</td><td>세척·제초·예측정비·보험</td></tr>
+      <tr><td class="tk">PPA</td><td>매출 안정성</td><td>가격·기간·offtaker 신용·<span class="term" data-gl="gl-basisrisk" tabindex="0">basis risk</span></td></tr>
+      <tr><td class="tk">tax credit</td><td>equity value</td><td>ITC/PTC·transferability·FEOC·domestic bonus</td></tr>
+      <tr><td class="tk">금융비용</td><td>레버리지와 IRR</td><td>WACC·tax equity·금리·DSCR</td></tr>
+    </tbody>
+  </table></div>
+  <div class="viz">
+    <h4>무엇이 프로젝트 IRR을 올리고 내리나</h4>
+    <p class="cap">모듈값은 여러 변수 중 하나일 뿐 · 막대 = 방향과 대략적 영향력</p>
+    <div class="barrow"><span class="bl">세액공제(ITC·45X)</span><span class="bt" style="width:85%;background:var(--pos)"></span><span class="bv">▲ 상승</span></div>
+    <div class="barrow"><span class="bl">모듈 ASP 하락</span><span class="bt" style="width:68%;background:var(--pos)"></span><span class="bv">▲ 상승</span></div>
+    <div class="barrow"><span class="bl">높은 PPA 가격</span><span class="bt" style="width:58%;background:var(--pos)"></span><span class="bv">▲ 상승</span></div>
+    <div class="barrow"><span class="bl">금리·WACC 상승</span><span class="bt" style="width:76%;background:var(--neg)"></span><span class="bv">▼ 하락</span></div>
+    <div class="barrow"><span class="bl">계통연계·변압기 납기</span><span class="bt" style="width:64%;background:var(--neg)"></span><span class="bv">▼ 하락</span></div>
+    <div class="barrow"><span class="bl">COD 지연</span><span class="bt" style="width:48%;background:var(--neg)"></span><span class="bv">▼ 하락</span></div>
+  </div>
+  <div class="call"><div class="lbl">핵심</div><p><span class="term" data-gl="gl-lcoe" tabindex="0">LCOE</span>는 산업 경쟁력을 설명하지만 <strong>주주수익률을 직접 설명하지 않는다</strong>.<sup class="fn"><a href="#fn1">1</a></sup> 프로젝트 투자자는 LCOE보다 PPA spread·계통연계 확률·COD 지연 리스크·tax credit 현금화를 더 민감하게 본다. 그래서 같은 모듈 가격 하락도 제조사엔 악재, 개발사엔 호재, 계통 병목 기업엔 중립~호재가 된다.</p></div>
+  <h3 class="sub">참고 · 태양광 vs 다른 발전원</h3>
+  <div class="twrap"><table>
+    <thead><tr><th>발전원</th><th>1GW 건설</th><th class="c">LCOE(상대)</th><th>특성</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">태양광</td><td>~1년 · ~$1B</td><td class="c" style="color:var(--pos)">최저</td><td>무연료·빠른 증설 · 낮 집중(간헐)</td></tr>
+      <tr><td class="tk">풍력</td><td>~2~3년</td><td class="c">중</td><td>무연료 · 변동(입지 의존)</td></tr>
+      <tr><td class="tk">가스</td><td>~3~4년 · ~$2B</td><td class="c">중</td><td>유연·기저 대응 · 연료비·탄소</td></tr>
+      <tr><td class="tk">원전</td><td>~10년+ · ~$15B</td><td class="c">고(초기)</td><td>기저·무탄소 · 초장기·고자본</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">건설 기간·비용은 Nextracker IR 인용(Lazard·NREL 기반). 태양광이 '가장 빨리·싸게 까는' 발전원이라는 게 수요 폭증의 근원 — 단 낮에 몰려 발전하는 간헐성이 계통·ESS 문제를 부른다.<sup class="fn"><a href="#fn46">46</a></sup> IRENA 기준 2024년 유틸 태양광 LCOE는 $0.043/kWh(2010 $0.41 대비 -90%)로 화석 최저가보다 41% 싸다(미국 $0.070, 중국·인도 최저); 신규 재생 91%가 화석보다 저렴.<sup class="fn"><a href="#fn1">1</a></sup></p>
+</section>
+
+<div class="partband"><div class="pl">Part C · 공급과 가격</div><div class="pt">이익은 밸류체인 어디에 쌓이나</div><div class="pd">소재에서 발전소까지 — 어디는 지옥이고 어디는 프리미엄인가.</div></div>
+
+<section id="s5">
+  <div class="kicker">05 · Value Chain</div>
+  <h2 class="sec-title">밸류체인: 소재부터 IPP까지</h2>
+  <p class="dek">물리적으론 선형이지만, 이익은 선형으로 분배되지 않는다.</p>
+  <div class="tldr"><b>한 줄</b><span>왼쪽(소재·셀·모듈)은 원가곡선, 오른쪽(계통·설치·병목)은 렌트 — 오른쪽을 본다.</span></div>
+  <p>소재·셀·모듈은 자본집약적 제조업이고, 모듈 이후는 현장·전력·금융 서비스업에 가깝다. 마진은 공급과잉이 있는 곳에서 낮고 병목이 있는 곳에서 높다. 현재 병목은 폴리실리콘이 아니라 <b>계통연계·변압기·숙련 EPC·ESS 통합·정책 적격 공급망</b>이다. 그래서 밸류체인 맵은 왼쪽을 원가곡선, 오른쪽을 bottleneck rent로 읽어야 한다.</p>
+  <div class="chain">
+    <div class="node loss"><div class="n">폴리·웨이퍼</div><div class="m">과잉·中 집중</div></div>
+    <div class="node loss"><div class="n">셀·모듈</div><div class="m">ASP 하락</div></div>
+    <div class="node mid"><div class="n">인버터·트래커</div><div class="m">유틸 수요</div></div>
+    <div class="node win"><div class="n">eBOS·ESS</div><div class="m">병목 렌트</div></div>
+    <div class="node win"><div class="n">EPC·계통</div><div class="m">병목 렌트</div></div>
+    <div class="node win"><div class="n">IPP·O&amp;M</div><div class="m">반복 매출</div></div>
+  </div>
+  <div class="twrap"><table>
+    <thead><tr><th>단계</th><th>역할</th><th>경제성</th><th>대표 기업</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">폴리실리콘</td><td>고순도 실리콘 원재료</td><td>전력비·가동률·재고 사이클</td><td>Tongwei, Daqo, GCL, OCI, Wacker</td></tr>
+      <tr><td class="tk">잉곳·웨이퍼</td><td>결정화·절단</td><td>중국 집중, 규모 경쟁</td><td>LONGi, TCL Zhonghuan</td></tr>
+      <tr><td class="tk">셀</td><td>광전 변환</td><td>기술 전환과 수율</td><td>Jinko, Trina, JA Solar, Qcells</td></tr>
+      <tr><td class="tk">모듈</td><td>셀 패키징</td><td>ASP 하락·관세·원산지</td><td>Canadian Solar, Jinko, First Solar, Qcells</td></tr>
+      <tr><td class="tk">인버터</td><td>DC/AC 변환</td><td>전력전자·서비스</td><td>Sungrow, Huawei, SMA, SolarEdge, Enphase</td></tr>
+      <tr><td class="tk">트래커</td><td>발전량 최적화 구조물</td><td>유틸 설치 병목</td><td>Nextpower, Array</td></tr>
+      <tr><td class="tk">eBOS</td><td>케이블·접속·전기 BOS</td><td>현장 표준화</td><td>Shoals, Bentek 계열</td></tr>
+      <tr><td class="tk">ESS</td><td>시간 이동·피크 대응</td><td>배터리·PCS·EMS 통합</td><td>Tesla Energy, Fluence, Sungrow, CATL</td></tr>
+      <tr><td class="tk">EPC</td><td>설계·조달·시공</td><td>일정·노동·토목</td><td>SOLV Energy, Bechtel</td></tr>
+      <tr><td class="tk">IPP/O&amp;M</td><td>보유·운영·전력판매</td><td>PPA·운영·금융</td><td>NextEra, Brookfield, AES, Orsted</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call"><div class="lbl">잘 안 보이는 병목 · 진짜 곡괭이</div><p>테마에서 잘 안 다루지만 알짜인 길목: <b>태양광 유리</b>(<span class="co" data-gl="co-xinyi" tabindex="0">Xinyi</span>·<span class="co" data-gl="co-flatglass" tabindex="0">Flat Glass</span> 복점 ~48%라 패널보다 가격 방어), <b>고순도 석영 도가니</b>(잉곳 성장용 — <span class="co" data-gl="co-quartz" tabindex="0">The Quartz Corp·Sibelco</span>가 사실상 양분하는 진짜 병목), <b>은 페이스트</b>(셀 전극 — 은값에 민감). 커모디티 제조가 적자여도 <b>이런 소재·부자재 병목은 마진을 지킨다</b>.<sup class="fn"><a href="#fn50">50</a></sup></p>
+    <p style="margin-top:10px"><b>상장 대표사(예시 · 매수의견 아님):</b> 유리 <span class="co" data-gl="co-xinyi" tabindex="0">Xinyi Solar</span>(0968.HK)·<span class="co" data-gl="co-flatglass" tabindex="0">Flat Glass</span>(6865.HK/601865) · 고순도 석영 <span class="co" data-gl="co-pacificquartz" tabindex="0">石英股份 Pacific Quartz</span>(603688) 〔Quartz Corp·Sibelco는 비상장〕 · 은 페이스트 <span class="co" data-gl="co-doke" tabindex="0">帝科 DoKe</span>(300842)·<span class="co" data-gl="co-juhe" tabindex="0">聚和 Ju-He</span>(688503) 〔Heraeus 비상장〕.</p></div>
+  <div class="viz">
+    <h4>'곡괭이' 비유 — 누가 돈을 버는가</h4>
+    <p class="cap">직접 캐는 쪽이 아니라 도구·서비스를 파는 쪽이 번다는, 골드러시와 똑같은 구조</p>
+    <svg class="fig" viewBox="0 0 680 190" role="img" aria-label="골드러시 비유: 금 캐는 광부는 파산, 곡괭이 상인이 돈을 벌듯 태양광도 제조는 적자, 트래커·설치가 번다">
+      <text class="sm t-faint" x="42" y="62" text-anchor="middle">골드러시</text><text class="sm t-faint" x="42" y="78" text-anchor="middle">1849</text>
+      <rect class="f-negS st-neg med" x="80" y="40" width="228" height="52" rx="8"/><text class="mid t-ink" x="194" y="66" text-anchor="middle">금 캐는 광부</text><text class="sm t-neg" x="194" y="84" text-anchor="middle">→ 대부분 파산</text>
+      <text class="big t-faint" x="368" y="68" text-anchor="middle">≈</text><text class="sm t-faint" x="368" y="86" text-anchor="middle">같은 구조</text>
+      <rect class="f-posS st-pos med" x="430" y="40" width="228" height="52" rx="8"/><text class="mid t-ink" x="544" y="66" text-anchor="middle">곡괭이·청바지 상인</text><text class="sm t-pos" x="544" y="84" text-anchor="middle">→ 큰 돈을 벌다</text>
+      <text class="sm t-faint" x="42" y="132" text-anchor="middle">태양광</text><text class="sm t-faint" x="42" y="148" text-anchor="middle">2026</text>
+      <rect class="f-negS st-neg med" x="80" y="110" width="228" height="52" rx="8"/><text class="mid t-ink" x="194" y="136" text-anchor="middle">패널 제조 (中 c-Si)</text><text class="sm t-neg" x="194" y="154" text-anchor="middle">→ 적자 · 마진 지옥</text>
+      <text class="big t-faint" x="368" y="138" text-anchor="middle">≈</text>
+      <rect class="f-posS st-pos med" x="430" y="110" width="228" height="52" rx="8"/><text class="mid t-ink" x="544" y="136" text-anchor="middle">트래커·인버터·설치</text><text class="sm t-pos" x="544" y="154" text-anchor="middle">→ 두 자릿수 마진</text>
+    </svg>
+  </div>
+  <div class="call plain"><div class="lbl">쉽게 말하면 · 곡괭이는 왜 커모디티화가 안 되나</div><p>패널은 규격품이라 누가 만들어도 비슷 → 가격 경쟁으로 마진 소멸. 반면 트래커·eBOS·EPC는 <b>부지마다 지형·규정·계통이 달라 '현장 맞춤'</b>이 필요하고, <b>표준·소프트웨어·서비스로 묶이면 갈아타기 비용</b>이 커진다. 그래서 같은 하락 압력에도 <b>마진을 더 오래 지킨다</b> — 이게 곡괭이의 본질이다.</p></div>
+  <p class="src">참고 · 구간 시장 규모(3rd-party 추정, 하우스별 편차 큼): 트래커 ~$9~11B(2025)·CAGR 15~25%, eBOS ~$7.6B(2024), 계통 ESS ~$16B(2025)·CAGR 11~25%. 곡괭이 구간은 절대 규모는 작아도 빠르게 큰다.<sup class="fn"><a href="#fn45">45</a></sup></p>
+</section>
+
+<section id="s6">
+  <div class="kicker">06 · Supply Structure</div>
+  <h2 class="sec-title">공급 구조: 중국 과잉과 비중국 적격성</h2>
+  <p class="dek">중국은 비용 하락의 주역이지만, 투자자에겐 과잉공급의 원천이다.</p>
+  <div class="tldr"><b>한 줄</b><span>중국 과잉은 구조적이고, 비중국은 '원가'가 아니라 '정책 적격성'이 관건이다.</span></div>
+  <p>IEA는 태양광 공급망이 폴리·잉곳·웨이퍼·셀·모듈의 다섯 제조 단계이며 중국 집중이 리스크의 핵심이라고 정리한다.<sup class="fn"><a href="#fn7">7</a></sup> 원문 기준 중국 점유율은 폴리 93%, 웨이퍼 97%, 셀 91%, 모듈 85%다.<sup class="fn"><a href="#fn7">7</a></sup></p>
+  <div class="tiles">
+    <div class="tile"><div class="k">폴리 점유</div><div class="v">93%</div><div class="d">중국</div></div>
+    <div class="tile"><div class="k">웨이퍼 점유</div><div class="v">97%</div><div class="d">중국 초집중</div></div>
+    <div class="tile"><div class="k">셀 점유</div><div class="v">91%</div><div class="d">중국</div></div>
+    <div class="tile"><div class="k">모듈 점유</div><div class="v">85%</div><div class="d">중국</div></div>
+  </div>
+  <p>공급과잉은 단일 단계 문제가 아니다. 폴리가 떨어지면 웨이퍼 원가가 낮아지고, 업체는 낮은 원가를 다시 ASP 인하로 넘긴다. 재고가 쌓이면 제조사는 현금흐름을 지키려 원가 이하 판매를 택한다. 기술 우위도 오래 못 간다 — PERC→TOPCon 전환처럼 세대가 바뀌어도 대형 중국 업체가 빠르게 따라오면 프리미엄이 사라진다.</p>
+  <div class="viz">
+    <h4>'성장하는데 왜 적자?' — 공급과잉의 인과</h4>
+    <p class="cap">수요는 사상 최대인데 만드는 쪽이 파산하는 역설의 메커니즘</p>
+    <svg class="fig" viewBox="0 0 680 150" role="img" aria-label="공급과잉 인과: 캐파 3배 → 가동률 44% → 가격 원가 이하 → 제조사 적자">
+      <g class="mid t-ink">
+        <rect class="f-panel st-acc med" x="6" y="34" width="150" height="62" rx="6"/><text x="81" y="60" text-anchor="middle">공급 캐파</text><text class="sm t-mut" x="81" y="80" text-anchor="middle">수요의 ~3배</text>
+        <rect class="f-panel st-acc med" x="182" y="34" width="150" height="62" rx="6"/><text x="257" y="60" text-anchor="middle">가동률 붕괴</text><text class="sm t-neg" x="257" y="80" text-anchor="middle">~44%</text>
+        <rect class="f-panel st-neg med" x="358" y="34" width="150" height="62" rx="6"/><text x="433" y="60" text-anchor="middle">가격 &lt; 원가</text><text class="sm t-neg" x="433" y="80" text-anchor="middle">현금원가 이하</text>
+        <rect class="f-negS st-neg med" x="534" y="34" width="140" height="62" rx="6"/><text class="t-neg" x="604" y="60" text-anchor="middle">제조사 적자</text><text class="sm t-neg" x="604" y="80" text-anchor="middle">마진지옥·2028까지</text>
+      </g>
+      <g class="f-acc"><polygon points="160,58 160,72 172,65"/><polygon points="336,58 336,72 348,65"/><polygon points="512,58 512,72 524,65"/></g>
+      <text class="lbl t-mut" x="340" y="128" text-anchor="middle">→ '성장하는 산업인데 만드는 쪽은 파산'의 정체</text>
+    </svg>
+  </div>
+  <div class="call plain"><div class="lbl">역설 · 왜 감산을 안 하나</div><p>정상 시장이라면 적자 공장은 문을 닫는다. 그러나 중국 폴리·모듈은 <b>고용·지방정부 세수·전략산업 지위</b> 때문에 감산 대신 가동을 유지한다. 2026년 초 약 70억 달러 통합안마저 반독점당국(SAMR)이 막았다.<sup class="fn"><a href="#fn4">4</a></sup> '왜 안 망하냐'가 아니라 <b>'망하게 두지 않는다'</b>가 정답 — 그래서 시장논리로 바닥을 예단하면 틀린다.</p></div>
+  <p>비중국 공급망은 경제성보다 <b>정책 적격성</b>이 먼저다. 비중국 제조는 전력비·인건비·장비비·수율·규모에서 불리하고, 이 격차를 메우는 것이 관세·세액공제·공공조달·국내산 보너스·FEOC 배제다. 따라서 비중국 제조 투자에선 '정책 크레딧을 실제 현금흐름으로 받을 수 있는가'가 중요하다.</p>
+  <div class="twrap"><table>
+    <thead><tr><th>공급 구간</th><th>현재 상태</th><th>정상화 조건</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">폴리</td><td>재고 과다, 현금원가 이하 압박</td><td>감산·도태·비중국 프리미엄 확정</td></tr>
+      <tr><td class="tk">웨이퍼</td><td>중국 초집중</td><td>미국·인도 웨이퍼 정책 보조</td></tr>
+      <tr><td class="tk">셀</td><td><span class="term" data-gl="gl-topcon" tabindex="0">TOPCon</span> 주류화, <span class="term" data-gl="gl-hjt" tabindex="0">HJT</span>·<span class="term" data-gl="gl-bc" tabindex="0">BC</span> 추격</td><td>고효율 차별화 또는 원산지 프리미엄</td></tr>
+      <tr><td class="tk">모듈</td><td>범용 c-Si ASP 하락</td><td>관세·FEOC로 지역 가격 분리</td></tr>
+      <tr><td class="tk">인버터·트래커</td><td>유틸 수요와 지역화</td><td>프로젝트 착공 유지</td></tr>
+      <tr><td class="tk">ESS</td><td>배터리 가격 하락, 통합 경쟁</td><td>4시간 ESS 수익모델 정착</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="s7">
+  <div class="kicker">07 · Price Transmission</div>
+  <h2 class="sec-title">가격 구조: 폴리에서 IRR까지</h2>
+  <p class="dek">가격은 원재료에서 프로젝트 수익률로 전달되지만, 전달률은 100%가 아니다.</p>
+  <div class="tldr"><b>한 줄</b><span>폴리 하락이 IRR까지 다 안 간다. 모듈 상승도 '착공 안 꺾일 정도'가 최적.</span></div>
+  <div class="call plain"><div class="lbl">쉽게 말하면</div><p>폴리값이 반 토막 나도 프로젝트 IRR이 그만큼 좋아지진 않는다. 내려가는 동안 <strong>모듈이 전체 공사비에서 차지하는 비중이 작아지고, 관세·PPA·세액공제가 효과를 상쇄</strong>하기 때문이다. 그래서 '폴리 싸졌으니 개발사 다 좋다'는 단순하지 않다.</p></div>
+  <div class="viz">
+    <h4>폴리 → 프로젝트 IRR 가격 전달 (누수)</h4>
+    <p class="cap">왼쪽 100%로 출발한 가격 하락이 단계마다 희석돼 IRR에 도달할 땐 얇아진다</p>
+    <svg class="fig" viewBox="0 0 680 205" role="img" aria-label="폴리 가격 하락이 웨이퍼·셀·모듈·EPC·금융을 거쳐 프로젝트 IRR로 전달되며 점점 희석된다">
+      <polygon class="f-soft st-acc med" points="48,52 48,124 632,102 632,80"/>
+      <text class="lbl t-acc" x="48" y="40">폴리 가격 하락 100%</text>
+      <text class="lbl t-mut" x="632" y="40" text-anchor="end">IRR 개선 (희석)</text>
+      <g class="s-line thin"><line x1="145" y1="56" x2="145" y2="150"/><line x1="242" y1="61" x2="242" y2="150"/><line x1="340" y1="67" x2="340" y2="150"/><line x1="438" y1="73" x2="438" y2="150"/><line x1="535" y1="80" x2="535" y2="150"/></g>
+      <g class="sm t-mut" text-anchor="middle"><text x="60" y="168">폴리</text><text x="145" y="168">웨이퍼</text><text x="242" y="168">셀</text><text x="340" y="168">모듈 ASP</text><text x="438" y="168">EPC CAPEX</text><text x="535" y="168">금리·세액공제</text><text x="620" y="168">IRR</text></g>
+      <text class="sm t-neg" x="340" y="194" text-anchor="middle">누수: 모듈 비중↓ · 관세 · PPA/세액공제가 효과를 상쇄 → 전달률 &lt; 100%</text>
+    </svg>
+  </div>
+  <div class="twrap"><table>
+    <thead><tr><th>가격 변수</th><th>상승 시 수혜</th><th>상승 시 피해</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">폴리</td><td>비중국 폴리, 재고 보유 생산자</td><td>웨이퍼·셀·모듈, 개발사</td></tr>
+      <tr><td class="tk">웨이퍼</td><td>웨이퍼 생산자</td><td>셀 업체</td></tr>
+      <tr><td class="tk">셀</td><td>셀 생산자</td><td>모듈 조립사</td></tr>
+      <tr><td class="tk">모듈</td><td>적격 미국 제조, <span class="term" data-gl="gl-cdte" tabindex="0">CdTe</span></td><td>개발사·EPC·설치 수요</td></tr>
+      <tr><td class="tk">인버터·트래커</td><td>장비업체</td><td>프로젝트 IRR</td></tr>
+      <tr><td class="tk">EPC·계통</td><td>EPC·변압기·계통 장비</td><td>개발사</td></tr>
+      <tr><td class="tk">PPA</td><td>개발사·IPP</td><td>전력 구매자</td></tr>
+      <tr><td class="tk">금리·WACC</td><td>현금 보유자</td><td>레버리지 프로젝트</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call"><div class="lbl">투자 결론</div><p>폴리·모듈 하락은 산업 수요엔 좋지만 제조사엔 나쁘다. 반대로 모듈 상승은 비중국 제조엔 좋지만 <strong>너무 강하면 다운스트림 착공을 훼손</strong>한다. 따라서 <span class="term" data-gl="gl-232" tabindex="0">Section 232</span> 같은 관세는 '강한데 설치량을 꺾지 않을 정도'일 때 최적이다. 이 균형이 깨지면 바벨 전략도 함께 흔들린다.</p></div>
+</section>
+
+<section id="s8">
+  <div class="kicker">08 · Technology Roadmap</div>
+  <h2 class="sec-title">기술 로드맵: PERC → 탠덤</h2>
+  <p class="dek">투자 관점에선 기술 자체보다 '그 기술이 얼마나 오래 마진을 방어하는가'가 중요하다.</p>
+  <div class="viz">
+    <h4>셀 기술 로드맵 — 효율과 시점</h4>
+    <p class="cap">주류는 빠르게 커모디티화 · CdTe의 프리미엄은 '효율'이 아니라 '공급망 분리'</p>
+    <svg class="fig" viewBox="0 0 680 225" role="img" aria-label="셀 기술 로드맵: PERC 퇴조에서 TOPCon 주류, HJT·BC 추격, 탠덤 2027-29 상용화로 효율이 오른다">
+      <line class="s-line med" x1="54" y1="182" x2="650" y2="182"/>
+      <text class="sm t-faint" x="30" y="60" transform="rotate(-90 30 60)" text-anchor="middle">효율 →</text>
+      <g class="sm t-faint" text-anchor="middle"><text x="110" y="202">~2021</text><text x="250" y="202">2024</text><text x="400" y="202">2026</text><text x="580" y="202">2028~29</text></g>
+      <polyline class="st-acc med dash" points="110,150 250,120 360,108 440,98 580,58"/>
+      <circle class="f-neg" cx="110" cy="150" r="6"/><text class="sm t-ink" x="110" y="138" text-anchor="middle">PERC</text><text class="sm t-neg" x="110" y="170" text-anchor="middle">퇴조</text>
+      <circle class="f-acc" cx="250" cy="120" r="6"/><text class="sm t-ink" x="250" y="108" text-anchor="middle">TOPCon</text><text class="sm t-acc" x="250" y="142" text-anchor="middle">주류·커모디티화</text>
+      <circle class="f-hold" cx="360" cy="108" r="6"/><text class="sm t-ink" x="360" y="96" text-anchor="middle">HJT</text><text class="sm t-hold" x="360" y="128" text-anchor="middle">추격</text>
+      <circle class="f-pos" cx="440" cy="98" r="6"/><text class="sm t-ink" x="440" y="86" text-anchor="middle">BC</text><text class="sm t-pos" x="440" y="118" text-anchor="middle">프리미엄</text>
+      <circle class="f-acc" cx="580" cy="58" r="6"/><text class="sm t-ink" x="580" y="46" text-anchor="middle">탠덤</text><text class="sm t-mut" x="580" y="78" text-anchor="middle">상용화 리스크</text>
+    </svg>
+  </div>
+  <div class="twrap"><table>
+    <thead><tr><th>기술</th><th>특징</th><th>2026 위치</th><th>투자 해석</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">PERC</td><td>p-type 기반, 기존 주류</td><td>퇴조</td><td>레거시 캐파 부담</td></tr>
+      <tr><td class="tk">TOPCon</td><td>n-type, 기존 라인 전환 용이</td><td>주류</td><td>빠르게 커모디티화</td></tr>
+      <tr><td class="tk">HJT</td><td>고효율, 저온 공정</td><td>추격</td><td>장비·은 사용량·수율이 관건</td></tr>
+      <tr><td class="tk">BC</td><td>후면전극, 고효율·미관</td><td>프리미엄 일부</td><td>분산형·고효율 시장</td></tr>
+      <tr><td class="tk">CdTe</td><td>First Solar 박막</td><td>c-Si와 공급망 분리</td><td>정책·관세 회피 프리미엄</td></tr>
+      <tr><td class="tk">페로브스카이트 탠덤</td><td>실리콘 위 적층, 이론 효율 높음</td><td>상용화 전환기</td><td>2027~2029 상용화 리스크</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">양산 셀 효율(대략): PERC ~23% · TOPCon 25~26% · HJT ~26% · BC 모듈 24.8~25%. 셀 기록: 실리콘 단접합 27.81%(이론한계 ~29.4%), 페로브스카이트 탠덤 34.85%(이론 ~43%) — NREL/제조사 인증. 랩 기록 ≠ 양산.<sup class="fn"><a href="#fn48">48</a></sup></p>
+  <p>TOPCon은 이미 주류라 차별화보다 비용경쟁으로 이동했다. HJT·BC는 효율 프리미엄을 만들 수 있지만 장비·소재·수율의 경제성이 증명돼야 한다. CdTe가 받는 프리미엄은 '더 좋은 패널'이 아니라 <b>'중국 c-Si 체계 밖의 대규모 공급'</b>이라는 희소성에서 나온다. 탠덤은 장기적으로 중요하지만 2026년 결론을 뒤집기엔 이르다 — 랩 효율 기록이 곧 <span class="term" data-gl="gl-bankability" tabindex="0">bankability</span>로 이어지지는 않는다.</p>
+</section>
+
+<div class="partband"><div class="pl">Part D · 병목과 정책</div><div class="pt">무엇이 착공을 막고, 정책이 누구를 가르나</div><div class="pd">다음 병목은 패널이 아니라 계통이다. 그리고 정책은 승자와 패자를 나눈다.</div></div>
+
+<section id="s9">
+  <div class="kicker">09 · Grid &amp; Storage</div>
+  <h2 class="sec-title">계통과 ESS: 다음 병목</h2>
+  <p class="dek">태양광의 병목은 패널 부족이 아니라 연결 부족이다.</p>
+  <div class="tldr"><b>한 줄</b><span>pipeline MW를 그대로 믿지 마라 — 계통이 진짜 병목, ESS가 두 번째 엔진.</span></div>
+  <p>LBNL의 Queued Up 2026 Edition은 2025년 말 기준 미국에서 2,060GW 이상의 발전·저장 용량이 계통연계를 기다리고, active solar 773GW·storage 749GW, IA를 받았지만 아직 상업운전에 안 들어간 용량 549GW, 2025년 COD 프로젝트 median queue duration 5년 초과를 제시한다.<sup class="fn"><a href="#fn8">8</a></sup></p>
+  <div class="viz">
+    <h4>인터커넥션 큐 — 대기 ≠ 가동</h4>
+    <p class="cap">계통연계를 기다리는 용량은 거대하지만, 실제 발전소가 되는 비율은 극소수다 · LBNL Queued Up 2026</p>
+    <svg class="fig" viewBox="0 0 680 240" role="img" aria-label="미국 인터커넥션 큐 퍼널: 전체 대기 2060GW에서 활성 태양광 773GW, IA 확보 549GW를 거쳐 실제 COD 도달은 약 13%">
+      <polygon class="f-soft" points="40,64 580,64 510,76 110,76"/>
+      <polygon class="f-soft" points="110,114 510,114 440,126 180,126"/>
+      <polygon class="f-holdS" points="180,164 440,164 370,176 250,176"/>
+      <rect class="f-soft st-acc med" x="40" y="26" width="540" height="38" rx="5"/><text class="mid t-ink" x="310" y="50" text-anchor="middle">전체 계통연계 대기 · 2,060GW+</text>
+      <rect class="f-soft st-acc med" x="110" y="76" width="400" height="38" rx="5"/><text class="mid t-ink" x="310" y="100" text-anchor="middle">활성 태양광 · 773GW</text>
+      <rect class="f-holdS st-hold med" x="180" y="126" width="260" height="38" rx="5"/><text class="mid t-hold" x="310" y="150" text-anchor="middle">IA 확보(아직 미가동) · 549GW</text>
+      <rect class="f-negS st-neg med" x="250" y="176" width="120" height="38" rx="5"/><text class="mid t-neg" x="310" y="200" text-anchor="middle">실제 COD · ~13%</text>
+      <text class="sm t-neg" x="310" y="232" text-anchor="middle">2000~2020년 요청 용량 중 실제 가동 도달 13% · 75%는 철회</text>
+    </svg>
+  </div>
+  <p>이 숫자는 개발사 valuation에서 pipeline MW를 그대로 가치로 인정하면 안 된다는 뜻이다. ESS는 이 병목을 일부 완화한다. 태양광 단독은 낮 가격을 낮추고 저녁 피크를 놓치지만, 4시간 ESS를 붙이면 낮 발전을 저녁으로 이동시켜 capacity value와 ancillary service를 확보한다. 다만 ESS도 배터리 셀만으로 안 되고 <span class="term" data-gl="gl-pcs" tabindex="0">PCS·BMS·EMS</span>·thermal·화재안전·interconnection·merchant 최적화가 함께 필요하다. BNEF는 누적 저장을 2030년 ~411GW·1,194GWh(2021의 약 15배)로 전망한다.<sup class="fn"><a href="#fn49">49</a></sup></p>
+  <p>이 병목은 규제로 풀리는 중이다. <b>FERC Order 2023</b>(2023년 시행)은 선착순 개별심사를 <b>클러스터 일괄심사·first-ready-first-served·철회 위약금</b>으로 바꿔 투기성 프로젝트를 걸러낸다.<sup class="fn"><a href="#fn40">40</a></sup> 다만 2024년 미국 큐는 약 2,200~2,300GW로 10년 만에 처음 줄었지만, 이는 처리 효율보다 일부 RTO의 신규 접수 중단과 신규 진입 감소 탓이라 <b>병목 해소는 아직 제한적</b>이다(PJM은 2026년까지 +6.3만MW 처리 목표). 즉 병목의 '해결책은 나왔지만 아직 효과는 미미'한 국면이다.</p>
+  <div class="viz">
+    <h4>덕 커브 — 왜 ESS가 두 번째 엔진인가</h4>
+    <p class="cap">태양광이 낮 순부하를 끌어내리고 저녁 피크를 남긴다. ESS가 낮 잉여를 저녁으로 옮긴다</p>
+    <svg class="fig" viewBox="0 0 680 200" role="img" aria-label="덕 커브: 태양광이 낮 순부하를 낮추고 저녁 램프를 만든다. ESS가 낮 잉여를 저녁 피크로 이동시켜 곡선을 평탄화한다">
+      <line class="s-line med" x1="56" y1="172" x2="648" y2="172"/>
+      <line class="s-line thin" x1="56" y1="30" x2="56" y2="172"/>
+      <text class="sm t-faint" x="30" y="100" transform="rotate(-90 30 100)" text-anchor="middle">순부하 →</text>
+      <g class="sm t-faint" text-anchor="middle"><text x="56" y="190">0시</text><text x="200" y="190">6</text><text x="352" y="190">12</text><text x="500" y="190">18</text><text x="648" y="190">24</text></g>
+      <polyline class="st-acc med" points="56,108 160,120 300,150 360,148 440,96 512,54 600,84 648,100"/>
+      <polyline class="st-pos med dash" points="56,116 200,128 352,134 440,116 512,102 648,114"/>
+      <text class="sm t-acc" x="330" y="167" text-anchor="middle">낮: 태양광 과잉</text>
+      <text class="sm t-acc" x="520" y="44" text-anchor="middle">저녁 피크</text>
+      <text class="sm t-pos" x="150" y="112" text-anchor="middle">solar+storage(평탄)</text>
+      <path class="st-hold med ln" d="M330,150 Q430,180 500,74"/>
+      <polygon class="f-hold" points="496,80 505,72 507,84"/>
+      <text class="sm t-hold" x="430" y="176" text-anchor="middle">ESS: 낮 잉여 → 저녁 이동</text>
+    </svg>
+  </div>
+  <div class="call plain"><div class="lbl">역설 · 성공이 독이 된다</div><p>태양광이 늘수록 낮 전력가격이 무너진다 — <b>태양광의 성공이 태양광 발전의 경제성을 스스로 갉아먹는다</b>(자기잠식). 그래서 ESS 없는 순수 태양광엔 침투 한계가 있고, 바로 이 점이 ESS를 '보조 장치'가 아니라 두 번째 엔진으로 만든다.</p></div>
+  <div class="call"><div class="lbl">주의 · ESS도 태양광을 닮아간다</div><p>중국의 2025년 저장용 셀 생산은 약 557GWh로 <b>글로벌 설치의 2배</b> — 태양광 판박이 과잉이다. LFP 셀은 2025년 $36/kWh까지 빠졌다 2026년 +20~30% 반등했다.<sup class="fn"><a href="#fn43">43</a></sup> <b>ESS 통합사 마진도 셀 가격 변동·커모디티화에 노출</b>된다. 'ESS면 무조건 안전'은 아니다.</p></div>
+  <div class="twrap"><table>
+    <thead><tr><th>계통 문제</th><th>산업 영향</th><th>수혜 구간</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">interconnection queue</td><td>착공 지연, pipeline 품질 차별화</td><td>개발 역량·계통 컨설팅·EPC</td></tr>
+      <tr><td class="tk">변압기 납기</td><td>COD 지연, CAPEX 상승</td><td>전력장비·조달 역량</td></tr>
+      <tr><td class="tk"><span class="term" data-gl="gl-curtailment" tabindex="0">curtailment</span></td><td>발전량 손실, PPA 구조 변경</td><td>ESS·EMS·hybrid PPA</td></tr>
+      <tr><td class="tk">duck curve</td><td>낮 가격 하락</td><td>4시간 ESS·수요반응</td></tr>
+      <tr><td class="tk">송전망 부족</td><td>지역 basis risk</td><td>송전 투자·위치 선별</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call pos"><div class="lbl">한 줄</div><p>데이터센터는 싼 전력보다 '확보 가능한 전력'과 '시간대 매칭'을 중시한다. 태양광은 ESS와 묶일 때 이 수요를 더 많이 흡수한다. <strong>ESS는 태양광의 보조 장치가 아니라 침투율을 높이는 두 번째 엔진</strong>이다.</p></div>
+  <div class="call plain"><div class="lbl">쉽게 말하면 · ESS는 어떻게 돈을 버나</div><p>배터리는 한 가지로만 벌지 않고 <b>수익을 쌓는다(revenue stacking)</b>: ① <b>차익거래</b>(낮 싼 전기 저장 → 저녁 비싸게 판매), ② <b>용량 가치</b>(피크 대비 대기 대가), ③ <b>보조 서비스</b>(주파수·전압 안정 대가). 그래서 같은 배터리라도 <b>어느 시장에서 어떻게 운영하느냐(EMS·SW)</b>가 마진을 가른다 — 셀 가격만의 게임이 아니다.</p></div>
+</section>
+
+<section id="s10">
+  <div class="kicker">10 · Policy</div>
+  <h2 class="sec-title">정책: 미국·중국·유럽·인도·중동</h2>
+  <p class="dek">정책은 수요를 만드는 동시에 승자와 패자를 가른다.</p>
+  <div class="tldr"><b>한 줄</b><span>2026 미국 태양광은 '수요'가 아니라 '적격성 증명(원산지·크레딧·관세)'의 게임.</span></div>
+  <p>특히 미국 정책은 단순 보조금이 아니라 원산지·공급망·tax credit 현금화·관세를 결합한 산업 재편 장치다.</p>
+  <div class="viz">
+    <h4>Section 232 관세는 무엇을 바꾸나 — Before / After</h4>
+    <p class="cap">중국 c-Si에만 관세 · 비중국 제조는 구조적 프리미엄, First Solar(CdTe)는 무풍지대</p>
+    <svg class="fig" viewBox="0 0 680 190" role="img" aria-label="Section 232 전후: 관세 전 비중국 제조가 열위, 관세 후 비중국 제조가 프리미엄을 얻고 First Solar는 무풍지대">
+      <rect class="f-panel s-line med" x="6" y="30" width="300" height="150" rx="8"/>
+      <text class="mid t-mut" x="156" y="56" text-anchor="middle">BEFORE — 관세 전</text>
+      <line class="s-grid thin" x1="24" y1="66" x2="288" y2="66"/>
+      <text class="lbl" x="156" y="92" text-anchor="middle">중국 폴리 싸게 유입</text>
+      <text class="lbl" x="156" y="118" text-anchor="middle">중국산·수입 모듈 저가</text>
+      <text class="lbl t-neg" x="156" y="150" text-anchor="middle">비중국 제조 = 가격 열위</text>
+      <text class="big t-acc" x="340" y="100" text-anchor="middle">→</text>
+      <text class="lbl t-acc" x="340" y="80" text-anchor="middle">§232</text>
+      <text class="sm t-mut" x="340" y="122" text-anchor="middle">관세 발효</text>
+      <rect class="f-panel st-pos med" x="374" y="30" width="300" height="150" rx="8"/>
+      <text class="mid t-pos" x="524" y="56" text-anchor="middle">AFTER — 관세 후</text>
+      <line class="s-grid thin" x1="392" y1="66" x2="656" y2="66"/>
+      <text class="lbl t-neg" x="524" y="90" text-anchor="middle">中 c-Si + 관세 → 비쌈</text>
+      <text class="lbl t-pos" x="524" y="116" text-anchor="middle">비중국 제조 프리미엄 ↑</text>
+      <text class="lbl t-pos" x="524" y="142" text-anchor="middle">FSLR(CdTe) 무풍지대 ★</text>
+      <text class="sm t-acc" x="524" y="166" text-anchor="middle">= Non-China 리레이팅 (FSLR·한화·OCI)</text>
+    </svg>
+  </div>
+  <h3 class="sub">Section 232 딥다이브 — 왜 '최대 스윙'인가</h3>
+  <div class="tldr"><b>한 줄</b><span>232는 AD/CVD와 달리 '국가안보' 관세라 전 세계에 넓게 걸려 우회가 어렵다 — 비중국 제조에 구조적 바닥.</span></div>
+  <p>§232는 1962년 무역확장법 232조에 근거한 <b>국가안보 관세</b>다. 2018년 철강(25%)·알루미늄(10%)에 썼던 바로 그 조항이다. 2025년 7월 상무부가 <b>폴리실리콘과 파생품(잉곳·웨이퍼·셀·모듈)</b> 조사를 개시했고 — 태양광용뿐 아니라 <b>반도체급 폴리까지</b> 포함한다 — 절차상 상무부 보고서가 2026년 3월경 대통령에게 올라간 뒤 <b>90일 내 결정, 결정 후 15일 내 발효</b>다. 2026년 7월 현재 <b>대통령 결정은 아직</b>이다.<sup class="fn"><a href="#fn42">42</a></sup></p>
+  <div class="call plain"><div class="lbl">쉽게 말하면 · 232 vs AD/CVD (핵심 차이)</div><p><b>AD/CVD</b>는 '특정 국가·특정 기업'을 콕 집는 관세라, 중국이 <b>동남아로 공장을 옮겨 우회</b>할 수 있다(그래서 캄보디아·베트남 관세가 뒤따라붙었다). 반면 <b>§232는 '국가안보' 근거라 품목 전체에 넓게</b> 걸리고, 동맹국 쿼터(TRQ)를 빼면 우회가 어렵다. 게다가 <b>AD/CVD·301·기본관세 위에 얹혀(stack)</b> 쌓인다. 그래서 232는 비중국 제조에 <b>훨씬 오래가는 구조적 바닥</b>을 깔 수 있다.</p></div>
+  <div class="twrap"><table>
+    <thead><tr><th>구분</th><th>Section 232</th><th>AD/CVD</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">근거</td><td>국가안보(공급 집중·의존)</td><td>덤핑·정부 보조금</td></tr>
+      <tr><td class="tk">적용 범위</td><td>품목 전체(광범위 HTS)</td><td>특정 국가·기업</td></tr>
+      <tr><td class="tk">우회</td><td>어렵다(동맹 쿼터 외)</td><td>가능(제3국 이전)</td></tr>
+      <tr><td class="tk">세율</td><td>고정·예측 가능</td><td>추정 예치·사후 조정</td></tr>
+      <tr><td class="tk">중첩</td><td colspan="2">232는 AD/CVD·301·기본관세 <b>위에 stack</b></td></tr>
+    </tbody>
+  </table></div>
+  <p>제안된 구조(CPA 안·미확정)는 <b>폴리 $10/kg·웨이퍼 $0.07/W·셀 $0.10/W·모듈 $0.20/W</b>에, '중국계 배제 동맹 공급망'용 무관세 쿼터(<b>폴리 4만톤·셀/웨이퍼/잉곳 30GW</b>)를 얹는다.<sup class="fn"><a href="#fn42">42</a></sup> 2018년 철강 232가 한국 등에 쿼터로 타결됐듯, 232는 흔히 <b>동맹 쿼터로 절충</b>된다 — TRQ 설계가 이를 노린다.</p>
+  <div class="call"><div class="lbl">구간별 영향 · 누가 갈리나</div><p><b>가장 깨끗한 수혜: <span class="co" data-gl="co-fslr" tabindex="0">First Solar</span></b> — CdTe라 폴리를 아예 안 써 232의 무풍지대. <b>미국 폴리(Hemlock·REC Silicon)</b>도 직접 수혜. <b><span class="co" data-gl="co-hanwha" tabindex="0">한화 Qcells</span>·<span class="co" data-gl="co-oci" tabindex="0">OCI</span></b>는 쓰는 폴리가 TRQ '동맹' 자격이면 수혜, 아니면 원가 부담 — <b>쿼터 자격이 관건</b>이다. <b>피해: 수입 의존 개발사·EPC</b>(모듈 원가↑)와 중국 c-Si·동남아 조립. 단, 관세가 <b>설치 GW를 꺾을 만큼 세면 곡괭이도 함께 다친다</b> — '강하되 착공은 안 꺾는' 구간이 최적이다.</p></div>
+  <h3 class="sub">10-1. 미국 정책 매트릭스</h3>
+  <div class="twrap"><table>
+    <thead><tr><th>정책</th><th>핵심 내용</th><th>수혜</th><th>피해·리스크</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">OBBBA / PL 119-21</td><td>2025.7.4 법률화, IRA 일부 조정</td><td><span class="pill buy">수혜</span> 착공 요건 충족 유틸</td><td>주거·일부 청정 크레딧 축소</td></tr>
+      <tr><td class="tk"><span class="term" data-gl="gl-25d" tabindex="0">25D</span></td><td>주거용 청정에너지 크레딧 종료</td><td>없음</td><td><span class="pill avoid">피해</span> ENPH·SEDG·주거 설치</td></tr>
+      <tr><td class="tk"><span class="term" data-gl="gl-45x" tabindex="0">45X</span></td><td>미국 제조 세액공제</td><td><span class="pill buy">수혜</span> FSLR·Qcells·적격 부품</td><td>소급 축소·FEOC</td></tr>
+      <tr><td class="tk">FEOC</td><td>우려국 부품·지분·라이선스 제한</td><td><span class="pill buy">수혜</span> 비중국 공급망</td><td>중국계 우회 공급망</td></tr>
+      <tr><td class="tk">Safe harbor</td><td>착공·지출 요건 충족 시 크레딧 보전</td><td>유틸 프로젝트·장비 선주문</td><td>착공 증명·완공 지연</td></tr>
+      <tr><td class="tk">Section 232</td><td>국가안보 관세. 제안 폴리 $10/kg·모듈 $0.20/W(+쿼터), <b>2026.7 현재 미결정·지연</b></td><td><span class="pill buy">수혜</span> FSLR·Qcells·OCI·비중국 폴리</td><td>수입 개발사, 너무 강하면 착공 둔화</td></tr>
+      <tr><td class="tk">AD/CVD (동남아)</td><td>캄보디아·베트남·태국·말레이 셀·모듈 반덤핑·상계관세, 2025.6 발효</td><td><span class="pill buy">수혜</span> 미국·비중국 제조</td><td>동남아 우회 수입 · 후속 인도·인니·라오스 조사</td></tr>
+      <tr><td class="tk"><span class="term" data-gl="gl-uflpa" tabindex="0">UFLPA</span></td><td>신장 강제노동 관련 수입 제한</td><td>traceable 공급망</td><td>중국 폴리·우회 조달</td></tr>
+    </tbody>
+  </table></div>
+  <p>Congress.gov는 H.R.1이 2025년 7월 4일 Public Law 119-21이 됐다고 확인한다.<sup class="fn"><a href="#fn39">39</a></sup> IRS Notice 2026-15은 PFE 물질지원 판단과 safe harbor 적용 방식을 제시하며 모듈 구성요소·비용비중을 예시로 다룬다.<sup class="fn"><a href="#fn12">12</a></sup> 즉 2026년 미국 태양광 투자는 '수요 성장'만이 아니라 <b>'적격성 증명'</b>이 핵심이다.</p>
+  <p><b>§232 폴리 관세는 2026년 7월 현재 아직 발효되지 않았다.</b> 2025년 7월 조사가 개시됐고 제안 관세율(폴리 $10/kg·셀 $0.10/W·모듈 $0.20/W)에 '동맹 신뢰 공급망'용 무관세 쿼터(폴리 4만톤·셀 30GW)가 붙는 구조이나 대통령 포고가 지연되고 있다.<sup class="fn"><a href="#fn42">42</a></sup> 스윙 팩터인 만큼 <b>결정 시점 자체가 최대 관전 포인트</b>다. 한편 동남아 4개국 셀·모듈 <b>반덤핑·상계관세(AD/CVD)는 2025년 6월 확정·발효</b>됐다 — 캄보디아 최대 3,400%대, 태국 375~972%, 베트남 120~813%, 말레이시아 14~250%(한화 Qcells 말레이가 최저).<sup class="fn"><a href="#fn41">41</a></sup> 이 관세가 이미 <b>모듈 ASP의 지역 분리</b>를 만들고 있다 — 바벨 논지의 실물 증거다.</p>
+  <div class="call plain"><div class="lbl">쉽게 말하면 · tax equity가 뭐길래</div><p>미국 세액공제(ITC·45X)는 <b>돈이 아니라 '세금 깎아주는 쿠폰'</b>이다. 정작 개발사·제조사는 낼 세금이 적어 쿠폰을 다 못 쓴다. 그래서 <b>세금 많이 내는 대기업·은행이 지분으로 들어와 쿠폰을 대신 쓰고 현금을 대주는</b> 게 <span class="term" data-gl="gl-taxequity" tabindex="0">tax equity</span>다. 크레딧이 진짜 현금이 되려면 이 금융 배관이 돌아가야 하고, First Solar·한화의 실제 수익성이 여기서 갈린다.</p></div>
+  <h3 class="sub">10-2. 지역별 정책 비교</h3>
+  <div class="twrap"><table>
+    <thead><tr><th>지역</th><th>정책 축</th><th>투자 판단</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">미국</td><td>OBBBA·45X·FEOC·UFLPA·232</td><td>공급망 적격성 + tax credit 현금화가 valuation 결정</td></tr>
+      <tr><td class="tk">중국</td><td>공급 조절·전력시장 개혁·지방 목표</td><td>수요는 크지만 제조 마진 회복은 별개</td></tr>
+      <tr><td class="tk">유럽</td><td>NZIA·CBAM·탄소발자국·REPowerEU</td><td>고비용 제조 보호는 제한적, 인버터·ESS·SW 중요</td></tr>
+      <tr><td class="tk">인도</td><td>ALMM·PLI·수입규제</td><td>내수 제조 보호, 가격 민감·전력수요 병존</td></tr>
+      <tr><td class="tk">중동</td><td>국가 주도 초대형 PPA·현지화</td><td>낮은 WACC와 대형 EPC 경쟁</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<div class="partband"><div class="pl">Part E · 결론</div><div class="pt">그래서 무엇을 사고 무엇을 피하나</div><div class="pd">경쟁 구도 · 사이클 위치 · 기업 맵 · Pecking Order · 반증 조건.</div></div>
+
+<section id="s11">
+  <div class="kicker">11 · Competitive Landscape</div>
+  <h2 class="sec-title">경쟁 구도: 진영별 승자와 패자</h2>
+  <p class="dek">'좋은 제품을 만드는 회사'와 '좋은 주식'은 다르다.</p>
+  <p>태양광 경쟁은 '중국 저가 제조 진영', '비중국 정책 적격 진영', '다운스트림 병목 진영'으로 나뉜다. 가장 피해야 할 착각은 '좋은 제품 = 좋은 주식'이라는 단순화다. 태양광은 기술 개선이 빠르게 가격 하락으로 이전되는 산업이라, 좋은 기술이 <b>방어 가능한 희소성·정책 적격성·반복매출</b>로 연결될 때만 주주가치가 남는다.</p>
+  <div class="viz">
+    <h4>대표 기업 포지셔닝 — 어느 구간에 서 있나</h4>
+    <p class="cap">스탠스 축(회피 ↔ 비중확대)에서 대표 기업의 상대 위치 · ★ = 최선호 구간</p>
+    <svg class="fig" viewBox="0 0 680 234" role="img" aria-label="종목 포지셔닝 맵: 왼쪽 회피에 중국 c-Si·Daqo·Enphase, 중립에 SolarEdge·Array, 오른쪽 비중확대에 First Solar·한화·OCI·Shoals·Nextpower">
+      <rect class="f-negS" x="44" y="118" width="205" height="64" rx="6"/>
+      <rect class="f-posS" x="411" y="118" width="225" height="64" rx="6"/>
+      <text class="mid t-neg" x="146" y="106" text-anchor="middle">회피 (UW)</text>
+      <text class="sm t-faint" x="330" y="106" text-anchor="middle">중립</text>
+      <text class="mid t-pos" x="523" y="106" text-anchor="middle">비중확대 (OW)</text>
+      <line class="s-line med" x1="44" y1="150" x2="636" y2="150"/>
+      <polygon class="f-neg" points="51,145 51,155 43,150"/>
+      <polygon class="f-pos" points="629,145 629,155 637,150"/>
+      <line class="st-neg thin" x1="86" y1="142" x2="86" y2="150"/><rect class="f-panel st-neg med" x="59" y="122" width="54" height="20" rx="4"/><text class="sm t-neg" x="86" y="136" text-anchor="middle">中 c-Si</text>
+      <line class="st-neg thin" x1="120" y1="150" x2="120" y2="158"/><rect class="f-panel st-neg med" x="103" y="158" width="34" height="20" rx="4"/><text class="sm t-neg" x="120" y="172" text-anchor="middle">DQ</text>
+      <line class="st-neg thin" x1="180" y1="142" x2="180" y2="150"/><rect class="f-panel st-neg med" x="156" y="122" width="48" height="20" rx="4"/><text class="sm t-neg" x="180" y="136" text-anchor="middle">ENPH</text>
+      <line class="s-line thin" x1="300" y1="150" x2="300" y2="158"/><rect class="f-panel s-line med" x="276" y="158" width="48" height="20" rx="4"/><text class="sm t-mut" x="300" y="172" text-anchor="middle">SEDG</text>
+      <line class="s-line thin" x1="352" y1="142" x2="352" y2="150"/><rect class="f-panel s-line med" x="328" y="122" width="48" height="20" rx="4"/><text class="sm t-mut" x="352" y="136" text-anchor="middle">ARRY</text>
+      <line class="st-pos thin" x1="452" y1="142" x2="452" y2="150"/><rect class="f-panel st-pos med" x="428" y="122" width="48" height="20" rx="4"/><text class="sm t-pos" x="452" y="136" text-anchor="middle">FSLR</text>
+      <line class="st-pos thin" x1="500" y1="150" x2="500" y2="158"/><rect class="f-panel st-pos med" x="480" y="158" width="40" height="20" rx="4"/><text class="sm t-pos" x="500" y="172" text-anchor="middle">한화</text>
+      <line class="st-pos thin" x1="548" y1="142" x2="548" y2="150"/><rect class="f-panel st-pos med" x="528" y="122" width="40" height="20" rx="4"/><text class="sm t-pos" x="548" y="136" text-anchor="middle">OCI</text>
+      <line class="st-pos thin" x1="592" y1="150" x2="592" y2="158"/><rect class="f-panel st-pos med" x="568" y="158" width="48" height="20" rx="4"/><text class="sm t-pos" x="592" y="172" text-anchor="middle">SHLS</text>
+      <line class="st-acc thin" x1="626" y1="142" x2="626" y2="150"/><rect class="f-soft st-acc med" x="599" y="120" width="54" height="22" rx="4"/><text class="sm t-acc b" x="626" y="135" text-anchor="middle">NXT ★</text>
+      <text class="sm t-mut" x="146" y="200" text-anchor="middle">중국 커모디티 · 주거 절벽</text>
+      <text class="sm t-mut" x="523" y="200" text-anchor="middle">비중국 제조 + 곡괭이·다운스트림</text>
+      <text class="sm t-faint" x="340" y="224" text-anchor="middle">위치 = 스탠스, 높이 차이는 겹침 방지용일 뿐</text>
+    </svg>
+  </div>
+  <div class="twrap"><table>
+    <thead><tr><th>진영</th><th>대표 기업</th><th>강점</th><th>약점</th><th>판단</th></tr></thead>
+    <tbody>
+      <tr><td>중국 c-Si 제조</td><td>Tongwei, LONGi, Jinko, Trina</td><td>원가·규모·속도</td><td>과잉·관세·FEOC·ASP</td><td><span class="pill avoid">회피</span></td></tr>
+      <tr><td>비중국 c-Si 적격</td><td>Hanwha Qcells, OCI 공급망</td><td>정책 프리미엄·원산지</td><td>비용 열위·정책 의존</td><td><span class="pill hold">선별</span></td></tr>
+      <tr><td>CdTe 박막</td><td>First Solar</td><td>중국 c-Si 분리·미국 제조</td><td>45X 의존·증설 실행</td><td><span class="pill hold">정책옵션</span></td></tr>
+      <tr><td>유틸 곡괭이</td><td>Nextpower, Array, Shoals</td><td>설치량·현장 병목</td><td>착공 둔화·프로젝트 지연</td><td><span class="pill buy">선호</span></td></tr>
+      <tr><td>인버터</td><td>Sungrow, Huawei, SMA, ENPH, SEDG</td><td>전력전자</td><td>주거 노출·중국 경쟁</td><td><span class="pill hold">유틸 선별</span></td></tr>
+      <tr><td>ESS 통합</td><td>Tesla Energy, Fluence, Sungrow</td><td>solar+storage 확대</td><td>배터리 가격·안전·마진</td><td><span class="pill hold">선별</span></td></tr>
+      <tr><td>개발·IPP</td><td>NEE, BEP, AES, Orsted</td><td>PPA·금융·운영</td><td>금리·계통·merchant</td><td><span class="pill hold">저WACC 선호</span></td></tr>
+    </tbody>
+  </table></div>
+  <p><b>'곡괭이'도 경쟁 산업이다.</b> Nextracker는 2024년 28.5GW 출하로 10년 연속 글로벌 1위(~26%)지만,<sup class="fn"><a href="#fn44">44</a></sup> 미국 3강(Nextracker·GameChange·Array)이 90%+를 나눠 갖는 가운데 Array의 미국 출하는 2024년 35%+ 감소했고, 글로벌에선 <b>중국계 Trina Tracker·Arctech가 급부상</b>한다. 트래커의 해자는 기술 독점이 아니라 <b>관세·국내조달·SW/디지털 통합·설치 서비스</b>에 달렸다 — 이 방어벽이 흔들리면 곡괭이 마진도 흔들린다.</p>
+  <div class="call"><div class="lbl">사례 · 곡괭이의 '플랫폼화'</div><p>선두 곡괭이는 단품에서 <b>통합 플랫폼</b>으로 진화한다. <span class="co" data-gl="co-nextracker" tabindex="0">Nextracker</span>는 트래커에서 <b>구조물(Zimmermann·Origami)·전기 BOS(Bentek)·스토리지(Prevalon)·소프트웨어(NX One)</b>로 확장하며, 발전소 자본비 중 자사 몫을 <b>9%→27%로 약 3배</b> 넓히는 그림을 제시한다(자사 추정). 스토리지(BESS) 시장은 2030년 <b>~$30~35B</b>으로 커진다고 본다. 곡괭이가 '한 번에 다 파는' 쪽으로 가면 해자가 두꺼워진다 — 단, 그만큼 <b>인수·통합 실행 리스크</b>도 커진다.<sup class="fn"><a href="#fn46">46</a></sup></p></div>
+  <h3 class="sub">데이터로 보는 곡괭이 플랫폼화 <span class="tk" style="font-weight:400;color:var(--faint);font-size:.8em">— Nextracker IR, 시점 상이</span></h3>
+  <div class="tiles">
+    <div class="tile"><div class="k">매출 · Q2 FY26</div><div class="v">$905M</div><div class="d">+42% YoY (2025.9 종료 분기)</div></div>
+    <div class="tile"><div class="k">수주잔고</div><div class="v">$5B+</div><div class="d">사상 최대</div></div>
+    <div class="tile"><div class="k">조정 EBITDA</div><div class="v">$224M</div><div class="d">마진 25%</div></div>
+    <div class="tile"><div class="k">현금</div><div class="v">$845M</div><div class="d">무차입</div></div>
+  </div>
+  <div class="viz">
+    <h4>① 발전소 자본비 중 자사 몫 — 9% → 27%</h4>
+    <p class="cap">트래커 단품(9%)에서 구조물·전기·SW를 더해 지갑점유를 약 3배로 (자사 추정)</p>
+    <svg class="fig" viewBox="0 0 680 165" role="img" aria-label="Nextracker 발전소 자본비 중 자사 몫이 트래커 9%에서 플랫폼 27%로 약 3배 확장">
+      <g class="sm t-faint"><text x="118" y="150" text-anchor="end">0</text><text x="220" y="150" text-anchor="middle">10%</text><text x="320" y="150" text-anchor="middle">20%</text><text x="420" y="150" text-anchor="middle">30%</text></g>
+      <line class="s-grid thin" x1="120" y1="134" x2="440" y2="134"/>
+      <text class="sm t-mut" x="112" y="58" text-anchor="end">이전·트래커</text>
+      <rect class="f-acc" x="120" y="44" width="90" height="22" rx="3"/><text class="sm t-ink b" x="218" y="60">9%</text>
+      <text class="sm t-mut" x="112" y="102" text-anchor="end">플랫폼</text>
+      <rect class="f-acc" x="120" y="88" width="90" height="22"/><rect class="f-pos" x="210" y="88" width="70" height="22"/><rect class="f-hold" x="280" y="88" width="100" height="22"/><rect class="f-neg" x="380" y="88" width="10" height="22"/>
+      <text class="sm t-ink b" x="398" y="104">27%</text>
+      <text class="lbl t-acc" x="470" y="58">약 3배 확장</text>
+      <g><rect class="f-acc" x="466" y="76" width="9" height="9"/><text class="sm t-mut" x="479" y="84">트래커 9</text><rect class="f-pos" x="466" y="90" width="9" height="9"/><text class="sm t-mut" x="479" y="98">구조물 7</text><rect class="f-hold" x="466" y="104" width="9" height="9"/><text class="sm t-mut" x="479" y="112">전기 10</text><rect class="f-neg" x="466" y="118" width="9" height="9"/><text class="sm t-mut" x="479" y="126">SW 1</text></g>
+    </svg>
+  </div>
+  <div class="viz">
+    <h4>② 스토리지(BESS) 시장 — 2030 ~$33B</h4>
+    <p class="cap">AI 데이터센터가 견인 · 미국 $8→$14B, 국제(중국 제외) $7→$19B (NXT 인용)</p>
+    <svg class="fig" viewBox="0 0 680 165" role="img" aria-label="BESS 시장 2025 약 15B달러에서 2030 약 33B달러로 성장">
+      <g class="sm t-faint"><text x="118" y="150" text-anchor="end">$0</text><text x="260" y="150" text-anchor="middle">$10B</text><text x="400" y="150" text-anchor="middle">$20B</text><text x="540" y="150" text-anchor="middle">$30B</text></g>
+      <line class="s-grid thin" x1="120" y1="134" x2="560" y2="134"/>
+      <text class="sm t-mut" x="112" y="58" text-anchor="end">2025</text>
+      <rect class="f-acc" x="120" y="44" width="112" height="22"/><rect class="f-pos" x="232" y="44" width="98" height="22"/><text class="sm t-ink b" x="338" y="60">~$15B</text>
+      <text class="sm t-mut" x="112" y="102" text-anchor="end">2030</text>
+      <rect class="f-acc" x="120" y="88" width="196" height="22"/><rect class="f-pos" x="316" y="88" width="266" height="22"/><text class="sm t-ink b" x="590" y="104">~$33B</text>
+      <g><rect class="f-acc" x="120" y="118" width="9" height="9"/><text class="sm t-mut" x="133" y="126">미국 $8→$14B</text><rect class="f-pos" x="300" y="118" width="9" height="9"/><text class="sm t-mut" x="313" y="126">국제(ex-중국) $7→$19B</text></g>
+    </svg>
+  </div>
+  <div class="viz">
+    <h4>③ 통합 플랫폼 — '한 번에 다 파는' 5개 축</h4>
+    <p class="cap">단품 20+개 벤더 → 한 공급사 · 인수로 축을 붙였다 (LCOE ~-15% 주장)</p>
+    <svg class="fig" viewBox="0 0 680 150" role="img" aria-label="Nextracker 통합 플랫폼: 트래커·구조물·전기 eBOS·스토리지·소프트웨어 5개 축">
+      <rect class="f-soft st-acc med" x="150" y="10" width="380" height="30" rx="8"/>
+      <text class="mid t-acc" x="340" y="30" text-anchor="middle">Nextpower 통합 플랫폼 · 한 공급사</text>
+      <g class="st-acc thin"><line x1="340" y1="40" x2="340" y2="52"/></g>
+      <g text-anchor="middle">
+        <rect class="f-panel st-pos med" x="14" y="56" width="120" height="52" rx="6"/><text x="74" y="80" class="mid t-ink">트래커</text><text class="sm t-mut" x="74" y="98">자체 · 1위</text>
+        <rect class="f-panel st-pos med" x="146" y="56" width="120" height="52" rx="6"/><text x="206" y="80" class="mid t-ink">구조물</text><text class="sm t-mut" x="206" y="98">Zimmermann</text>
+        <rect class="f-panel st-pos med" x="278" y="56" width="120" height="52" rx="6"/><text x="338" y="80" class="mid t-ink">전기·eBOS</text><text class="sm t-mut" x="338" y="98">Bentek</text>
+        <rect class="f-panel st-pos med" x="410" y="56" width="120" height="52" rx="6"/><text x="470" y="80" class="mid t-ink">스토리지</text><text class="sm t-mut" x="470" y="98">Prevalon</text>
+        <rect class="f-panel st-pos med" x="542" y="56" width="124" height="52" rx="6"/><text x="604" y="80" class="mid t-ink">SW·서비스</text><text class="sm t-mut" x="604" y="98">NX One</text>
+      </g>
+      <text class="lbl t-mut" x="340" y="134" text-anchor="middle">누적 인수 ~$332M · 트래커에서 발전소 통합 공급으로</text>
+    </svg>
+  </div>
+</section>
+
+<section id="s12">
+  <div class="kicker">12 · The Cycle</div>
+  <h2 class="sec-title">사이클: 현재 위치와 바닥 지표</h2>
+  <p class="dek">지금은 수요 부진이 아니라 공급 과잉 사이클의 하단부다.</p>
+  <div class="tldr"><b>한 줄</b><span>바닥은 수요가 아니라 공급 사이클 — 감산·재고·가동률 60%가 신호.</span></div>
+  <div class="viz">
+    <h4>사이클 위치 — 지금 어디인가</h4>
+    <p class="cap">폴리·모듈은 이미 현금원가 압박 구간 · 바늘은 '공급과잉 하단부'</p>
+    <svg class="fig" viewBox="0 0 680 210" role="img" aria-label="사이클 게이지: 고점에서 하락을 지나 바닥 진입, 현재 공급과잉 사이클 하단부">
+      <path class="s-line ln" d="M220,178 A120,120 0 0 1 460,178" stroke-width="9"/>
+      <path class="st-neg ln" d="M299,65 A120,120 0 0 1 381,65" stroke-width="9"/>
+      <line class="st-acc" x1="340" y1="178" x2="331" y2="71" stroke-width="3"/>
+      <circle class="f-acc" cx="340" cy="178" r="6"/>
+      <text class="sm t-mut" x="222" y="150" text-anchor="middle">고점·과열</text>
+      <text class="sm t-mut" x="262" y="92" text-anchor="middle">하락</text>
+      <text class="sm t-neg b" x="340" y="46" text-anchor="middle">바닥</text>
+      <text class="sm t-mut" x="418" y="92" text-anchor="middle">회복</text>
+      <text class="sm t-mut" x="458" y="150" text-anchor="middle">정상화</text>
+      <text class="sm t-neg" x="340" y="200" text-anchor="middle">현재: 공급과잉 사이클 '하단부' — 수요 부진이 아니라 공급 과잉</text>
+    </svg>
+  </div>
+  <p>폴리·모듈 가격은 현금원가 압박 구간에 있고, 제조사는 감산보다 점유율 방어를 택한다. 중국의 자율 감산·통합이 실제 가격 규율로 이어지는지 확인해야 한다. 바닥 확인 지표는 다음 순서로 본다.</p>
+  <ul class="checklist">
+    <li><span><span class="ci">폴리 가격</span> — 현금원가 위로 2개 분기 유지<div class="cd">업스트림 손실 축소</div></span></li>
+    <li><span><span class="ci">재고</span> — 폴리·웨이퍼·모듈 재고 동반 하락<div class="cd">가동률 정상화</div></span></li>
+    <li><span><span class="ci">가동률</span> — 60% 이상 회복<span class="anc"> 〔현재 ~44%〕</span><div class="cd">가격 규율 가능성</div></span></li>
+    <li><span><span class="ci">중국 감산</span> — 대형 업체의 실제 CAPEX 취소<div class="cd">말뿐인 감산과 구분</div></span></li>
+    <li><span><span class="ci">모듈 ASP</span> — 지역별 가격 분리<div class="cd">정책 프리미엄 가시화</div></span></li>
+    <li><span><span class="ci">미국 착공</span> — safe harbor 이후에도 utility starts 유지<div class="cd">곡괭이 논지 방어</div></span></li>
+    <li><span><span class="ci">interconnection</span> — IA 보유 프로젝트 COD 전환<div class="cd">pipeline 품질 확인</div></span></li>
+  </ul>
+  <p>정상화 조건은 셋이다. ① 중국 내 자연 도태·감산, ② 미국·인도·유럽 정책으로 지역 가격 분리, ③ ESS·데이터센터 PPA가 수요를 흡수해 모듈 이후 착공 유지. 하나만으론 부족하다 — 제조 마진 회복엔 공급 축소가, 다운스트림 이익엔 착공 유지가 필요하다.</p>
+  <h3 class="sub">관찰 캘린더 — 무엇을 언제 보나</h3>
+  <div class="timeline">
+    <div class="tevent"><span class="when">2026 하반기</span><span><span class="h">§232 폴리 관세 결정(대통령 포고)</span><br><span class="s">최대 스윙. 발효/무산이 비중국 제조 프리미엄을 좌우.</span></span></div>
+    <div class="tevent"><span class="when">2026.7~ 지속</span><span><span class="h">safe harbor 이후 미국 유틸 착공(starts)</span><br><span class="s">곡괭이 논지의 핵심 — 착공이 유지되는가.</span></span></div>
+    <div class="tevent"><span class="when">매 분기</span><span><span class="h">NXT·FSLR·SHLS 실적</span><br><span class="s">backlog·ASP·마진으로 병목 렌트 확인.</span></span></div>
+    <div class="tevent"><span class="when">2026~2027</span><span><span class="h">폴리 현금원가 회복 · 가동률 60%</span><br><span class="s">공급과잉 사이클 바닥 신호.</span></span></div>
+    <div class="tevent"><span class="when">2027~2028</span><span><span class="h">45X 연장 여부 · FEOC 집행 강도</span><br><span class="s">미국 제조 프리미엄의 지속성.</span></span></div>
+    <div class="tevent"><span class="when">2028~2030</span><span><span class="h">폴리·모듈 마진 정상화</span><br><span class="s">중국 c-Si 회피 논지의 유효기간.</span></span></div>
+  </div>
+</section>
+
+<section id="s13">
+  <div class="kicker">13 · Company Map</div>
+  <h2 class="sec-title">기업 맵: 밸류체인별 핵심 기업</h2>
+  <p class="dek">'누가 더 좋은 회사인가'보다 '어느 위치가 돈을 남기는가'를 보는 도구.</p>
+  <div class="twrap"><table>
+    <thead><tr><th>구간</th><th>기업</th><th>역할</th><th>핵심 체크포인트</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">폴리</td><td>Tongwei, Daqo, GCL</td><td>중국 저가 폴리</td><td>현금원가·감산·재고</td></tr>
+      <tr><td class="tk">폴리·비중국</td><td>OCI, Wacker, Hemlock</td><td>비중국 공급망</td><td>장기계약·미국 적격성·관세</td></tr>
+      <tr><td class="tk">웨이퍼</td><td>LONGi, TCL Zhonghuan</td><td>웨이퍼 규모 경쟁</td><td>ASP·미국 우회 리스크</td></tr>
+      <tr><td class="tk">셀·모듈 c-Si</td><td>Jinko, Trina, JA Solar, Canadian Solar</td><td>글로벌 모듈 공급</td><td>마진·관세·FEOC</td></tr>
+      <tr><td class="tk">박막</td><td>First Solar</td><td>CdTe 대규모 제조</td><td>45X·증설·232</td></tr>
+      <tr><td class="tk">미국 수직통합</td><td>Hanwha Qcells</td><td>잉곳·웨이퍼·셀·모듈</td><td>Cartersville ramp·<span class="term" data-gl="gl-ampc" tabindex="0">AMPC</span></td></tr>
+      <tr><td class="tk">트래커</td><td>Nextpower, Array</td><td>유틸 트래킹 시스템</td><td>backlog·ASP·gross margin</td></tr>
+      <tr><td class="tk">eBOS</td><td>Shoals, Bentek</td><td>전기 BOS 표준화</td><td>backlog·project timing</td></tr>
+      <tr><td class="tk">인버터</td><td>Sungrow, Huawei, SMA, ENPH, SEDG</td><td>전력변환</td><td>유틸/주거 믹스·서비스</td></tr>
+      <tr><td class="tk">ESS</td><td>Tesla Energy, Fluence, Sungrow, CATL</td><td>storage system</td><td>margin·safety·software</td></tr>
+      <tr><td class="tk">전력장비</td><td>GE Vernova, Siemens Energy, Hitachi Energy</td><td>변압기·계통</td><td>backlog·납기·가격</td></tr>
+      <tr><td class="tk">개발·IPP</td><td>NextEra, Brookfield, AES, Orsted</td><td>프로젝트 개발·보유</td><td>WACC·PPA·COD</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="s14">
+  <div class="kicker">14 · Investment Implications</div>
+  <h2 class="sec-title">투자 시사점: 돈이 남는 구간</h2>
+  <p class="dek">결론은 유지하되 표현을 정밀화한다.</p>
+  <p>아래는 <b>개별 종목 투자의견·목표가가 아니라</b>, 밸류체인 <b>구간 선호도</b>와 각 구간의 <b>대표 기업 예시</b>다. (KRX 상장 <span class="rep" style="display:inline-flex"><span class="rc kr">한화솔루션 009830</span> <span class="rc kr">OCI홀딩스</span></span>가 한국 투자자에겐 가장 가까운 이름)</p>
+  <ol class="arrowlist">
+    <li>유틸 설치량에 노출되지만 특정 세액공제 하나에 과도 의존하지 않는 <b>곡괭이</b>: Nextpower, Shoals, 일부 전력장비.</li>
+    <li>미국 정책 적격성이 명확하고 중국 c-Si와 분리된 <b>제조</b>: First Solar, Hanwha Qcells, OCI 비중국 공급망.</li>
+    <li><b>ESS·계통 최적화</b>: battery cell보다 system integration·PCS·EMS·grid service revenue.</li>
+    <li>자본비용이 낮고 PPA·interconnection 실행력이 있는 <b>IPP</b>.</li>
+    <li><b>회피</b>: 중국 c-Si 범용, 주거 절벽 노출 미국 인버터, 원산지 불명확 우회 공급망.</li>
+  </ol>
+  <div class="rank">
+    <div class="rankitem"><div class="no">1</div><div><div class="nm"><span class="co" data-gl="co-nextracker" tabindex="0">NXT / Nextpower</span> <span class="pill top">최선호 구간 ★</span></div><div class="rz">정책 민감도가 낮은 유틸 곡괭이. 설치량·지형·전기/디지털 통합 수요에 노출</div></div></div>
+    <div class="rankitem"><div class="no">2</div><div><div class="nm"><span class="co" data-gl="co-hanwha" tabindex="0">Hanwha Qcells / 한화솔루션</span> <span class="pill buy">선호</span></div><div class="rz">미국 수직통합과 45X, 국내 최선호 후보</div></div></div>
+    <div class="rankitem"><div class="no">3</div><div><div class="nm"><span class="co" data-gl="co-fslr" tabindex="0">First Solar</span> <span class="pill hold">정책옵션</span></div><div class="rz">CdTe와 232 옵션, 단 45X 민감도 큼</div></div></div>
+    <div class="rankitem"><div class="no">4</div><div><div class="nm"><span class="co" data-gl="co-oci" tabindex="0">OCI홀딩스</span> <span class="pill hold">선별</span></div><div class="rz">비중국 폴리 프리미엄, 밸류와 폴리 스팟 리스크</div></div></div>
+    <div class="rankitem"><div class="no">5</div><div><div class="nm"><span class="co" data-gl="co-shls" tabindex="0">Shoals</span> · 전력장비 <span class="pill buy">선호</span></div><div class="rz">설치·계통 병목 보조 수혜</div></div></div>
+    <div class="rankitem avoid"><div class="no">✕</div><div><div class="nm">중국 c-Si · <span class="co" data-gl="co-enph" tabindex="0">ENPH</span> 중심 주거 <span class="pill avoid">회피</span></div><div class="rz">과잉공급 또는 보조금 절벽</div></div></div>
+  </div>
+  <div class="call"><div class="lbl">한국 투자자 관점</div><p>이 사이클이 한국엔 이렇게 닿는다: <span class="co" data-gl="co-hanwha" tabindex="0">한화솔루션</span>(009830)은 미국 45X·수직통합의 대표 수혜, <span class="co" data-gl="co-oci" tabindex="0">OCI홀딩스</span>는 비중국 폴리 프리미엄(단 폴리 스팟 리스크). 반면 한국 <b>셀·모듈 중소·범용</b>은 중국 과잉에 눌린다. <b>인버터·ESS·전력장비</b>는 글로벌 병목 테마라 관련 한국 기업도 간접 노출. — 종목 추천이 아니라 '사이클이 어디에 닿나'의 지도다.</p></div>
+</section>
+
+<section id="s15">
+  <div class="kicker">15 · Risks &amp; Kill Criteria</div>
+  <h2 class="sec-title">리스크와 킬 크라이테리아</h2>
+  <p class="dek">좋은 섹터 콜은 반증 조건이 명확해야 한다.</p>
+  <p>아래는 종목 목표가가 아니라 <b>섹터 논지(바벨)가 틀리는 조건</b>이다. 하나라도 지속 확인되면 뷰를 재검토한다.</p>
+  <div class="twrap"><table>
+    <thead><tr><th>리스크</th><th>킬 크라이테리아</th><th>영향</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">232 무산·약화</td><td>관세가 실질 가격 차이를 못 만듦</td><td>FSLR·OCI·한화 프리미엄 축소</td></tr>
+      <tr><td class="tk">45X 축소</td><td>제조 세액공제 현금흐름 급감</td><td>미국 제조 valuation 재산정</td></tr>
+      <tr><td class="tk">FEOC 집행 완화</td><td>중국계 우회가 적격성 유지</td><td>비중국 공급망 희소성 감소</td></tr>
+      <tr><td class="tk">중국 감산 성공</td><td>폴리·모듈 ASP 빠른 반등</td><td>제조 회피 논지 약화, 다운 원가 상승</td></tr>
+      <tr><td class="tk">미국 착공절벽</td><td>safe harbor 이후 utility starts 급감</td><td>NXT·Shoals·EPC 하향</td></tr>
+      <tr><td class="tk">계통 병목 심화</td><td>IA 보유 COD 전환률 하락</td><td>pipeline 가치 할인</td></tr>
+      <tr><td class="tk">데이터센터 둔화</td><td>AI CAPEX 축소·온사이트 가스 쏠림</td><td>solar+storage 수요 하향</td></tr>
+      <tr><td class="tk">금리 재상승</td><td>tax equity·project debt 비용 상승</td><td>IPP·개발사 IRR 하락</td></tr>
+      <tr><td class="tk">UFLPA·traceability 실패</td><td>통관 보류·프로젝트 지연</td><td>공급망 불확실성 증가</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call neg"><div class="lbl">마스터 킬 크라이테리아</div><p>가장 중요한 건 <strong>'다운스트림 착공 유지'</strong>다. 모듈이 싸도 계통·금융이 막혀 착공이 줄면 곡괭이도 방어되지 않는다. 반대로 제조주 반등은 폴리 반등만으론 부족하다 — 재고 감소·감산·지역 가격 분리·수요 유지가 동시에 확인돼야 한다.</p></div>
+  <div class="call pos"><div class="lbl">반대편도 알아두기 · 강세론(낙관론)</div><p>공정하게, 이 뷰의 반대편은 이렇게 말한다: ① 미국 유틸 수요는 데이터센터·safe harbor로 <b>2030까지 방어</b>된다, ② <b>§232 발효 시 비중국 제조가 급리레이팅</b>(비대칭 상방), ③ 중국 감산이 결국 오면 <b>제조도 반등</b>한다(우리는 늦다고 보지만), ④ 곡괭이는 정책 방향과 무관하게 <b>설치량에 노출</b>돼 하방이 제한적. — 우리 결론과 다르지만, 반증 조건(§15)과 함께 지켜볼 지점.</p></div>
+</section>
+
+<section id="s-faq">
+  <div class="kicker">FAQ</div>
+  <h2 class="sec-title">초보가 자주 묻는 것</h2>
+  <div class="faq">
+    <div class="qa"><div class="q">그래서 지금 사라는 거야?</div><div class="a">이 리포트는 <b>목표가·매수의견을 주지 않는 섹터 학습 자료</b>다. '어느 구간이 돈 되나'까지만 본다. 개별 종목·타이밍은 각자 판단.</div></div>
+    <div class="qa"><div class="q">'선호/회피'가 뭘 하라는 거야?</div><div class="a">밸류체인 <b>'구간'에 대한 비중 판단</b>(확대/축소)이다. 특정 종목 공매도 지시가 아니다.</div></div>
+    <div class="qa"><div class="q">개별주 말고 태양광 ETF로 하면 안 돼?</div><div class="a">TAN 같은 ETF는 밸류체인 전체를 담아 <b>'회피 구간'까지 섞인다</b>. 바벨 논지대로면 통짜 ETF보다 구간 선별이 논리에 맞다(판단은 본인).</div></div>
+    <div class="qa"><div class="q">왜 중국주는 회피야? 싸면 반등 안 해?</div><div class="a">중국 c-Si는 <b>국가보조·고용 탓에 감산이 안 돼</b> 마진 정상화가 늦다. '싸다'가 아니라 '왜 싼지(구조)'가 안 풀리는 게 문제.</div></div>
+    <div class="qa"><div class="q">한국 투자자에게 제일 가까운 건?</div><div class="a">KRX 상장 <b>한화솔루션(009830)·OCI홀딩스</b>. 미국·중국 종목은 환율·세금·거래계좌가 별도 이슈.</div></div>
+    <div class="qa"><div class="q">GW가 뭐야? 605GW면 큰 거야?</div><div class="a"><span class="term" data-gl="gl-gw" tabindex="0">GW</span>=기가와트(발전 설비 용량). 2025년 세계에 ~605GW 신규 설치 ≈ 대형 원전 수백 기분의 설비. 태양광이 전 세계 신규 발전의 최대 축이다.</div></div>
+    <div class="qa"><div class="q">§232는 언제 결정돼?</div><div class="a">2026년 7월 현재 <b>미결정·지연</b>. 발효/무산이 비중국 제조 프리미엄을 좌우하는 <b>최대 스윙</b>이라, 결정 시점 자체가 관전 포인트.</div></div>
+  </div>
+</section>
+
+<section id="s16">
+  <div class="kicker">16 · Appendix</div>
+  <h2 class="sec-title">부록: 용어 · 모니터링 · 정책 원문</h2>
+  <p class="dek">본문에서 점선 밑줄이 있는 용어는 이 표에서 뜻을 끌어온다.</p>
+  <h3 class="sub">16-1. 핵심 용어</h3>
+  <div class="twrap"><table>
+    <thead><tr><th>용어</th><th>뜻</th></tr></thead>
+    <tbody>
+      <tr id="gl-csi"><td>c-Si</td><td>crystalline silicon. 결정질 실리콘 태양전지 (업계 주류 방식)</td></tr>
+      <tr id="gl-cdte"><td>CdTe</td><td>cadmium telluride. First Solar가 쓰는 박막 계열 — 실리콘 공급망과 분리돼 있다</td></tr>
+      <tr id="gl-lcoe"><td>LCOE</td><td>균등화발전비용. 발전소 생애 총비용을 총발전량으로 나눈 값 (산업 경쟁력 지표)</td></tr>
+      <tr id="gl-bos"><td>BOS</td><td>Balance of System. 모듈 외 구조물·전기·토목 일체</td></tr>
+      <tr id="gl-ebos"><td>eBOS</td><td>electrical BOS. 케이블·접속함·하네스 등 전기 부자재</td></tr>
+      <tr id="gl-epc"><td>EPC</td><td>Engineering·Procurement·Construction. 설계·조달·시공 일괄</td></tr>
+      <tr id="gl-ppa"><td>PPA</td><td>장기 전력구매계약. 발전소 매출을 고정해 주는 계약</td></tr>
+      <tr id="gl-itc"><td>ITC/PTC</td><td>투자세액공제 / 생산세액공제. 미국 발전 프로젝트의 핵심 인센티브</td></tr>
+      <tr id="gl-45x"><td>45X</td><td>미국 첨단제조 생산 세액공제. 미국 내 셀·모듈·부품 제조에 크레딧</td></tr>
+      <tr id="gl-25d"><td>25D</td><td>미국 주거용 청정에너지 세액공제. 2025년 종료 → 주거 설치 악재</td></tr>
+      <tr id="gl-feoc"><td>FEOC/PFE</td><td>우려·금지 외국기업. 중국계 부품·지분·라이선스 사용 시 크레딧 배제</td></tr>
+      <tr id="gl-232"><td>Section 232</td><td>미국 국가안보 관세. 폴리 등 c-Si 소재에 관세를 매길 수 있는 조항</td></tr>
+      <tr id="gl-uflpa"><td>UFLPA</td><td>신장 강제노동 방지법. 관련 공급망 수입을 제한 → 원산지 추적 요구</td></tr>
+      <tr id="gl-safeharbor"><td>Safe harbor</td><td>착공·지출 요건을 채우면 기존 세액공제 적용을 보전해 주는 장치</td></tr>
+      <tr id="gl-interconnection"><td>interconnection</td><td>계통연계. 발전소를 송전망에 물리는 절차·대기줄(queue)</td></tr>
+      <tr id="gl-curtailment"><td>curtailment</td><td>발전 가능한 전력을 계통 제약으로 강제로 줄이는 것(출력 제한)</td></tr>
+      <tr id="gl-duck"><td>duck curve</td><td>낮 태양광 과잉과 저녁 피크가 만드는 순부하 곡선(오리 모양)</td></tr>
+      <tr id="gl-topcon"><td>TOPCon</td><td>현재 주류 n-type 셀 기술. 기존 라인 전환이 쉬워 빠르게 커모디티화</td></tr>
+      <tr id="gl-hjt"><td>HJT</td><td>이종접합 셀. 고효율·저온 공정이나 장비·은 사용량·수율이 관건</td></tr>
+      <tr id="gl-bc"><td>BC</td><td>후면전극(back-contact) 셀. 고효율·미관, 분산형 프리미엄 시장</td></tr>
+      <tr id="gl-tracker"><td>tracker</td><td>태양을 따라 패널 각도를 돌리는 구조물. 발전량을 높이는 유틸 곡괭이</td></tr>
+      <tr id="gl-ess"><td>ESS</td><td>에너지저장장치(배터리). 낮 발전을 저녁으로 옮겨 태양광 침투율을 높인다</td></tr>
+      <tr id="gl-pcs"><td>PCS/BMS/EMS</td><td>전력변환장치 / 배터리관리 / 에너지관리 시스템 (ESS의 두뇌·심장)</td></tr>
+      <tr id="gl-degradation"><td>degradation</td><td>모듈이 해마다 발전량이 조금씩 떨어지는 열화율</td></tr>
+      <tr id="gl-bankability"><td>bankability</td><td>은행·투자자가 자금을 댈 만큼 검증된 정도(수명·보험·공급 안정)</td></tr>
+      <tr id="gl-taxequity"><td>tax equity</td><td>세액공제를 현금화하기 위해 세금 여력이 큰 투자자가 지분으로 참여하는 미국식 금융 구조</td></tr>
+      <tr id="gl-basisrisk"><td>basis risk</td><td>발전 지점과 정산 지점의 전력가격이 달라 생기는 위험</td></tr>
+      <tr id="gl-ampc"><td>AMPC</td><td>Advanced Manufacturing Production Credit(=45X)의 실제 수취 크레딧</td></tr>
+      <tr id="gl-barbell"><td>바벨 전략</td><td>양극단에 비중을 싣고 중간을 비우는 배분. 여기선 밸류체인 양 끝(비중국 제조·다운스트림)을 선호, 중간(중국 c-Si)을 회피</td></tr>
+      <tr id="gl-owuw"><td>선호/회피 (OW/UW)</td><td>Overweight(비중확대)/Underweight(비중축소). 이 리포트에선 개별 종목이 아니라 밸류체인 '구간'에 대한 선호도</td></tr>
+      <tr id="gl-gw"><td>GW / TW</td><td>기가와트/테라와트, 발전 설비 용량 단위(1TW = 1,000GW). 태양광은 연간 수백 GW가 신규 설치된다</td></tr>
+    </tbody>
+  </table></div>
+  <h3 class="sub">16-2. 모니터링 지표</h3>
+  <div class="twrap"><table>
+    <thead><tr><th>주기</th><th>지표</th><th>소스 후보</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">주간</td><td>폴리·웨이퍼·셀·모듈 가격</td><td>Bernreuter, InfoLink, PVInsights</td></tr>
+      <tr><td class="tk">월간</td><td>중국 설치·수출·재고</td><td>NEA, CPIA, 세관</td></tr>
+      <tr><td class="tk">분기</td><td>미국 설치·수입·제조</td><td>DOE/NREL, SEIA/WoodMac, Census</td></tr>
+      <tr><td class="tk">분기</td><td>NXT·FSLR·ENPH·SEDG·SHLS 실적</td><td>회사 IR, SEC</td></tr>
+      <tr><td class="tk">반기</td><td>interconnection queue</td><td>LBNL Queued Up</td></tr>
+      <tr><td class="tk">수시</td><td>IRS/Treasury FEOC·safe harbor</td><td>IRS, Treasury</td></tr>
+      <tr><td class="tk">수시</td><td>Section 232, AD/CVD, UFLPA</td><td>Commerce, CBP, USTR</td></tr>
+      <tr><td class="tk">연간</td><td>글로벌 설치·비용</td><td>IEA, IRENA, IEA-PVPS, SolarPower Europe</td></tr>
+    </tbody>
+  </table></div>
+  <h3 class="sub">16-3. 정책 원문 요약</h3>
+  <ul class="clean">
+    <li><b>H.R.1 / Public Law 119-21</b>: 2025.7.4 법률화된 미국 재정조정 법안. 청정에너지 크레딧 일부 종료·조정과 FEOC 강화가 태양광에 영향.<sup class="fn"><a href="#fn39">39</a></sup></li>
+    <li><b>IRS Notice 2026-15</b>: PFE 물질지원 판단 interim safe harbor와 비용비중 산정. 모듈 셀·프레임·유리·봉지재·junction box 등 구성요소 비용을 예시.<sup class="fn"><a href="#fn12">12</a></sup></li>
+    <li><b>LBNL Queued Up 2026</b>: 미국 interconnection queue가 태양광·저장 중심으로 크고, COD까지 시간이 길며 철회율이 높다.<sup class="fn"><a href="#fn8">8</a></sup></li>
+    <li><b>IEA Solar PV Global Supply Chains</b>: 제조 단계와 중국 집중, 공급망 다변화 필요성을 정리한 기본 문헌.<sup class="fn"><a href="#fn7">7</a></sup></li>
+  </ul>
+  <h3 class="sub">16-4. 기업 한 줄 사전</h3>
+  <p class="dek">본문 기업명에 점선 밑줄이 있으면 마우스를 올려(모바일 탭) 무슨 회사인지 볼 수 있다.</p>
+  <div class="twrap"><table>
+    <thead><tr><th>기업 (구간)</th><th>한 줄</th></tr></thead>
+    <tbody>
+      <tr id="co-tongwei"><td>Tongwei (폴리·셀)</td><td>중국 최대 폴리실리콘·셀 제조사. 원가·물량 치킨게임의 정점</td></tr>
+      <tr id="co-daqo"><td>Daqo · DQ (폴리)</td><td>중국 폴리실리콘 순수 제조사. 폴리 스팟 가격에 가장 민감한 사이클 베타</td></tr>
+      <tr id="co-gcl"><td>GCL (폴리)</td><td>중국 폴리·과립폴리(FBR) 대형사</td></tr>
+      <tr id="co-longi"><td>LONGi (웨이퍼·모듈)</td><td>한때 기술 리더였던 중국 웨이퍼·모듈 대형사. 과잉에 크게 노출</td></tr>
+      <tr id="co-jinko"><td>Jinko·Trina·JA Solar (셀·모듈)</td><td>중국 대형 모듈 3인방. 글로벌 물량 공급의 주력</td></tr>
+      <tr id="co-canadian"><td>Canadian Solar (모듈·개발)</td><td>캐나다 국적·중국 생산 모듈 + 프로젝트 개발</td></tr>
+      <tr id="co-fslr"><td>First Solar · FSLR (박막)</td><td>미국 CdTe 박막 제조사. 중국 c-Si 공급망 밖이라 관세·정책에 무풍지대</td></tr>
+      <tr id="co-hanwha"><td>Hanwha Qcells / 한화솔루션 009830 (수직통합)</td><td>한국 한화의 태양광. 미국 조지아에 잉곳~모듈 수직통합 허브</td></tr>
+      <tr id="co-oci"><td>OCI홀딩스 (비중국 폴리)</td><td>한국. 말레이시아 폴리·베트남 웨이퍼 JV로 비중국 공급망</td></tr>
+      <tr id="co-wacker"><td>Wacker (폴리)</td><td>독일 폴리실리콘. 비중국 고품질 공급</td></tr>
+      <tr id="co-nextracker"><td>Nextracker · NXT (트래커·곡괭이)</td><td>미국(Nasdaq NXT, 프리몬트). 유틸 태양광 '트래커'(패널을 태양 따라 돌리는 구조물) <b>세계 1위(10년 연속)</b>, 누적 150GW+ 출하. 트래커+구조물+전기(eBOS)+스토리지+SW의 통합 플랫폼으로 확장 중(리브랜딩 'Nextpower')</td></tr>
+      <tr id="co-array"><td>Array Technologies · ARRY (트래커)</td><td>미국 트래커 2위권. 미국 출하 둔화</td></tr>
+      <tr id="co-gamechange"><td>GameChange Solar (트래커)</td><td>미국 트래커 신흥강자. 2024년 미국서 Array를 제치고 2위권</td></tr>
+      <tr id="co-shls"><td>Shoals · SHLS (eBOS·곡괭이)</td><td>미국 eBOS(케이블·접속 부자재) 표준화 리더. 설치 병목 수혜</td></tr>
+      <tr id="co-sungrow"><td>Sungrow (인버터·ESS)</td><td>중국 인버터·ESS 1위급. 유틸·계통 강자</td></tr>
+      <tr id="co-huawei"><td>Huawei (인버터)</td><td>중국 인버터 최대. 미국선 정책상 제한</td></tr>
+      <tr id="co-sma"><td>SMA (인버터)</td><td>독일 인버터. 비중국 유틸 인버터</td></tr>
+      <tr id="co-sedg"><td>SolarEdge · SEDG (인버터)</td><td>이스라엘/미국 주거·상업 인버터. 주거 노출 큼</td></tr>
+      <tr id="co-enph"><td>Enphase · ENPH (인버터·주거)</td><td>미국 마이크로인버터. 미국 주거(25D 종료)에 크게 노출</td></tr>
+      <tr id="co-tesla"><td>Tesla Energy (ESS)</td><td>미국 ESS(Megapack)·주거 저장</td></tr>
+      <tr id="co-fluence"><td>Fluence (ESS)</td><td>미국(지멘스·AES 계열) 계통용 ESS 통합사</td></tr>
+      <tr id="co-catl"><td>CATL (배터리)</td><td>중국 배터리 1위. ESS용 셀 공급</td></tr>
+      <tr id="co-powerequip"><td>GE Vernova·Siemens Energy·Hitachi Energy (전력장비)</td><td>변압기·계통 장비. AI·전기화와 공유하는 글로벌 병목의 수혜</td></tr>
+      <tr id="co-ipp"><td>NextEra·Brookfield·AES·Orsted (개발·IPP)</td><td>대형 재생에너지 개발·보유·운영사(IPP)</td></tr>
+      <tr id="co-xinyi"><td>Xinyi Solar (태양광 유리)</td><td>중국. 태양광 유리 세계 1위(~30%). 유리는 복점이라 패널보다 가격 방어가 낫다</td></tr>
+      <tr id="co-flatglass"><td>Flat Glass / 플랫글래스 (태양광 유리)</td><td>중국. 태양광 유리 2위(~18%). Xinyi와 함께 사실상 복점</td></tr>
+      <tr id="co-quartz"><td>The Quartz Corp · Sibelco (석영·비상장)</td><td>노르웨이/벨기에. 잉곳 성장용 고순도 석영을 양분하는 '숨은 병목' — 비상장이라 직접 매수 불가</td></tr>
+      <tr id="co-pacificquartz"><td>石英股份 Jiangsu Pacific Quartz (석영·603688)</td><td>중국(상하이 603688). 고순도 석영 사·도가니. 비상장 Quartz Corp·Sibelco의 상장 프록시</td></tr>
+      <tr id="co-doke"><td>帝科 DoKe / DK (은 페이스트·300842)</td><td>중국(선전 300842). 태양광 전도성 은 페이스트 대표 상장사(~20%)</td></tr>
+      <tr id="co-juhe"><td>聚和 Ju-He (은 페이스트·688503)</td><td>중국(STAR 688503). 은 페이스트 점유 1위권(~40%). Heraeus(비상장)와 경쟁</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>
+  <div class="kicker">— Footnotes &amp; Sources</div>
+  <h2 class="sec-title" style="font-size:1.3rem">각주 &amp; 출처</h2>
+  <ol class="notes">
+    <li id="fn1"><span class="st">IRENA, Renewable Power Generation Costs in 2024.</span> 유틸리티 태양광 LCOE 하락, 학습률, 비용 하락 동인. <span class="tag-q">primary</span></li>
+    <li id="fn2"><span class="st">Bernreuter Research, Polysilicon Price Trend.</span> 2026년 7월 초 폴리 가격과 현금원가 이하 압박. <span class="tag-q">secondary</span></li>
+    <li id="fn3"><span class="st">InfoLink, Supply chain trough.</span> 폴리 재고, 가동률, 2026 수요 둔화, 정상화 시점. <span class="tag-q">secondary</span></li>
+    <li id="fn4"><span class="st">pv-magazine.</span> 중국 폴리 통합안과 SAMR 개입 보도. <span class="tag-q">secondary</span></li>
+    <li id="fn5"><span class="st">BNEF.</span> 2026년 글로벌 설치 둔화 전망. <span class="tag-q">secondary</span></li>
+    <li id="fn6"><span class="st">pv-magazine.</span> TOPCon 모듈 가격과 VAT 환급 보도. <span class="tag-q">secondary</span></li>
+    <li id="fn7"><span class="st">IEA, Solar PV Global Supply Chains, 2022.</span> 제조 5단계와 중국 집중, 공급망 다변화 필요성. iea.org/reports/solar-pv-global-supply-chains <span class="tag-q">primary</span></li>
+    <li id="fn8"><span class="st">LBNL, Queued Up: 2026 Edition.</span> 2025년 말 active queue 2,060GW+, solar 773GW, storage 749GW, COD median queue 5년 초과, 2000~2020 요청 중 COD 도달 13%. emp.lbl.gov/queues <span class="tag-q">primary</span></li>
+    <li id="fn9"><span class="st">First Solar SEC filings, Q1 2026.</span> 매출, EPS, backlog, 45X 민감도. <span class="tag-q">primary</span></li>
+    <li id="fn10"><span class="st">Wells Fargo via CNBC.</span> First Solar 목표가 상향과 §232 민감도. <span class="tag-q">secondary</span></li>
+    <li id="fn11"><span class="st">pv-tech / trade policy.</span> §232 폴리실리콘 제안과 관세 시나리오. <span class="tag-q">secondary</span></li>
+    <li id="fn12"><span class="st">IRS Notice 2026-15.</span> PFE material assistance 판단·interim safe harbor·모듈 구성요소 비용비중 예시. irs.gov/pub/irs-drop/n-26-15.pdf <span class="tag-q">primary</span></li>
+    <li id="fn13"><span class="st">Wood Mackenzie, safe harbouring.</span> 미국 유틸 착공·세액공제 보전 추정. <span class="tag-q">secondary</span></li>
+    <li id="fn14"><span class="st">McGuireWoods.</span> 5% safe harbor 판결 해설. <span class="tag-q">secondary</span></li>
+    <li id="fn15"><span class="st">Nextpower IR.</span> FY26 매출 $3.559B, 조정 EBITDA $854M, 구 Nextracker, 트래킹·전력전자·AI·제어 SW 플랫폼. investors.nextracker.com <span class="tag-q">primary</span></li>
+    <li id="fn16"><span class="st">시장 데이터 애그리게이터.</span> NXT 컨센서스·밸류에이션. <span class="tag-q">secondary</span></li>
+    <li id="fn17"><span class="st">Enphase Q1 2026.</span> 25D 주거 크레딧 종료 코멘트. <span class="tag-q">primary/secondary</span></li>
+    <li id="fn18"><span class="st">Array Technologies Q1 2026.</span> backlog. <span class="tag-q">primary/secondary</span></li>
+    <li id="fn19"><span class="st">삼성증권 OCI홀딩스.</span> TerraSus 마진·SpaceX 계약·밸류에이션. <span class="tag-q">secondary</span></li>
+    <li id="fn20"><span class="st">Hanwha Qcells / DOE.</span> Cartersville 솔라허브와 미국 수직통합. <span class="tag-q">primary</span></li>
+    <li id="fn21"><span class="st">한화솔루션 Q1 2026.</span> 실적 보도 및 국내 증권사 목표가. <span class="tag-q">secondary</span></li>
+    <li id="fn22"><span class="st">MarketBeat / 시장 데이터.</span> FSLR 컨센서스 범위. <span class="tag-q">secondary</span></li>
+    <li id="fn23"><span class="st">Energy Solutions / pv-tech / TechXplore.</span> 페로브스카이트 탠덤·BC·효율 기록 보도. <span class="tag-q">secondary</span></li>
+    <li id="fn24"><span class="st">원본 리포트 IEA·PV Tech·pv-magazine 교차 정리.</span> 2025 신규 태양광 ~605GW, 누적 ~2.8TW, 기관별 집계 차이. <span class="tag-q">secondary</span></li>
+    <li id="fn25"><span class="st">PV Tech.</span> 중국 제조능력 ~1.2TW. <span class="tag-q">secondary</span></li>
+    <li id="fn26"><span class="st">EnergyTrend / TechXplore.</span> TOPCon·HJT·BC 효율과 시장 침투. <span class="tag-q">secondary</span></li>
+    <li id="fn27"><span class="st">IEEE ETHW / DOE.</span> 광전효과와 실리콘 셀 역사. <span class="tag-q">primary/secondary</span></li>
+    <li id="fn28"><span class="st">시장조사 종합.</span> 세그먼트 비중 근사치. <span class="tag-q">secondary</span></li>
+    <li id="fn29"><span class="st">Roth Capital / pv-magazine USA.</span> §232 일정 지연 보도. <span class="tag-q">secondary</span></li>
+    <li id="fn30"><span class="st">Wood Mackenzie / PV Tech / Thunder Said Energy.</span> 모듈 제조능력·폴리 nameplate·가동률 추정. <span class="tag-q">secondary</span></li>
+    <li id="fn31"><span class="st">SolarEdge Q1 2026.</span> 실적·시장 코멘트. <span class="tag-q">primary/secondary</span></li>
+    <li id="fn32"><span class="st">Daqo New Energy Q1 2026.</span> 현금원가·순손실·생산계획. <span class="tag-q">primary</span></li>
+    <li id="fn33"><span class="st">Shoals Technologies Q1 2026 / SEC 8-K.</span> eBOS backlog·가이던스. <span class="tag-q">primary</span></li>
+    <li id="fn34"><span class="st">삼성증권 OCI홀딩스 커버리지.</span> 말레이 폴리·베트남 웨이퍼 JV 구조. <span class="tag-q">secondary</span></li>
+    <li id="fn35"><span class="st">국내 언론·증권사.</span> Hanwha Qcells AMPC 추정·솔라허브 CAPEX. <span class="tag-q">secondary</span></li>
+    <li id="fn36"><span class="st">pv-magazine / 데이터센터 PPA.</span> 데이터센터 전력수요와 GW급 PPA. <span class="tag-q">secondary</span></li>
+    <li id="fn37"><span class="st">IEA / Ember / Utility Dive / IEA-PVPS.</span> 지역별 설치 추정. <span class="tag-q">secondary</span></li>
+    <li id="fn38"><span class="st">IRENA Renewable capacity statistics 2026.</span> 2025 재생에너지 신규 692GW, 태양광이 대부분. <span class="tag-q">primary</span></li>
+    <li id="fn39"><span class="st">Congress.gov, H.R.1 — 119th Congress.</span> 2025년 7월 4일 Public Law No. 119-21 법률화. congress.gov/bill/119th-congress/house-bill/1 <span class="tag-q">primary</span></li>
+    <li id="fn40"><span class="st">FERC, Order No. 2023(2023.7) / LBNL.</span> 클러스터 일괄심사·first-ready·철회 위약금. 2024 미국 큐 ~2,200~2,300GW(10년 만 첫 감소, 처리효율보다 접수 중단·진입 감소 탓); PJM 2026까지 +6.3만MW 목표. <span class="tag-q">primary/secondary</span></li>
+    <li id="fn41"><span class="st">US Commerce / USITC, 동남아 AD/CVD(2025.4 확정, 6.16 발효).</span> 캄보디아 최대 ~3,400%대, 태국 375~972%, 베트남 120~813%, 말레이 14~250%(한화 Qcells 말레이 최저); 후속 인도·인니·라오스 조사. <span class="tag-q">primary</span></li>
+    <li id="fn42"><span class="st">White &amp; Case / pv-tech / CPA, Section 232 폴리실리콘.</span> 1962 무역확장법 232조(국가안보). 2025.7.1 조사 개시, 폴리+파생품(웨이퍼·셀·모듈, 반도체급 포함). 절차: 조사 270일 → 대통령 90일 내 결정 → 15일 내 발효(보고서 ~2026.3, 결정 미정). 제안 폴리 $10/kg·웨이퍼 $0.07·셀 $0.10·모듈 $0.20/W + 동맹 무관세 쿼터(폴리 4만톤·셀/웨이퍼/잉곳 30GW). <span class="tag-q">secondary 검증</span></li>
+    <li id="fn43"><span class="st">BNEF / ESS-News, 배터리 셀 과잉(2025~26).</span> 중국 2025 저장 셀 ~557GWh(설치의 2배), LFP 셀 저점 $36/kWh, 2026 314Ah 셀 +20~30% 반등. <span class="tag-q">secondary</span></li>
+    <li id="fn44"><span class="st">Wood Mackenzie / pv-magazine, 트래커 점유(2024~H1'25).</span> Nextracker 28.5GW·~26% 글로벌 1위(10년 연속), 미국 3강 90%+, Array 미국 출하 -35% YoY, Trina·Arctech 급부상. <span class="tag-q">secondary</span></li>
+    <li id="fn45"><span class="st">시장조사 다수(Fortune·MarketsandMarkets 등), 구간 규모.</span> 트래커 ~$9~11B(2025)·CAGR 15~25%, eBOS ~$7.6B(2024), 계통 ESS ~$16B(2025). 하우스별 편차 큼, 지표용 근사. <span class="tag-q">secondary 근사</span></li>
+    <li id="fn46"><span class="st">Nextracker IR(Capital Markets Day 2025.11·Q2 FY26 주주서한 2025.10·Prevalon/Zimmermann 인수 2026).</span> 트래커 세계 1위(10년), 150GW+ 출하; 발전소 capex 지갑점유 9%→27%; BESS TAM 2030 ~$30~35B; Q2 FY26 매출 $905M·백로그 $5B+·조정 EBITDA $224M. 자사 추정치·전망 포함. <span class="tag-q">primary(회사 IR)</span></li>
+    <li id="fn47"><span class="st">IEA, Energy and AI(2025).</span> 데이터센터 전력 2024 ~415TWh(세계 ~1.5%) → 2030 ~945TWh(~3%), 연 ~15% 성장. iea.org/reports/energy-and-ai <span class="tag-q">primary 검증</span></li>
+    <li id="fn48"><span class="st">NREL Best Research-Cell Efficiency / ITRPV.</span> 실리콘 단접합 셀 기록 27.81%(2025, 이론한계 ~29.4%), 페로브스카이트 탠덤 34.85%(2025, 이론 ~43%); 양산 셀 PERC ~23%·TOPCon 25~26%·HJT ~26%·BC 모듈 24.8~25%. <span class="tag-q">primary/secondary</span></li>
+    <li id="fn49"><span class="st">BloombergNEF, Energy Storage Outlook.</span> 누적 저장 2030 ~411GW·1,194GWh(2021의 ~15배). <span class="tag-q">secondary</span></li>
+    <li id="fn50"><span class="st">업계 자료(태양광 유리·석영 도가니·은 페이스트).</span> 태양광 유리 Xinyi ~30%·Flat Glass ~18% 복점; 고순도 석영 The Quartz Corp·Sibelco(비상장) 양분, 상장 프록시 石英股份(603688); 은 페이스트 聚和(688503, ~40%)·帝科(300842, ~20%)·Heraeus(비상장). 티커·점유율은 2024~25 공개자료. <span class="tag-q">secondary 검증</span></li>
+    <li id="fn51"><span class="st">Swanson's Law / ITRPV / Our World in Data, 모듈 가격사.</span> 물가보정 모듈가 1975 ~$128/W → 2024 ~$0.26/W(중국 현물 ~$0.09), 50년 ~1/1000; 누적 2배마다 ~20% 하락. <span class="tag-q">secondary</span></li>
+  </ol>
+  <p class="disc">방법론. 태양광 섹터를 산업 구조·수요·공급·가격·기술·계통·정책 관점에서 정리한 인뎁스 리포트다. <b>개별 종목의 목표가·투자의견을 제시하지 않으며</b>, 언급된 기업은 각 밸류체인 구간의 대표 예시다. 2026-07-08 기준으로 Congress.gov·IRS·LBNL·FERC·US Commerce/USITC·IEA/IRENA·BNEF·업계 데이터를 재확인했고, 출처 태그는 primary/secondary로 단순화했다. 시장 규모·수치는 하우스별 편차가 있는 추정치다. 본 문서는 학습·리서치용이지 투자자문이 아니다. 용어에 점선 밑줄이 있는 항목은 마우스를 올리면(모바일은 탭) 뜻이 나온다.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  root.classList.add('js');
+
+  /* theme toggle */
+  var btn=document.getElementById('themeBtn');
+  var order=['auto','light','dark'],icons={auto:'◑',light:'☀',dark:'☾'},labels={auto:'Auto',light:'Light',dark:'Dark'};
+  function applyTheme(t){if(t==='auto')root.removeAttribute('data-theme');else root.setAttribute('data-theme',t);
+    if(btn){btn.querySelector('.ico').textContent=icons[t];btn.querySelector('.lbl').textContent=labels[t];}}
+  var cur='auto';try{cur=localStorage.getItem('solar-indepth-theme')||'auto';}catch(e){}
+  if(order.indexOf(cur)<0)cur='auto';applyTheme(cur);
+  if(btn)btn.addEventListener('click',function(){cur=order[(order.indexOf(cur)+1)%order.length];
+    try{localStorage.setItem('solar-indepth-theme',cur);}catch(e){}applyTheme(cur);});
+
+  /* progress bar */
+  var bar=document.getElementById('progress'),ticking=false;
+  function updateBar(){var h=document.documentElement,max=h.scrollHeight-h.clientHeight;var p=max>0?h.scrollTop/max:0;
+    if(bar)bar.style.width=(Math.min(1,Math.max(0,p))*100).toFixed(2)+'%';ticking=false;}
+  function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(updateBar);}}
+  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll,{passive:true});updateBar();
+
+  /* scrollspy */
+  var links=[].slice.call(document.querySelectorAll('.navlinks a')),map={};
+  links.forEach(function(a){var id=a.getAttribute('href').slice(1);if(document.getElementById(id))map[id]=a;});
+  var sobs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.remove('active');});var a=map[e.target.id];if(a)a.classList.add('active');}});},{rootMargin:"-45% 0px -50% 0px"});
+  Object.keys(map).forEach(function(id){sobs.observe(document.getElementById(id));});
+
+  /* scroll reveal */
+  if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+    var vh=window.innerHeight||800;
+    var robs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');robs.unobserve(e.target);}});},{rootMargin:"0px 0px -8% 0px"});
+    [].slice.call(document.querySelectorAll('.tiles,.viz,.twrap,.chain,.flow,.rank,.timeline,.checklist,.call')).forEach(function(el){
+      if(el.getBoundingClientRect().top>vh*0.9){el.classList.add('reveal');robs.observe(el);}});
+  }
+
+  /* popover engine: footnotes + glossary terms */
+  var pop=document.createElement('div');pop.className='fn-pop';document.body.appendChild(pop);var hideT;
+  function noteHTML(id){var li=document.getElementById(id);if(!li)return null;var c=li.cloneNode(true);var b=c.querySelector('.fn-back');if(b)b.remove();
+    return '<span class="pn">NOTE ['+id.replace('fn','')+']</span>'+c.innerHTML;}
+  function glossHTML(id){var tr=document.getElementById(id);if(!tr)return null;var td=tr.querySelectorAll('td');if(td.length<2)return null;
+    return '<span class="pn">'+td[0].textContent.trim()+'</span>'+td[1].innerHTML;}
+  function place(a){var r=a.getBoundingClientRect(),pw=pop.offsetWidth,ph=pop.offsetHeight,pad=10;
+    var left=Math.min(Math.max(pad,r.left+r.width/2-pw/2),window.innerWidth-pw-pad);
+    var top=r.top-ph-8;if(top<pad)top=r.bottom+8;pop.style.left=left+'px';pop.style.top=top+'px';}
+  function showPop(a,html){if(!html)return;pop.innerHTML=html;pop.style.visibility='hidden';pop.classList.add('show');place(a);pop.style.visibility='';}
+  function hidePop(){pop.classList.remove('show');}
+  [].slice.call(document.querySelectorAll('sup.fn a[href^="#fn"]')).forEach(function(a,i){
+    var id=a.getAttribute('href').slice(1);if(!a.id)a.id='ref-'+id+'-'+i;
+    a.addEventListener('mouseenter',function(){clearTimeout(hideT);showPop(a,noteHTML(id));});
+    a.addEventListener('mouseleave',function(){hideT=setTimeout(hidePop,120);});
+    a.addEventListener('focus',function(){showPop(a,noteHTML(id));});a.addEventListener('blur',hidePop);
+    a.addEventListener('click',function(){var li=document.getElementById(id);if(!li)return;var back=li.querySelector('.fn-back');
+      if(!back){back=document.createElement('a');back.className='fn-back';back.textContent='↩';back.setAttribute('aria-label','인용 위치로 돌아가기');li.appendChild(document.createTextNode(' '));li.appendChild(back);}
+      back.setAttribute('href','#'+a.id);hidePop();});
+  });
+  [].slice.call(document.querySelectorAll('.term[data-gl],.co[data-gl]')).forEach(function(el){
+    var id=el.getAttribute('data-gl');
+    el.addEventListener('mouseenter',function(){clearTimeout(hideT);showPop(el,glossHTML(id));});
+    el.addEventListener('mouseleave',function(){hideT=setTimeout(hidePop,120);});
+    el.addEventListener('focus',function(){showPop(el,glossHTML(id));});el.addEventListener('blur',hidePop);
+  });
+  pop.addEventListener('mouseenter',function(){clearTimeout(hideT);});pop.addEventListener('mouseleave',hidePop);
+})();
+</script>
+</body>
+</html>
