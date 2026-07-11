@@ -42,7 +42,7 @@
   *{box-sizing:border-box}
   html{scroll-behavior:smooth;scroll-padding-top:66px}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  body{background:var(--bg);color:var(--body);font-family:var(--f-body);line-height:1.75;
+  body{background:var(--bg);color:var(--body);font-family:var(--f-body);line-height:1.75;overflow-x:hidden;
     -webkit-font-smoothing:antialiased;margin:0;font-size:17px;letter-spacing:-.003em}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
   p{margin:0 0 1.15em;word-break:keep-all;overflow-wrap:break-word}
@@ -279,10 +279,10 @@
   .fig .dash{stroke-dasharray:5 4} .fig .thin{stroke-width:1} .fig .med{stroke-width:1.6}
   .fig line,.fig polyline,.fig path.ln{fill:none}
   @media(max-width:640px){
-    .topbar .wrap{gap:8px}.navlinks{display:none}.toc-btn{margin-left:auto}.theme-btn .lbl{display:none}
+    .topbar .wrap{gap:8px;min-width:0}.navlinks{display:none}.toc-btn{margin-left:auto}.theme-btn{display:none}
     .toc-panel{top:58px;padding:15px;max-height:calc(100vh - 72px)}.toc-grid{grid-template-columns:1fr 1fr}
-    header.hero{padding-top:48px}.decision-grid{grid-template-columns:1fr}.decision{padding:13px 14px}
-    .wrap{padding-left:18px;padding-right:18px}section{padding:48px 0}
+    header.hero{padding-top:48px}.decision-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.decision{padding:13px 14px;min-width:0}.decision.hold{grid-column:1/-1}.decision .dd{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .wrap{padding-left:18px;padding-right:18px;min-width:0}section{padding:48px 0}p{word-break:normal;overflow-wrap:anywhere}strong,b,.term,.co{overflow-wrap:anywhere}
     .viz{padding:18px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
     .viz svg.fig{width:680px;max-width:none;min-width:680px}.viz h4,.viz .cap{position:sticky;left:0;max-width:calc(100vw - 70px)}
     .twrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}.twrap table{min-width:640px}
@@ -396,10 +396,10 @@
 <header class="hero">
   <div class="eyebrow"><span>글로벌 태양광 · 인뎁스</span><span class="sep">/</span><span>전력 인프라 · 계통 · 정책 · 밸류체인</span><span class="sep">/</span><span>2026.07.07</span></div>
   <h1 class="title">GW는 늘어난다.<br>문제는 그 GW에서<br>누가 돈을 버느냐다.</h1>
-  <p class="standfirst">태양광은 패널 제조업이 아니라 <b>전력 인프라 산업</b>이다. 이익은 설치량과 같은 방향으로 움직이지 않는다. 태양광이 무엇이고, 돈이 밸류체인 어디에 쌓이며, <b>지금 무엇을 사고 무엇을 피해야 하는가</b>를 처음부터 짚는다.</p>
+  <p class="standfirst">태양광은 패널 제조업이 아니라 <b>전력 인프라 산업</b>이다. 설치량보다 <b>밸류체인 어디에 이익이 쌓이는지</b>를 봐야 한다.</p>
   <div class="decision-grid" aria-label="핵심 투자 판단">
-    <div class="decision pos"><div class="dk">선호</div><div class="dv">곡괭이·계통·비중국 제조</div><div class="dd">NXT·eBOS·ESS·정책 적격 공급망</div></div>
-    <div class="decision neg"><div class="dk">회피</div><div class="dv">중국 c-Si·미국 주거용</div><div class="dd">구조적 과잉공급과 보조금 절벽</div></div>
+    <div class="decision pos"><div class="dk">선호</div><div class="dv">곡괭이·계통</div><div class="dd">비중국 제조 포함</div></div>
+    <div class="decision neg"><div class="dk">회피</div><div class="dv">중국 c-Si·주거용</div><div class="dd">과잉공급·보조금 절벽</div></div>
     <div class="decision hold"><div class="dk">핵심 변수</div><div class="dv">§232·45X·착공 유지</div><div class="dd">정책보다 다운스트림 GW가 최종 기준</div></div>
   </div>
 </header>
