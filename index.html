@@ -790,6 +790,7 @@
   <div class="kicker">08 · Technology Roadmap</div>
   <h2 class="sec-title">기술 로드맵: PERC → 탠덤</h2>
   <p class="dek">투자 관점에선 기술 자체보다 '그 기술이 얼마나 오래 마진을 방어하는가'가 중요하다.</p>
+  <div class="tldr"><b>2026 기술 구도</b><span><b>현재 주류는 TOPCon</b>이다. 최근 상용 시장에서는 BC가 빠르게 주목받고, HJT는 고효율 틈새를 넓히고 있다. 페로브스카이트·실리콘 탠덤은 장기 효율 경쟁의 중심이지만 아직 대규모 양산과 금융 적격성 검증이 남았다.</span></div>
   <div class="viz">
     <h4>셀 기술 로드맵 · 효율과 시점</h4>
     <p class="cap">주류는 빠르게 커모디티화 · CdTe의 프리미엄은 '효율'이 아니라 '공급망 분리'</p>
@@ -818,6 +819,24 @@
   </table></div>
   <p class="src">양산 셀 효율(대략): PERC ~23% · TOPCon 25~26% · HJT ~26% · BC 모듈 24.8~25%. 셀 기록: 실리콘 단접합 27.81%(이론한계 ~29.4%), 페로브스카이트 탠덤 34.85%(이론 ~43%). NREL/제조사 인증. 랩 기록 ≠ 양산.<sup class="fn"><a href="#fn48">48</a></sup></p>
   <p>TOPCon은 이미 주류라 차별화보다 비용경쟁으로 이동했다. HJT·BC는 효율 프리미엄을 만들 수 있지만 장비·소재·수율의 경제성이 증명돼야 한다. CdTe가 받는 프리미엄은 '더 좋은 패널'이 아니라 <b>'중국 c-Si 체계 밖의 대규모 공급'</b>이라는 희소성에서 나온다. 탠덤은 장기적으로 중요하지만 2026년 결론을 뒤집기엔 이르다. 랩 효율 기록이 곧 <span class="term" data-gl="gl-bankability" tabindex="0">bankability</span>로 이어지지는 않는다.</p>
+
+  <h3 class="sub">번외 · 우주 데이터센터의 태양광은 무엇이 다른가</h3>
+  <p><b>빛을 전기로 바꾸는 원리는 같지만 최적화 기준은 다르다.</b> 지상은 발전단가를 낮추는 것이 중요해 값싸고 대량생산하기 쉬운 실리콘 TOPCon이 주류다. 우주는 패널을 궤도에 올리는 질량과 펼칠 수 있는 면적이 비싸다. 따라서 단위 질량당 출력(W/kg), 단위 면적당 출력(W/㎡), 방사선 내구성, 전개 신뢰성을 더 중요하게 본다.</p>
+  <div class="twrap"><table>
+    <thead><tr><th>구분</th><th>지상 태양광</th><th>우주 데이터센터용 태양광</th></tr></thead>
+    <tbody>
+      <tr><td class="tk">주류 셀</td><td>실리콘 TOPCon</td><td>현재 우주 전력계는 III-V 3~5중 접합 셀 중심</td></tr>
+      <tr><td class="tk">최우선 기준</td><td>달러/W·발전단가·양산원가</td><td>W/kg·W/㎡·방사선 내구성</td></tr>
+      <tr><td class="tk">환경</td><td>비·먼지·바람·일교차</td><td>방사선·진공·급격한 온도 변화</td></tr>
+      <tr><td class="tk">구조</td><td>고정식 또는 트래커</td><td>초경량 전개식 구조와 태양 추적</td></tr>
+      <tr><td class="tk">전력 공백</td><td>밤과 날씨</td><td>궤도에 따라 반복되는 일식</td></tr>
+      <tr><td class="tk">추가 병목</td><td>토지·인허가·계통연계</td><td>발사 질량·전개 신뢰성·열 방출</td></tr>
+    </tbody>
+  </table></div>
+  <p>NASA가 정리한 현재 우주용 고성능 태양전지는 갈륨비소(GaAs), 인듐갈륨인(InGaP), 게르마늄(Ge) 등을 층층이 쌓은 III-V 3~5중 접합 셀이다. 서로 다른 층이 각기 다른 파장의 빛을 흡수해 명목 효율은 약 30%, 고성능 제품은 약 34%에 이른다. 실리콘보다 비싸지만 같은 전력을 더 작은 면적과 질량으로 만들 수 있어 발사비와 구조물 질량을 줄이는 편익이 크다.<sup class="fn"><a href="#fn52">52</a></sup></p>
+  <p>우주에서는 대기와 구름이 없어 햇빛을 안정적으로 받을 수 있지만 궤도에 따라 지구 그림자에 들어가는 일식이 반복된다. 고에너지 입자는 셀 성능을 떨어뜨리므로 얇은 커버글라스가 필요하고, 일부 셀이 가려지거나 손상돼도 전체 배열이 멈추지 않도록 바이패스 다이오드를 쓴다. 대형 배열을 접어 발사한 뒤 정확히 펼치는 전개 장치와 일식 구간을 버틸 배터리도 전력계의 일부다.<sup class="fn"><a href="#fn53">53</a></sup></p>
+  <p>데이터센터는 여기에 <b>열 방출</b>이라는 병목을 더한다. 진공에는 공기 대류가 없어 서버의 폐열을 팬이나 외기로 식힐 수 없다. 장비에서 냉각판으로 열을 전도한 뒤 대형 라디에이터가 적외선 복사로 우주에 내보내야 한다. 계산 부하가 커질수록 태양전지와 배터리뿐 아니라 라디에이터의 면적과 질량도 함께 늘어난다. 따라서 우주 데이터센터는 태양광 패널만 바꾸는 사업이 아니라 전력 생산, 저장, 열관리, 궤도와 구조물을 함께 설계하는 시스템 사업에 가깝다.<sup class="fn"><a href="#fn54">54</a></sup></p>
+  <div class="call plain"><div class="lbl">한 줄 결론</div><p>지상 태양광이 '얼마나 싸게 발전하는가'의 경쟁이라면 우주용은 '얼마나 가볍고 작으며 오래 버티는가'의 경쟁이다. 다만 우주 데이터센터는 아직 초기 개념 단계여서 최종 셀 기술, 궤도, 냉각 구조가 표준화되지는 않았다.</p></div>
 </section>
 
 <div class="partband"><div class="pl">Part D · 병목과 정책</div><div class="pt">무엇이 착공을 막고, 정책이 누구를 가르나</div><div class="pd">다음 병목은 패널이 아니라 계통이다. 그리고 정책은 승자와 패자를 나눈다.</div></div>
@@ -1340,6 +1359,9 @@
     <li id="fn49"><span class="st">BloombergNEF, Energy Storage Outlook.</span> 누적 저장 2030 ~411GW·1,194GWh(2021의 ~15배). <span class="tag-q">secondary</span></li>
     <li id="fn50"><span class="st">업계 자료(태양광 유리·석영 도가니·은 페이스트).</span> 태양광 유리 Xinyi ~30%·Flat Glass ~18% 복점; 고순도 석영 The Quartz Corp·Sibelco(비상장) 양분, 상장 프록시 石英股份(603688); 은 페이스트 聚和(688503, ~40%)·帝科(300842, ~20%)·Heraeus(비상장). 티커·점유율은 2024~25 공개자료. <span class="tag-q">secondary 검증</span></li>
     <li id="fn51"><span class="st">Swanson's Law / ITRPV / Our World in Data, 모듈 가격사.</span> 물가보정 모듈가 1975 ~$128/W → 2024 ~$0.26/W(중국 현물 ~$0.09), 50년 ~1/1000; 누적 2배마다 ~20% 하락. <span class="tag-q">secondary</span></li>
+    <li id="fn52"><span class="st">NASA SmallSat Institute, State-of-the-Art Small Spacecraft Technology: Power Subsystems.</span> 현재 우주용 고성능 셀은 III-V 3~5중 접합 구조가 중심이며 명목 효율은 약 30%, 고성능 제품은 약 34%다. 질량·부피·면적 제약과 방사선 환경이 셀 선택을 좌우한다. <span class="tag-q">primary</span></li>
+    <li id="fn53"><span class="st">ESA, Drinking in the Sun in space.</span> 약 0.1mm 커버글라스로 고에너지 입자에 의한 열화를 줄이고, 바이패스 다이오드로 음영과 역전압 피해를 제한한다. <span class="tag-q">primary</span></li>
+    <li id="fn54"><span class="st">NASA SmallSat Institute, Thermal Control; ESA, Thermal Control.</span> 진공에서는 대류가 없어 전도와 복사로 열을 옮겨야 하며, 내부 폐열은 라디에이터를 통해 심우주로 방출한다. <span class="tag-q">primary</span></li>
   </ol>
   <p class="disc">방법론. 태양광 섹터를 산업 구조·수요·공급·가격·기술·계통·정책 관점에서 정리한 인뎁스 리포트다. <b>개별 종목의 목표가·투자의견을 제시하지 않으며</b>, 언급된 기업은 각 밸류체인 구간의 대표 예시다. 2026-07-08 기준으로 Congress.gov·IRS·LBNL·FERC·US Commerce/USITC·IEA/IRENA·BNEF·업계 데이터를 재확인했고, 출처 태그는 primary/secondary로 단순화했다. 시장 규모·수치는 하우스별 편차가 있는 추정치다. 본 문서는 학습·리서치용이지 투자자문이 아니다. 용어에 점선 밑줄이 있는 항목은 마우스를 올리면(모바일은 탭) 뜻이 나온다.</p>
 </footer>
