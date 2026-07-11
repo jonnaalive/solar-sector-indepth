@@ -89,6 +89,16 @@
     background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer;
     transition:color var(--dur),border-color var(--dur)}
   .theme-btn:hover{color:var(--accent-ink);border-color:var(--line-strong)}
+  .toc-btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:11px;font-weight:650;color:var(--ink);background:var(--panel);border:1px solid var(--line-strong);border-radius:999px;padding:6px 11px;cursor:pointer}
+  .toc-btn:hover,.toc-btn[aria-expanded="true"]{color:var(--accent-ink);border-color:var(--accent);background:var(--accent-soft)}
+  .toc-panel{position:fixed;z-index:45;top:60px;left:50%;width:min(820px,calc(100% - 28px));max-height:calc(100vh - 78px);overflow:auto;transform:translate(-50%,-8px);opacity:0;visibility:hidden;pointer-events:none;background:var(--panel);border:1px solid var(--line-strong);border-radius:18px;padding:20px;box-shadow:var(--shadow-lift);transition:opacity .16s var(--ease),transform .16s var(--ease),visibility .16s}
+  .toc-panel.open{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
+  .toc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;color:var(--ink);font-weight:750}
+  .toc-close{border:0;background:var(--neutral-soft);color:var(--muted);border-radius:999px;width:30px;height:30px;cursor:pointer}
+  .toc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+  .toc-grid a{display:flex;align-items:baseline;gap:8px;color:var(--body);text-decoration:none;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;background:var(--bg)}
+  .toc-grid a:hover{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+  .toc-grid .num{font-family:var(--f-mono);font-size:10px;color:var(--faint)}
   @media(max-width:640px){.theme-btn .lbl{display:none}}
 
   /* hero */
@@ -104,6 +114,14 @@
   .meta .m{font-family:var(--f-mono);font-size:12px;color:var(--muted);background:var(--panel);
     border:1px solid var(--line-strong);border-radius:999px;padding:6px 13px}
   .meta .m b{color:var(--accent-ink);font-weight:700}
+  .decision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:32px;max-width:780px}
+  .decision{border:1px solid var(--line-strong);border-radius:14px;padding:15px 16px;background:var(--panel)}
+  .decision .dk{font-family:var(--f-mono);font-size:10px;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+  .decision .dv{color:var(--ink);font-size:1.05rem;font-weight:760;margin-top:7px;line-height:1.35}
+  .decision .dd{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.45}
+  .decision.pos{border-color:color-mix(in srgb,var(--pos) 45%,var(--line));background:linear-gradient(180deg,var(--pos-soft),var(--panel))}.decision.pos .dk{color:var(--pos)}
+  .decision.neg{border-color:color-mix(in srgb,var(--neg) 38%,var(--line));background:linear-gradient(180deg,var(--neg-soft),var(--panel))}.decision.neg .dk{color:var(--neg)}
+  .decision.hold{border-color:color-mix(in srgb,var(--hold) 42%,var(--line));background:linear-gradient(180deg,var(--hold-soft),var(--panel))}.decision.hold .dk{color:var(--hold)}
 
   /* section */
   section{padding:60px 0;border-bottom:1px solid var(--line)}
@@ -260,6 +278,17 @@
   .fig .f-cell{fill:#2f52b3} .fig .st-cell{stroke:#8aa2e6} .fig .f-busbar{fill:#cdd8f0}
   .fig .dash{stroke-dasharray:5 4} .fig .thin{stroke-width:1} .fig .med{stroke-width:1.6}
   .fig line,.fig polyline,.fig path.ln{fill:none}
+  @media(max-width:640px){
+    .topbar .wrap{gap:8px}.navlinks{display:none}.toc-btn{margin-left:auto}.theme-btn .lbl{display:none}
+    .toc-panel{top:58px;padding:15px;max-height:calc(100vh - 72px)}.toc-grid{grid-template-columns:1fr 1fr}
+    header.hero{padding-top:48px}.decision-grid{grid-template-columns:1fr}.decision{padding:13px 14px}
+    .wrap{padding-left:18px;padding-right:18px}section{padding:48px 0}
+    .viz{padding:18px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+    .viz svg.fig{width:680px;max-width:none;min-width:680px}.viz h4,.viz .cap{position:sticky;left:0;max-width:calc(100vw - 70px)}
+    .twrap{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}.twrap table{min-width:640px}
+    .twrap th:first-child,.twrap td:first-child{position:sticky;left:0;z-index:1;background:var(--panel);box-shadow:1px 0 0 var(--line)}
+    .twrap thead th:first-child{z-index:2;background:color-mix(in srgb,var(--accent-soft) 80%,var(--panel))}
+  }
 
   /* reveal */
   .js .reveal{opacity:0;transform:translateY(10px)}
@@ -276,7 +305,7 @@
 
   /* print */
   @media print{
-    .topbar,.progress,.theme-btn,.skip,.fn-pop{display:none!important}
+    .topbar,.progress,.theme-btn,.toc-btn,.toc-panel,.skip,.fn-pop{display:none!important}
     :root{--bg:#fff;--panel:#fff;--shadow:none;--shadow-lift:none}
     body{font-size:11pt}
     header.hero::before{display:none}
@@ -343,11 +372,24 @@
 
 <div class="topbar"><div class="wrap">
   <span class="brand"><span class="dot"></span>SOLAR</span>
-  <nav class="navlinks">
-    <a href="#s-5min">5분</a><a href="#s1">요약</a><a href="#s-traps">오해</a><a href="#s2">본질</a><a href="#s3">수요</a><a href="#s4">경제성</a><a href="#s5">밸류체인</a><a href="#s6">공급</a><a href="#s7">가격</a><a href="#s8">기술</a><a href="#s9">계통</a><a href="#s10">정책</a><a href="#s11">경쟁</a><a href="#s12">사이클</a><a href="#s13">기업맵</a><a href="#s14">시사점</a><a href="#s15">리스크</a><a href="#s-faq">FAQ</a><a href="#s16">부록</a>
+  <nav class="navlinks" aria-label="주요 섹션">
+    <a href="#s-5min">요약</a><a href="#s2">산업</a><a href="#s8">기술</a><a href="#s9">계통·정책</a><a href="#s13">종목</a><a href="#s15">리스크</a>
   </nav>
+  <button class="toc-btn" id="tocBtn" type="button" aria-expanded="false" aria-controls="tocPanel"><span aria-hidden="true">☰</span><span>목차</span></button>
   <button class="theme-btn" id="themeBtn" type="button" aria-label="테마 전환"><span class="ico" aria-hidden="true">◑</span><span class="lbl">Auto</span></button>
 </div></div>
+<div class="toc-panel" id="tocPanel" aria-hidden="true">
+  <div class="toc-head"><span>전체 목차</span><button class="toc-close" id="tocClose" type="button" aria-label="목차 닫기">×</button></div>
+  <nav class="toc-grid" aria-label="전체 목차">
+    <a href="#s-5min"><span class="num">00</span>5분 요약</a><a href="#s1"><span class="num">01</span>핵심 요약</a><a href="#s-traps"><span class="num">TIP</span>투자 함정</a>
+    <a href="#s2"><span class="num">02</span>산업의 본질</a><a href="#s3"><span class="num">03</span>글로벌 수요</a><a href="#s4"><span class="num">04</span>프로젝트 경제성</a>
+    <a href="#s5"><span class="num">05</span>밸류체인</a><a href="#s6"><span class="num">06</span>공급 구조</a><a href="#s7"><span class="num">07</span>가격 전이</a>
+    <a href="#s8"><span class="num">08</span>기술 로드맵</a><a href="#s9"><span class="num">09</span>계통과 ESS</a><a href="#s10"><span class="num">10</span>정책</a>
+    <a href="#s11"><span class="num">11</span>경쟁 구도</a><a href="#s12"><span class="num">12</span>사이클</a><a href="#s13"><span class="num">13</span>기업 지도</a>
+    <a href="#s14"><span class="num">14</span>투자 시사점</a><a href="#s15"><span class="num">15</span>리스크</a><a href="#s-faq"><span class="num">FAQ</span>자주 묻는 질문</a>
+    <a href="#s16"><span class="num">16</span>부록</a>
+  </nav>
+</div>
 
 <div class="wrap" id="main">
 
@@ -355,11 +397,10 @@
   <div class="eyebrow"><span>글로벌 태양광 · 인뎁스</span><span class="sep">/</span><span>전력 인프라 · 계통 · 정책 · 밸류체인</span><span class="sep">/</span><span>2026.07.07</span></div>
   <h1 class="title">GW는 늘어난다.<br>문제는 그 GW에서<br>누가 돈을 버느냐다.</h1>
   <p class="standfirst">태양광은 패널 제조업이 아니라 <b>전력 인프라 산업</b>이다. 이익은 설치량과 같은 방향으로 움직이지 않는다. 태양광이 무엇이고, 돈이 밸류체인 어디에 쌓이며, <b>지금 무엇을 사고 무엇을 피해야 하는가</b>를 처음부터 짚는다.</p>
-  <div class="meta">
-    <span class="m"><b>스탠스</b> 바벨 · 중간 회피 / 양끝 선호</span>
-    <span class="m"><b>최선호 구간</b> 곡괭이·다운스트림</span>
-    <span class="m"><b>핵심 변수</b> §232</span>
-    <span class="m"><b>독자</b> 태양광 입문 투자자</span>
+  <div class="decision-grid" aria-label="핵심 투자 판단">
+    <div class="decision pos"><div class="dk">선호</div><div class="dv">곡괭이·계통·비중국 제조</div><div class="dd">NXT·eBOS·ESS·정책 적격 공급망</div></div>
+    <div class="decision neg"><div class="dk">회피</div><div class="dv">중국 c-Si·미국 주거용</div><div class="dd">구조적 과잉공급과 보조금 절벽</div></div>
+    <div class="decision hold"><div class="dk">핵심 변수</div><div class="dv">§232·45X·착공 유지</div><div class="dd">정책보다 다운스트림 GW가 최종 기준</div></div>
   </div>
 </header>
 
@@ -1382,6 +1423,15 @@
   if(order.indexOf(cur)<0)cur='auto';applyTheme(cur);
   if(btn)btn.addEventListener('click',function(){cur=order[(order.indexOf(cur)+1)%order.length];
     try{localStorage.setItem('solar-indepth-theme',cur);}catch(e){}applyTheme(cur);});
+
+  /* table of contents */
+  var tocBtn=document.getElementById('tocBtn'),tocPanel=document.getElementById('tocPanel'),tocClose=document.getElementById('tocClose');
+  function setToc(open){if(!tocPanel||!tocBtn)return;tocPanel.classList.toggle('open',open);tocPanel.setAttribute('aria-hidden',open?'false':'true');tocBtn.setAttribute('aria-expanded',open?'true':'false');}
+  if(tocBtn)tocBtn.addEventListener('click',function(){setToc(!tocPanel.classList.contains('open'));});
+  if(tocClose)tocClose.addEventListener('click',function(){setToc(false);});
+  if(tocPanel)tocPanel.addEventListener('click',function(e){if(e.target.closest('a'))setToc(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setToc(false);});
+  document.addEventListener('click',function(e){if(tocPanel&&tocPanel.classList.contains('open')&&!tocPanel.contains(e.target)&&!tocBtn.contains(e.target))setToc(false);});
 
   /* progress bar */
   var bar=document.getElementById('progress'),ticking=false;
