@@ -618,7 +618,8 @@
   <h2 class="sec-title">프로젝트 경제성: IRR을 움직이는 것</h2>
   <p class="dek">프로젝트 수익률은 모듈 가격 하나로 결정되지 않는다.</p>
   <div class="call plain"><div class="lbl">쉽게 말하면</div><p>발전소 하나의 수익률(IRR)은 '패널값'이 아니라 <strong>패널값 + 계통연계 비용 + 금리 + 세액공제 + 운영비</strong>의 합으로 정해진다. 그래서 같은 모듈 가격 하락이 <strong>제조사엔 악재, 개발사엔 호재</strong>가 되는 것이다.</p></div>
-  <p>구조는 단순하다. 개발사가 토지·인허가를 확보하고, EPC가 발전소를 짓고, 모듈·인버터·트래커·eBOS·변압기를 조달하고, 계통연계 비용을 부담한 뒤, 장기 PPA나 전력시장 수익으로 부채와 equity를 상환한다. IRR의 핵심 입력값은 CAPEX·발전량·전력판매단가·세액공제·부채비용·O&amp;M이다. 모듈이 떨어져 CAPEX가 낮아져도 계통연계 비용·변압기 납기가 늘면 상쇄되고, 금리가 오르면 같은 PPA에서도 equity IRR이 낮아진다.</p>
+  <p>개발사는 토지와 인허가를 확보하고 EPC 업체에 발전소 건설을 맡긴다. EPC 업체는 모듈·인버터·트래커·eBOS·변압기를 조달해 설비를 완성한다. 계통연계와 상업운전 개시(COD)를 마치면 발전소가 전력을 판매하고 PPA 매출을 받는다.</p>
+  <p>프로젝트 IRR은 투자한 현금과 앞으로 벌 현금의 시간가치를 반영한 수익률이다. 공사비와 금융비용이 낮을수록 올라가고, 발전량과 PPA 단가가 높을수록 좋아진다. 반대로 계통연계가 늦어져 COD가 밀리거나 출력제한이 늘면 매출 발생이 늦어져 IRR이 떨어진다. 그래서 모듈 가격만 봐서는 프로젝트 경제성을 판단할 수 없다.</p>
   <div class="twrap"><table>
     <thead><tr><th>항목</th><th>프로젝트 IRR 영향</th><th>체크포인트</th></tr></thead>
     <tbody>
@@ -663,7 +664,9 @@
   <h2 class="sec-title">밸류체인: 소재부터 IPP까지</h2>
   <p class="dek">물리적으론 선형이지만, 이익은 선형으로 분배되지 않는다.</p>
   <div class="tldr"><b>한 줄</b><span>왼쪽(소재·셀·모듈)은 원가곡선, 오른쪽(계통·설치·병목)은 렌트다. 오른쪽을 본다.</span></div>
-  <p>소재·셀·모듈은 자본집약적 제조업이고, 모듈 이후는 현장·전력·금융 서비스업에 가깝다. 마진은 공급과잉이 있는 곳에서 낮고 병목이 있는 곳에서 높다. 현재 병목은 폴리실리콘이 아니라 <b>계통연계·변압기·숙련 EPC·ESS 통합·정책 적격 공급망</b>이다. 그래서 밸류체인 맵은 왼쪽을 원가곡선, 오른쪽을 bottleneck rent로 읽어야 한다.</p>
+  <p>폴리실리콘·웨이퍼·셀·모듈은 대규모 설비에서 표준화된 제품을 반복 생산하는 자본집약적 제조업이다. 제품 차이가 크지 않아 공급이 수요를 넘으면 가격 경쟁이 벌어진다. 이 구간에서는 가격결정력보다 생산원가와 가동률이 수익성을 좌우한다.</p>
+  <p>반면 모듈 이후 단계는 현장마다 조건이 다르다. 발전소를 지으려면 부지와 인허가를 확보하고, 계통연계 승인을 받아 변압기와 송전 용량을 마련해야 한다. 숙련된 EPC 인력, ESS 통합 능력, 프로젝트 금융도 필요하다. 이런 자원은 단기간에 공급을 늘리기 어려워 병목을 확보한 기업이 더 높은 마진을 얻는다.</p>
+  <p>따라서 밸류체인 왼쪽은 <b>누가 더 싸게 생산하는가</b>를 보는 원가 경쟁이고, 오른쪽은 <b>누가 희소한 자원과 실행 능력을 확보했는가</b>를 보는 병목 경쟁이다. 정책 기준을 충족한 비중국 공급망에는 정책이 만든 희소성까지 더해진다.</p>
   <div class="chain">
     <div class="node loss"><div class="n">폴리·웨이퍼</div><div class="m">과잉·中 집중</div></div>
     <div class="node loss"><div class="n">셀·모듈</div><div class="m">ASP 하락</div></div>
@@ -803,14 +806,14 @@
     </svg>
   </div>
   <div class="twrap"><table>
-    <thead><tr><th>기술</th><th>특징</th><th>2026 위치</th><th>투자 해석</th></tr></thead>
+    <thead><tr><th>기술</th><th>왜 발전했나</th><th>장점과 남은 과제</th><th>대표 기업</th></tr></thead>
     <tbody>
-      <tr><td class="tk">PERC</td><td>p-type 기반, 기존 주류</td><td>퇴조</td><td>레거시 캐파 부담</td></tr>
-      <tr><td class="tk">TOPCon</td><td>n-type, 기존 라인 전환 용이</td><td>주류</td><td>빠르게 커모디티화</td></tr>
-      <tr><td class="tk">HJT</td><td>고효율, 저온 공정</td><td>추격</td><td>장비·은 사용량·수율이 관건</td></tr>
-      <tr><td class="tk">BC</td><td>후면전극, 고효율·미관</td><td>프리미엄 일부</td><td>분산형·고효율 시장</td></tr>
-      <tr><td class="tk">CdTe</td><td>First Solar 박막</td><td>c-Si와 공급망 분리</td><td>정책·관세 회피 프리미엄</td></tr>
-      <tr><td class="tk">페로브스카이트 탠덤</td><td>실리콘 위 적층, 이론 효율 높음</td><td>상용화 전환기</td><td>2027~2029 상용화 리스크</td></tr>
+      <tr><td class="tk">PERC</td><td>기존 셀의 후면 전자 손실을 줄이려고 부동태층을 추가</td><td>기존 설비로 싸게 대량생산할 수 있지만 효율 개선 여지가 작아 퇴조</td><td>LONGi·Trina·JA Solar 등 대형사</td></tr>
+      <tr><td class="tk">TOPCon</td><td>PERC보다 전자 손실을 더 줄이면서 기존 생산라인을 활용하려고 개발</td><td>효율·양면발전·열화가 개선되고 전환비용이 낮다. 빠른 증설로 범용 기술화</td><td>JinkoSolar·Trina·JA Solar</td></tr>
+      <tr><td class="tk">HJT</td><td>결정질 실리콘에 비정질 실리콘 박막을 결합해 접촉부 손실을 축소</td><td>효율·온도계수·양면발전·열화 특성이 좋다. 별도 장비와 은 사용량, 원가가 과제</td><td>Huasun·Risen Energy</td></tr>
+      <tr><td class="tk">BC</td><td>앞면 전극이 햇빛을 가리는 손실을 없애려고 전극을 뒤로 이동</td><td>같은 면적에서 출력이 높고 외관이 깔끔하다. 공정이 복잡하고 원가가 높다</td><td>LONGi(HPBC)·AIKO(ABC)</td></tr>
+      <tr><td class="tk">CdTe</td><td>실리콘과 다른 박막 소재·연속공정으로 원가와 공급망을 차별화</td><td>고온·습도에서 발전량이 좋고 중국 c-Si 공급망과 분리된다. 생태계가 한 회사에 집중</td><td>First Solar</td></tr>
+      <tr><td class="tk">페로브스카이트 탠덤</td><td>실리콘이 놓치는 파장까지 나눠 받아 단일접합 효율 한계를 넘기 위해 개발</td><td>같은 면적에서 더 많은 전력을 만든다. 수명·대면적 균일도·수율·금융 적격성을 더 검증해야 한다</td><td>Oxford PV(초기 상용)·JinkoSolar 등 연구개발</td></tr>
     </tbody>
   </table></div>
   <p class="src">양산 셀 효율(대략): PERC ~23% · TOPCon 25~26% · HJT ~26% · BC 모듈 24.8~25%. 셀 기록: 실리콘 단접합 27.81%(이론한계 ~29.4%), 페로브스카이트 탠덤 34.85%(이론 ~43%). NREL/제조사 인증. 랩 기록 ≠ 양산.<sup class="fn"><a href="#fn48">48</a></sup></p>
@@ -824,7 +827,8 @@
   <h2 class="sec-title">계통과 ESS: 다음 병목</h2>
   <p class="dek">태양광의 병목은 패널 부족이 아니라 연결 부족이다.</p>
   <div class="tldr"><b>한 줄</b><span>pipeline MW를 그대로 믿지 마라. 계통이 진짜 병목이고 ESS가 두 번째 엔진이다.</span></div>
-  <p>LBNL의 Queued Up 2026 Edition은 2025년 말 기준 미국에서 2,060GW 이상의 발전·저장 용량이 계통연계를 기다리고, active solar 773GW·storage 749GW, IA를 받았지만 아직 상업운전에 안 들어간 용량 549GW, 2025년 COD 프로젝트 median queue duration 5년 초과를 제시한다.<sup class="fn"><a href="#fn8">8</a></sup></p>
+  <p>LBNL의 Queued Up 2026 Edition에 따르면 2025년 말 미국 계통연계 대기열에는 발전설비 1,312GW와 저장장치 749GW가 있었다. 합계는 약 2,061GW다. 이 가운데 태양광은 773GW였고, 계통연계 계약을 받았지만 아직 상업운전을 시작하지 못한 발전·저장 용량도 549GW에 달했다. 2025년에 상업운전을 시작한 프로젝트는 계통연계를 신청한 뒤 5년 넘게 기다린 경우가 절반 이상이었다.<sup class="fn"><a href="#fn8">8</a></sup></p>
+  <p>대기열에 이름을 올렸다고 발전소가 되는 것은 아니다. 사업자는 계통 보강비와 인허가, 자금조달 조건을 확인한 뒤 경제성이 맞지 않으면 프로젝트를 철회한다. 따라서 개발사의 대기 프로젝트 용량은 확정 매출이 아니라 성공 확률을 할인해 평가해야 한다.</p>
   <div class="viz">
     <h4>인터커넥션 큐 · 대기 ≠ 가동</h4>
     <p class="cap">계통연계를 기다리는 용량은 거대하지만, 실제 발전소가 되는 비율은 극소수다 · LBNL Queued Up 2026</p>
@@ -839,8 +843,11 @@
       <text class="sm t-neg" x="310" y="232" text-anchor="middle">2000~2020년 요청 용량 중 실제 가동 도달 13% · 75%는 철회</text>
     </svg>
   </div>
-  <p>이 숫자는 개발사 valuation에서 pipeline MW를 그대로 가치로 인정하면 안 된다는 뜻이다. ESS는 이 병목을 일부 완화한다. 태양광 단독은 낮 가격을 낮추고 저녁 피크를 놓치지만, 4시간 ESS를 붙이면 낮 발전을 저녁으로 이동시켜 capacity value와 ancillary service를 확보한다. 다만 ESS도 배터리 셀만으로 안 되고 <span class="term" data-gl="gl-pcs" tabindex="0">PCS·BMS·EMS</span>·thermal·화재안전·interconnection·merchant 최적화가 함께 필요하다. BNEF는 누적 저장을 2030년 ~411GW·1,194GWh(2021의 약 15배)로 전망한다.<sup class="fn"><a href="#fn49">49</a></sup></p>
-  <p>이 병목은 규제로 풀리는 중이다. <b>FERC Order 2023</b>(2023년 시행)은 선착순 개별심사를 <b>클러스터 일괄심사·first-ready-first-served·철회 위약금</b>으로 바꿔 투기성 프로젝트를 걸러낸다.<sup class="fn"><a href="#fn40">40</a></sup> 다만 2024년 미국 큐는 약 2,200~2,300GW로 10년 만에 처음 줄었지만, 이는 처리 효율보다 일부 RTO의 신규 접수 중단과 신규 진입 감소 탓이라 <b>병목 해소는 아직 제한적</b>이다(PJM은 2026년까지 +6.3만MW 처리 목표). 즉 병목의 '해결책은 나왔지만 아직 효과는 미미'한 국면이다.</p>
+  <p>개발사가 대기열에 올린 프로젝트 용량을 그대로 기업가치로 계산하면 안 된다. 예를 들어 10GW를 신청했더라도 계통 보강비가 너무 크거나 인허가와 금융조달에 실패하면 상당수가 철회된다. 투자자는 전체 대기 용량보다 계통연계 계약을 확보했는지, 보강비를 감당할 수 있는지, 상업운전 예정일이 현실적인지를 봐야 한다.</p>
+  <p>ESS는 낮에 남는 태양광 전력을 저장했다가 저녁 피크에 판매해 태양광의 시간 불일치를 줄인다. 4시간 ESS는 정격출력으로 약 4시간 전력을 공급할 수 있는 배터리다. 낮과 저녁의 가격 차이, 전력이 부족할 때 공급할 수 있는 대가, 주파수·전압을 안정시키는 서비스 대가로 수익을 낸다.</p>
+  <p>배터리 셀만 사서 연결한다고 이 수익이 생기지는 않는다. PCS는 배터리의 직류를 계통용 교류로 바꾸고, BMS는 셀의 충전상태와 안전을 관리하며, EMS는 언제 충전하고 방전할지 결정한다. 냉각과 화재안전, 계통연계 승인, 전력가격 예측도 함께 갖춰야 한다. BNEF는 누적 저장설비가 2030년 약 411GW·1,194GWh에 이를 것으로 전망한다.<sup class="fn"><a href="#fn49">49</a></sup></p>
+  <p>FERC는 2023년 Order 2023을 통해 계통연계 심사방식을 바꿨다. 예전에는 먼저 신청한 프로젝트를 하나씩 검토해 준비되지 않은 사업도 대기열을 차지했다. 새 제도는 같은 지역의 프로젝트를 묶어 심사하고, 부지·자금·보증금을 갖춘 사업을 우선하며, 중도 철회에는 비용을 부과한다. 목적은 실현 가능성이 낮은 신청을 걸러내고 준비된 프로젝트를 앞당기는 데 있다.<sup class="fn"><a href="#fn40">40</a></sup></p>
+  <p>다만 규칙을 바꿨다고 송전선과 변압기가 바로 생기지는 않는다. 최근 대기 용량이 줄어든 데에는 심사 속도 개선뿐 아니라 일부 전력시장이 신규 접수를 잠시 중단하고 신청 자체가 감소한 영향도 있다. 제도는 개선됐지만 물리적 계통 보강과 실제 상업운전 전환에는 여전히 시간이 필요하다.</p>
   <div class="viz">
     <h4>덕 커브 · 왜 ESS가 두 번째 엔진인가</h4>
     <p class="cap">태양광이 낮 순부하를 끌어내리고 저녁 피크를 남긴다. ESS가 낮 잉여를 저녁으로 옮긴다</p>
@@ -883,7 +890,7 @@
   <p>특히 미국 정책은 단순 보조금이 아니라 원산지·공급망·tax credit 현금화·관세를 결합한 산업 재편 장치다.</p>
   <div class="viz">
     <h4>Section 232 관세는 무엇을 바꾸나 · Before / After</h4>
-    <p class="cap">중국 c-Si에만 관세 · 비중국 제조는 구조적 프리미엄, First Solar(CdTe)는 무풍지대</p>
+    <p class="cap">수입 c-Si 공급망에 광범위하게 적용될 수 있는 관세 · 동맹 쿼터와 최종 품목 범위가 승패를 좌우</p>
     <svg class="fig" viewBox="0 0 680 190" role="img" aria-label="Section 232 전후: 관세 전 비중국 제조가 열위, 관세 후 비중국 제조가 프리미엄을 얻고 First Solar는 무풍지대">
       <rect class="f-panel s-line med" x="6" y="30" width="300" height="150" rx="8"/>
       <text class="mid t-mut" x="156" y="56" text-anchor="middle">BEFORE · 관세 전</text>
@@ -913,7 +920,7 @@
       <tr><td class="tk">근거</td><td>국가안보(공급 집중·의존)</td><td>덤핑·정부 보조금</td></tr>
       <tr><td class="tk">적용 범위</td><td>품목 전체(광범위 HTS)</td><td>특정 국가·기업</td></tr>
       <tr><td class="tk">우회</td><td>어렵다(동맹 쿼터 외)</td><td>가능(제3국 이전)</td></tr>
-      <tr><td class="tk">세율</td><td>고정·예측 가능</td><td>추정 예치·사후 조정</td></tr>
+      <tr><td class="tk">세율·조건</td><td>대통령 조치와 협상에 따라 관세·쿼터가 달라질 수 있음</td><td>기업별 예치율을 추정한 뒤 사후 정산</td></tr>
       <tr><td class="tk">중첩</td><td colspan="2">232는 AD/CVD·301·기본관세 <b>위에 stack</b></td></tr>
     </tbody>
   </table></div>
@@ -1125,8 +1132,8 @@
   <ol class="arrowlist">
     <li>유틸 설치량에 노출되지만 특정 세액공제 하나에 과도 의존하지 않는 <b>곡괭이</b>: Nextpower, Shoals, 일부 전력장비.</li>
     <li>미국 정책 적격성이 명확하고 중국 c-Si와 분리된 <b>제조</b>: First Solar, Hanwha Qcells, OCI 비중국 공급망.</li>
-    <li><b>ESS·계통 최적화</b>: battery cell보다 system integration·PCS·EMS·grid service revenue.</li>
-    <li>자본비용이 낮고 PPA·interconnection 실행력이 있는 <b>IPP</b>.</li>
+    <li><b>ESS·계통 최적화</b>: 배터리 셀 자체보다 시스템 통합·PCS·EMS·계통 서비스 수익모델을 본다.</li>
+    <li>자본비용이 낮고 PPA 계약과 계통연계를 실제로 완수할 역량이 있는 <b>IPP</b>를 선별한다.</li>
     <li><b>회피</b>: 중국 c-Si 범용, 주거 절벽 노출 미국 인버터, 원산지 불명확 우회 공급망.</li>
   </ol>
   <div class="rank">
@@ -1172,7 +1179,7 @@
     <div class="qa"><div class="q">개별주 말고 태양광 ETF로 하면 안 돼?</div><div class="a">TAN 같은 ETF는 밸류체인 전체를 담아 <b>'회피 구간'까지 섞인다</b>. 바벨 논지대로면 통짜 ETF보다 구간 선별이 논리에 맞다(판단은 본인).</div></div>
     <div class="qa"><div class="q">왜 중국주는 회피야? 싸면 반등 안 해?</div><div class="a">중국 c-Si는 <b>국가보조·고용 탓에 감산이 안 돼</b> 마진 정상화가 늦다. '싸다'가 아니라 '왜 싼지(구조)'가 안 풀리는 게 문제.</div></div>
     <div class="qa"><div class="q">한국 투자자에게 제일 가까운 건?</div><div class="a">KRX 상장 <b>한화솔루션(009830)·OCI홀딩스</b>. 미국·중국 종목은 환율·세금·거래계좌가 별도 이슈.</div></div>
-    <div class="qa"><div class="q">GW가 뭐야? 605GW면 큰 거야?</div><div class="a"><span class="term" data-gl="gl-gw" tabindex="0">GW</span>=기가와트(발전 설비 용량). 2025년 세계에 ~605GW 신규 설치 ≈ 대형 원전 수백 기분의 설비. 태양광이 전 세계 신규 발전의 최대 축이다.</div></div>
+    <div class="qa"><div class="q">GW가 뭐야? 2025년에 얼마나 설치됐어?</div><div class="a"><span class="term" data-gl="gl-gw" tabindex="0">GW</span>는 발전설비 용량을 나타내는 기가와트다. IRENA는 2025년 신규 태양광을 510GW로 집계했다. 시장기관 수치는 교류·직류 환산과 집계 시점에 따라 약 600GW 안팎까지 높아진다. 기관별 숫자를 비교할 때는 집계 기준부터 확인해야 한다.<sup class="fn"><a href="#fn38">38</a></sup></div></div>
     <div class="qa"><div class="q">§232는 언제 결정돼?</div><div class="a">2026년 7월 현재 <b>미결정·지연</b>. 발효/무산이 비중국 제조 프리미엄을 좌우하는 <b>최대 스윙</b>이라, 결정 시점 자체가 관전 포인트.</div></div>
   </div>
 </section>
